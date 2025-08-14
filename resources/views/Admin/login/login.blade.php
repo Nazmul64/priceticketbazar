@@ -39,7 +39,7 @@
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title">Sign In</h5>
                 <p class="card-text mb-5">See your growth and get consulting support!</p>
-                <form class="form-body" method="post" action="{{ route('admin_login_submit') }}">
+                <form class="form-body" method="post" action="{{ route('admin.login.submit') }}">
                   @csrf
 
                   <div class="login-separater text-center mb-4">
@@ -74,7 +74,7 @@
                           id="inputChoosePassword"
                           placeholder="Enter Password"
                         />
-                         @error('password')
+                        @error('password')
                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <button

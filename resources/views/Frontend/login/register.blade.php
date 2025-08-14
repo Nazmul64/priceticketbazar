@@ -1,422 +1,699 @@
-<!DOCTYPE html>
-<html lang="en">
-   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-   <!-- /Added by HTTrack -->
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="keywords" content="Genius, Ocean, Sea, Etc">
-      <meta name="author" content="GeniusOcean">
-      <title>Hyip Investment Platform</title>
-      <!-- Essential CSS files -->
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/all.css') }}">
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/bootstrap.min.css') }}">
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/slick.css') }}">
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/jquery-ui.css') }}">
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/nice-select.css') }}">
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/animate.css') }}">
-      <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/style.css') }}">
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
-      <!-- Custom Font CSS -->
-      <link rel="stylesheet" id="colorr" href="{{ asset('frontend/assets/front/css/font9f05.css?font_familly=IBM%20Plex%20Sans') }}">
-      <!-- Favicon -->
-      <link rel="shortcut icon" href="{{ asset('frontend/assets/images/Yo7c3v0R1650180806.png') }}">
-      <!-- Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137437974-1"></script>
-      <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-         gtag('config', 'UA-137437974-1');
-      </script>
-   </head>
-   <body>
-      <header class="header-section position-relative z-2 header-sticky">
-         <div class="container-header">
-            <div class="crete-navbar">
-               <div class="row align-items-center">
-                  <div class="col-lg-2 col-xl-2 col-6">
-                     <div class="logo-wrapper">
-                        <a href="https://demo.geniusocean.com/hyip-king"> <img src="{{asset('frontend')}}/assets/images/WrK86hHx1659607850.png"
-                           alt="logo" class="img-fluid logo-dsgn">
-                        </a>
-                     </div>
-                  </div>
-                  <div class="col-xl-7 col-lg-7 d-none d-lg-block">
-                     <nav class="crete-navmenu text-center ps-xl-5">
-                        <ul>
-                           <li class=""><a href="https://demo.geniusocean.com/hyip-king"
-                              target="_self">Home</a>
-                           </li>
-                           <li class=""><a href="../about.html"
-                              target="_self">About</a>
-                           </li>
-                           <li class=""><a href="../plans.html"
-                              target="_self">Plans</a>
-                           </li>
-                           <li class=""><a href="../blogs.html"
-                              target="_self">Blog</a>
-                           </li>
-                           <li class=""><a href="../contact.html"
-                              target="_self">Contact Us</a>
-                           </li>
-                        </ul>
-                     </nav>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-6 ">
-                     <div
-                        class="text-end d-flex align-items-center justify-content-end header-right gap-3 d-none d-lg-block contact-btn-head">
-                        <a href="login.html"
-                           class="template-btn white-btn d-xl-block contact-btn">Login Now</a>
-                     </div>
-                     <button type="button" class="header-toggle mobile-menu-toggle d-flex d-lg-none">
-                     <span></span>
-                     <span></span>
-                     <span></span>
-                     </button>
-                  </div>
-               </div>
+@extends('Frontend.master')
+
+@section('content')
+<div class="register-container">
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="floating-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="register-wrapper">
+        <div class="register-card">
+            <div class="card-header">
+                <div class="logo-container">
+                    <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="Logo" class="logo">
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Create your account to get started</p>
             </div>
-         </div>
-      </header>
-      <!-- Mobile Menu Start -->
-      <div class="mobile-menu">
-         <img class="mobile-menu-logo"
-            src="{{asset('frontend')}}/assets/product.geniusocean.com/genius-hyip-light/assets/images/ldNavhzl1674033807.png" alt="">
-         <a href="javascript:void(0)" class="close"><i class="fas fa-xmark"></i></a>
-         <ul class="mobile-nav-menu">
-            <li><a href="https://demo.geniusocean.com/hyip-king" target="_self">Home</a>
-            </li>
-            <li><a href="../about.html" target="_self">About</a>
-            </li>
-            <li><a href="../plans.html" target="_self">Plans</a>
-            </li>
-            <li><a href="../blogs.html" target="_self">Blog</a>
-            </li>
-            <li><a href="../contact.html" target="_self">Contact Us</a>
-            </li>
-            <div class="mobile-menu-login">
-               <a href="contact.html" class="mobile-menu-btn white-btn d-xl-block">Login</a>
-            </div>
-         </ul>
-      </div>
-      <!-- Mobile Menu End -->
-      <!-- Main Section -->
-      <main>
-         <div class="breadcrumb-section-login" data-background="{{asset('frontend')}}/assets/images/57U8bXGi1705124911.png">
-         </div>
-         <div class="login-section">
-            <div class="container">
-               <div class="row login-rows">
-                  <div class="col-lg-6">
-                     <div class="login-img">
-                        <img src="{{asset('frontend')}}/assets/images/D1I2tyHJ1704876360.png" alt="">
-                     </div>
-                  </div>
-                  <div class="col-lg-6 form-section">
-                    <div class="login-form">
-                        <div class="login-logo">
-                            <a href="#">
-                                <img src="{{ asset('frontend/assets/images/WrK86hHx1659607850.png') }}" alt="logo" />
-                            </a>
-                        </div>
-                        <h4>Create Your Account</h4>
-                        <div class="login-form-area">
-                            <form id="registerform" action="#" method="POST">
-                                @csrf
 
-                                <!-- Full Name -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="name">Your Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" placeholder="Full Name">
-                                </div>
+            <form action="{{ route('registersubmit') }}" method="POST" class="form" novalidate>
+                @csrf
 
-                                <!-- Phone -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="phone">Phone</label>
-                                    <div class="input-group">
-                                        <select class="input-group-text m-0 form-label" name="phone_code" id="phone_code">
-                                            <option value="880">880</option>
-                                        </select>
-                                        <input type="text" name="phone" id="phone" placeholder="Phone" class="form-control">
-                                    </div>
-                                </div>
-
-                                <!-- Email -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="email">Your Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" placeholder="Email">
-                                </div>
-
-                                <!-- Reference Name -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="ref_name">Reference Name</label>
-                                    <input type="text" id="ref_name" name="ref_name" class="form-control" placeholder="Reference Name">
-                                </div>
-
-                                <!-- Reference ID -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="ref_id">Reference ID</label>
-                                    <input type="text" id="ref_id" name="ref_id" class="form-control" placeholder="Reference ID">
-                                </div>
-
-                                <!-- Username -->
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="username">User Name</label>
-                                    <input type="text" id="username" name="username" class="form-control" placeholder="User Name">
-                                </div>
-
-                                <!-- Password -->
-                                <div class="form-outline mb-2">
-                                    <label class="form-label" for="password">Your Password</label>
-                                    <input type="password" id="password" name="password" class="form-control">
-                                </div>
-
-                                <!-- Confirm Password -->
-                                <div class="form-outline mb-2">
-                                    <label class="form-label" for="confirm-password">Confirm Password</label>
-                                    <input type="password" id="confirm-password" name="password_confirmation" class="form-control">
-                                </div>
-
-                                <!-- Terms & Conditions -->
-                                <div class="row mb-4">
-                                    <div class="col d-flex">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="termes" checked>
-                                            <label class="form-check-label" for="termes">
-                                                I agree with all Terms & Conditions
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <button type="submit" class="form-btn primary-btn-forms btn-forms mb-4">
-                                    Create Account
-                                    <div class="spinner-border formSpin" role="status"></div>
-                                </button>
-
-                                <!-- Alert Messages -->
-                                <div class="position-absolute w-full">
-                                    <div class="alert alert-success alert-dismissible fade show" style="display: none;">
-                                        <p class="m-0 text-success"></p>
-                                    </div>
-                                    <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert">
-                                        <p class="m-0 text-danger"></p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="social-icon-section">
-                            <p class="sign-up-option">Already you have an account in here?
-                                <a class="sign-up" href="login.html">Login</a>
-                            </p>
-                        </div>
+                <div class="input-grid">
+                    <div class="input-wrapper">
+                        <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+                        <label for="name">Full Name</label>
+                        <div class="input-highlight"></div>
+                        @error('name')<span class="error-msg">{{ $message }}</span>@enderror
                     </div>
 
-                  </div>
-               </div>
-            </div>
-         </div>
-         <footer class="footer-section" data-background="{{asset('frontend')}}assets/front/images/Footer-bg.html">
-            <div class="container">
-               <div class="footer-tops">
-                  <div class="row gap-4 gap-md-0 footer-section-row">
-                     <div class="col-xl-4 col-lg-3 col-md-6 wow fadeInLeft" data-wow-delay="0.1s">
-                        <div class="footer-logo">
-                           <img src="{{asset('frontend')}}/assets/images/WrK86hHx1659607850.png" alt="">
+                    <div class="input-wrapper phone-wrapper">
+                        <div class="phone-container">
+                            <span class="country-code">+880</span>
+                            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" required>
+                            <label for="phone">Phone Number</label>
                         </div>
-                        <div class="footer-paragraph">
-                           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo...</p>
-                        </div>
-                        <div class="footer-socials-icons">
-                           <div class="d-flex gap-2 social-links">
-                              <a class="common-icon" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                              <a class="common-icon" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                              <a class="common-icon" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-xl-2 offset-xl-1 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="footer-links ">
-                           <h5 class="p-0 m-0">Useful Links</h5>
-                           <hr class="m-0 p-0">
-                           <ul>
-                              <li>
-                                 <a href="../provicay.html">Privacy Policy</a>
-                              </li>
-                              <li>
-                                 <a href="../support-policy.html">Support</a>
-                              </li>
-                              <li>
-                                 <a href="../terms.html">Terms Condition</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="col-xl-2 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="footer-links ">
-                           <h5 class="p-0 m-0">Company</h5>
-                           <hr class="m-0 p-0 footer-company-hr">
-                           <ul>
-                              <li><a href="https://demo.geniusocean.com/hyip-king"
-                                 target="_self">Home</a>
-                              </li>
-                              <li><a href="../about.html"
-                                 target="_self">About</a>
-                              </li>
-                              <li><a href="../plans.html"
-                                 target="_self">Plans</a>
-                              </li>
-                              <li><a href="../blogs.html"
-                                 target="_self">Blog</a>
-                              </li>
-                              <li><a href="../contact.html"
-                                 target="_self">Contact Us</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="footer-contact">
-                           <h5 class="p-0 m-0">Contact Us</h5>
-                           <hr class="m-0 p-0 footer-contact-hr">
-                           <ul>
-                              <li><i class="fas fa-phone-alt px-1"></i> +0123456789</li>
-                              <li><i class="fas fa-envelope px-1"></i>admin@geniusocean.com</li>
-                              <li><i class="fas fa-map-marker-alt px-1"></i> New York, United States</li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <hr class="bottom-footer-top-hr">
-            <div class="footer-bottom">
-               <p>COPYRIGHT © 2019. All Rights Reserved By <a href="http://geniusocean.com/">GeniusOcean.com</a></p>
-            </div>
-         </footer>
-      </main>
-      <!-- Invest Modal -->
-      <div class="modal modal-position fade" id="invest-modal">
-         <div class="modal-dialog">
-            <div class="modal-content model-area">
-               <form class="investForm modal-form" action="https://demo.geniusocean.com/hyip-king/user/invest/amount" method="POST">
-                  <input type="hidden" name="_token" value="Gety1CLWTuqmcpc0MjWKHAV1zB7MfyVZDAr9wSFy" autocomplete="off">
-                  <div class="modal-body p-4">
-                     <h4 class="modal-title text-center plan-title">Basic Plan</h4>
-                     <div class="pt-3 pb-1">
-                        <label for="amount" class="form-label">Enter Amount</label>
-                        <div class="input-group input--group">
-                           <input type="number" step="any" name="amount"
-                              class="form-group-input form-control form--control bg--section" placeholder="0.00"
-                              id="modalAmount">
-                           <button type="button" class="input-group-text">USD</button>
-                        </div>
-                        <label for="amount" class="form-label">Select Wallet</label>
-                        <div class="input-group input--group">
-                           <select name="wallet" id="investMethod" class="forms nice_select w-100 rounded"
-                              required>
-                              <option value="checkout">Checkout</option>
-                              <option value="main_wallet">Main Balance</option>
-                              <option value="interest_wallet">Interest Balance</option>
-                           </select>
-                        </div>
-                     </div>
-                     <input type="hidden" name="investId" id="investId" value="">
-                     <div class="d-flex gap-3 modal-btns">
-                        <button type="button" class="template-btn primary-outline w-50"
-                           data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="template-btn primary-btn w-50">Proceed</button>
-                     </div>
-                  </div>
-               </form>
-            </div>
-         </div>
-      </div>
-      <!-- Essential JS files -->
-      <!-- Essential JS Files -->
-      <script src="{{ asset('frontend/assets/front/js/jquery.min.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/popper.min.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/bootstrap.min.js') }}"></script>
-      <!-- Plugin JS -->
-      <script src="{{ asset('frontend/assets/front/js/slick.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/jquery-ui.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/nice-select.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/wow.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/parallax.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/tilt-js.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/waypoints.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/counterup.min.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/preloader.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/jquery.magnific-popup.min.js') }}"></script>
-      <!-- Custom JS -->
-      <script src="{{ asset('frontend/assets/front/js/script.js') }}"></script>
-      <script src="{{ asset('frontend/assets/front/js/custom.js') }}"></script>
-      <script>
-         'use strict';
-         let mainurl = 'https://demo.geniusocean.com/hyip-king';
-         let tawkto = '0';
-      </script>
-      <script type="text/javascript">
-         if (tawkto == 1) {
-             var Tawk_API = Tawk_API || {},
-                 Tawk_LoadStart = new Date();
-             (function() {
-                 var s1 = document.createElement("script"),
-                     s0 = document.getElementsByTagName("script")[0];
-                 s1.async = true;
-                 s1.src = 'https://embed.tawk.to/5bc2019c61d0b77092512d03/default';
-                 s1.charset = 'UTF-8';
-                 s1.setAttribute('crossorigin', '*');
-                 s0.parentNode.insertBefore(s1, s0);
-             })();
-         }
-      </script>
-      <script>
-         'use strict';
+                        <div class="input-highlight"></div>
+                        @error('phone')<span class="error-msg">{{ $message }}</span>@enderror
+                    </div>
 
+                    <div class="input-wrapper">
+                        <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                        <label for="email">Email Address</label>
+                        <div class="input-highlight"></div>
+                        @error('email')<span class="error-msg">{{ $message }}</span>@enderror
+                    </div>
 
+                    <div class="input-wrapper">
+                        <input type="text" name="ref_code" id="ref_code" value="{{ old('ref_code') }}">
+                        <label for="ref_code">Referral Code</label>
+                        <div class="input-highlight"></div>
+                        <small class="helper-text">Optional</small>
+                        @error('ref_code')<span class="error-msg">{{ $message }}</span>@enderror
+                    </div>
 
+                    <div class="input-wrapper">
+                        <input type="text" name="username" id="username" value="{{ old('username') }}" required>
+                        <label for="username">Username</label>
+                        <div class="input-highlight"></div>
+                        @error('username')<span class="error-msg">{{ $message }}</span>@enderror
+                    </div>
 
+                    <div class="input-wrapper password-wrapper">
+                        <input type="password" name="password" id="password" required>
+                        <label for="password">Password</label>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                        <div class="input-highlight"></div>
+                        @error('password')<span class="error-msg">{{ $message }}</span>@enderror
+                    </div>
+                </div>
 
-      </script>
-      <script>
-         'use strict';
+                <div class="input-wrapper full-width">
+                    <input type="password" name="password_confirmation" id="password_confirmation" required>
+                    <label for="password_confirmation">Confirm Password</label>
+                    <button type="button" class="toggle-password" onclick="togglePassword('password_confirmation')">
+                        <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                    <div class="input-highlight"></div>
+                </div>
 
-         $('.invest-plan').on('click', function() {
-             $('#modalAmount').val('');
-             $('#modalAmount').prop('readonly', false)
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" name="terms" id="terms" required>
+                    <label for="terms">
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" class="link">Terms & Conditions</a>
+                    </label>
+                </div>
 
-             let id = $(this).data('id');
-             let title = $(this).data('title');
-             let type = $(this).data('type');
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Create Account</span>
+                    <div class="btn-loader">
+                        <div class="spinner"></div>
+                    </div>
+                </button>
 
-             if (type == 1) {
-                 $('#modalAmount').val($(this).attr('data-fixAmount'));
-                 $('#modalAmount').prop('readonly', true)
-             }
-             $('#investId').val(id);
-             $('.plan-title').text(title);
-         });
+                <div class="form-footer">
+                    <p>Already have an account? <a href="{{ route('user.login') }}" class="link">Sign In</a></p>
+                </div>
 
-         $(document).on('change', '#investMethod', function() {
-             var val = $(this).val();
-             if (val == 'checkout') {
-                 $('.investForm').prop('action', 'invest/amount.html');
-             }
+                @if(session('success'))
+                    <div class="alert success">{{ session('success') }}</div>
+                @endif
+                @if(session('error'))
+                    <div class="alert error">{{ session('error') }}</div>
+                @endif
+            </form>
+        </div>
+    </div>
+</div>
 
-             if (val == 'main_wallet') {
-                 $('.investForm').prop('action', 'invest/main.html');
-             }
+<script>
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const button = field.nextElementSibling.nextElementSibling;
+    const icon = button.querySelector('.eye-icon');
 
-             if (val == 'interest_wallet') {
-                 $('.investForm').prop('action', 'invest/interest.html');
-             }
-         });
-      </script>
-   </body>
-</html>
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+    } else {
+        field.type = 'password';
+        icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+    }
+}
 
+// Form submission animation
+document.querySelector('.form').addEventListener('submit', function(e) {
+    const btn = document.querySelector('.submit-btn');
+    btn.classList.add('loading');
+});
+
+// Input validation animations
+document.querySelectorAll('input[required]').forEach(input => {
+    input.addEventListener('invalid', function() {
+        this.parentElement.classList.add('invalid');
+    });
+
+    input.addEventListener('input', function() {
+        if (this.validity.valid) {
+            this.parentElement.classList.remove('invalid');
+        }
+    });
+});
+</script>
+@endsection
+
+<style>
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --accent: #06b6d4;
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.bg-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+    animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.floating-orbs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+    backdrop-filter: blur(20px);
+    animation: float 6s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    left: -100px;
+    animation-delay: 2s;
+}
+
+.orb-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 10%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-30px) rotate(120deg); }
+    66% { transform: translateY(15px) rotate(240deg); }
+}
+
+.register-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 480px;
+}
+
+.register-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    box-shadow:
+        var(--shadow-xl),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo-container {
+    margin-bottom: 1.5rem;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.card-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.card-header p {
+    color: var(--gray-500);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .input-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .register-card {
+        max-width: 600px;
+        padding: 3rem;
+    }
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.input-wrapper input {
+    width: 100%;
+    height: 3.5rem;
+    padding: 1rem 1rem 0.5rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    font-size: 1rem;
+    color: var(--gray-700);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.input-wrapper label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-400);
+    font-size: 1rem;
+    font-weight: 400;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+.input-wrapper input:focus,
+.input-wrapper input:not(:placeholder-shown) {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+    top: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--primary);
+    transform: translateY(0);
+}
+
+.input-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+}
+
+.input-wrapper input:focus ~ .input-highlight {
+    width: 100%;
+}
+
+.phone-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.country-code {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-600);
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 2;
+    background: transparent;
+    pointer-events: none;
+}
+
+.phone-wrapper input {
+    padding-left: 4.5rem;
+}
+
+.phone-wrapper label {
+    left: 4.5rem;
+}
+
+.phone-wrapper input:focus + label,
+.phone-wrapper input:not(:placeholder-shown) + label {
+    left: 1rem;
+    top: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: var(--gray-600);
+    background: var(--gray-100);
+}
+
+.eye-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+}
+
+.helper-text {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+.error-msg {
+    position: absolute;
+    bottom: -1.25rem;
+    left: 0;
+    color: var(--error);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.input-wrapper.invalid input {
+    border-color: var(--error);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.checkbox-wrapper input:checked + label .checkmark {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.checkbox-wrapper input:checked + label .checkmark::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 8px;
+    border: 2px solid var(--white);
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-wrapper label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.5;
+}
+
+.link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.submit-btn {
+    position: relative;
+    width: 100%;
+    height: 3.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 1.5rem;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.submit-btn.loading .btn-text {
+    opacity: 0;
+}
+
+.submit-btn.loading .btn-loader {
+    opacity: 1;
+}
+
+.spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid var(--white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.form-footer p {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
+
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    border: 1px solid;
+}
+
+.alert.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.alert.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+@media (max-width: 640px) {
+    .register-card {
+        padding: 1.5rem;
+        margin: 0.5rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .card-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+/* Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visibility for keyboard navigation */
+.submit-btn:focus-visible,
+.toggle-password:focus-visible,
+.link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+input:focus-visible {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+</style>

@@ -11,41 +11,80 @@ return new class extends Migration
      */
 public function up(): void
 {
+    // Users table
     Schema::create('users', function (Blueprint $table) {
         $table->id();
 
         // Referral system
-        $table->unsignedBigInteger('referred_by')->nullable(); // Who referred this user
-        $table->foreign('referred_by')->references('id')->on('users')->onDelete('set null');
+        $table->foreignId('referred_by')
+              ->nullable()
+              ->constrained('users')
+              ->nullOnDelete()
+              ->comment('User ID who referred this user');
 
+        $table->foreignId('ref_id')
+              ->nullable()
+              ->constrained('users')
+              ->nullOnDelete()
+              ->comment('Alternate referral user ID');
+
+        // Commission tracking
+        $table->decimal('refer_income', 10, 2)
+              ->default(0.00)
+              ->comment('Direct referral commission earned');
+
+        $table->decimal('generation_income', 10, 2)
+              ->default(0.00)
+              ->comment('Generation level commission earned');
+
+        // Basic info
         $table->string('name');
         $table->string('email')->unique();
         $table->timestamp('email_verified_at')->nullable();
         $table->string('password');
-        $table->string('phone')->nullable();
+        $table->string('phone')->nullable()->unique();
         $table->string('address')->nullable();
+        $table->string('username')->nullable()->unique();
+
+        // Roles & status
         $table->enum('role', ['user', 'admin'])->default('user');
         $table->enum('status', ['active', 'inactive'])->default('active');
+
+        // Profile image
         $table->string('image')->nullable();
+
+        // Authentication & timestamps
         $table->rememberToken();
         $table->timestamps();
     });
 
+    // Password reset tokens table
     Schema::create('password_reset_tokens', function (Blueprint $table) {
         $table->string('email')->primary();
         $table->string('token');
         $table->timestamp('created_at')->nullable();
     });
 
+    // Sessions table
     Schema::create('sessions', function (Blueprint $table) {
         $table->string('id')->primary();
-        $table->foreignId('user_id')->nullable()->index();
+        $table->foreignId('user_id')
+              ->nullable()
+              ->constrained('users')
+              ->nullOnDelete();
         $table->string('ip_address', 45)->nullable();
         $table->text('user_agent')->nullable();
         $table->longText('payload');
         $table->integer('last_activity')->index();
     });
 }
+
+
+
+
+
+
+
 
 
 

@@ -13,8 +13,5 @@ class FrontendController extends Controller
     }
     // User registration and login methods can be added here
 
-    public function register()
-    {
-        return view('Frontend.login.register');
-    }
+
 }
