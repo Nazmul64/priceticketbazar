@@ -18,8 +18,14 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name','email','password','phone','address','referred_by','role','username','referred_by','ref_id','refer_income','generation_income','status','role',
+        'name','email','password','phone','address','role','username','referred_by','ref_id','refer_income','generation_income','status','role','ref_code',
     ];
+
+
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -17,17 +17,17 @@ public function up(): void
 
         // Referral system
         $table->foreignId('referred_by')
-              ->nullable()
-              ->constrained('users')
-              ->nullOnDelete()
-              ->comment('User ID who referred this user');
+      ->nullable()
+      ->constrained('users')
+      ->nullOnDelete()
+      ->comment('User ID who referred this user');
 
         $table->foreignId('ref_id')
               ->nullable()
               ->constrained('users')
               ->nullOnDelete()
               ->comment('Alternate referral user ID');
-
+         $table->string('ref_code')->unique()->nullable();
         // Commission tracking
         $table->decimal('refer_income', 10, 2)
               ->default(0.00)

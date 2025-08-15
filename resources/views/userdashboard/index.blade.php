@@ -89,16 +89,63 @@
         </div>
       </div>
 
-      <section class="referral-section" aria-label="Referral URL">
-        <label for="referral-url">Referral URL</label>
-        <input
-          id="referral-url"
-          type="text"
-          readonly
-          value="https://nhgellary.shop/refer/xyz123"
-        />
-        <button class="copy-btn" id="copyReferralBtn">Copy</button>
-      </section>
+  <section class="referral-section" aria-label="Referral URL">
+    <label for="referral-url">Referral URL</label>
+    <input
+        id="referral-url"
+        type="text"
+        readonly
+        value="{{ url('/register?ref=' . Auth::user()->ref_code) }}"
+    />
+    <button class="copy-btn" id="copyReferralBtn">Copy</button>
+</section>
+
+<script>
+document.getElementById('copyReferralBtn').addEventListener('click', function() {
+    let input = document.getElementById('referral-url');
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    alert('Referral link copied!');
+});
+</script>
+
+
+<style>
+.referral-section {
+    margin-top: 20px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+.referral-section label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.referral-section input {
+    width: calc(100% - 70px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.copy-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.copy-btn:hover {
+    background: #218838;
+}
+</style>
+
 
       <table aria-label="Recent Transactions">
         <thead>

@@ -32,6 +32,38 @@
          gtag('js', new Date());
          gtag('config', 'UA-137437974-1');
       </script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    @if (Session::has('success') || Session::has('error'))
+    @php
+        $successMessage = Session::get('success');
+        $errorMessage = Session::get('error');
+    @endphp
+
+    <script>
+    $(document).ready(function () {
+        toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        };
+
+        @if ($errorMessage)
+            toastr.error("{{ $errorMessage }}");
+        @endif
+
+        @if ($successMessage)
+            toastr.success("{{ $successMessage }}");
+        @endif
+    });
+    </script>
+    @endif
    </head>
    <body>
       <header class="header-section position-relative z-2 header-sticky">

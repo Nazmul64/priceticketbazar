@@ -33,30 +33,21 @@
                 </li>
             </ul>
         </li>
-
-        <li class="menu-label">UI Elements</li>
-        <li>
-            <a href="widgets.html">
-                <div class="parent-icon"><i class="bi bi-droplet-fill"></i></div>
-                <div class="menu-title">Widgets</div>
-            </a>
-        </li>
-        <li>
+            <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="bi bi-basket2-fill"></i></div>
-                <div class="menu-title">eCommerce</div>
+                <div class="parent-icon"><i class="bi bi-wallet2"></i></div>
+                <div class="menu-title">Waletesetting Create</div>
             </a>
             <ul>
-                <li> <a href="ecommerce-products-list.html"><i class="bi bi-circle"></i>Products List</a></li>
-                <li> <a href="ecommerce-products-grid.html"><i class="bi bi-circle"></i>Products Grid</a></li>
-                <li> <a href="ecommerce-products-categories.html"><i class="bi bi-circle"></i>Categories</a></li>
-                <li> <a href="ecommerce-orders.html"><i class="bi bi-circle"></i>Orders</a></li>
-                <li> <a href="ecommerce-orders-detail.html"><i class="bi bi-circle"></i>Order details</a></li>
-                <li> <a href="ecommerce-add-new-product.html"><i class="bi bi-circle"></i>Add New Product</a></li>
-                <li> <a href="ecommerce-add-new-product-2.html"><i class="bi bi-circle"></i>Add New Product 2</a></li>
-                <li> <a href="ecommerce-transactions.html"><i class="bi bi-circle"></i>Transactions</a></li>
+                <li>
+                    <a href="{{ route('waletesetting.index') }}">
+                        <i class="bi bi-circle"></i>Waletesetting
+                    </a>
+                </li>
             </ul>
         </li>
+
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bi bi-award-fill"></i></div>

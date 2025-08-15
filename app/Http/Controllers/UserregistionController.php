@@ -19,15 +19,15 @@ class UserregistionController extends Controller
         return view('Frontend.login.login');
     }
 
-    public function register()
+    public function register(Request $request)
     {
-        return view('Frontend.login.register');
+         $refCode = $request->query('ref'); // URL থেকে ref কোড নিব
+        return view('Frontend.login.register',compact('refCode'));
     }
 
 
 public function registerSubmit(Request $request)
 {
-    // Validation
     $validator = Validator::make($request->all(), [
         'name'     => 'required|string|max:255',
         'email'    => 'required|string|email|max:255|unique:users',
@@ -35,47 +35,45 @@ public function registerSubmit(Request $request)
         'username' => 'nullable|string|max:255|unique:users',
         'phone'    => 'required|string|max:20|unique:users',
         'ref_code' => 'nullable|string|max:255',
-        'referred_by' => 'nullable|integer|exists:users,id',
-        'ref_id'      => 'nullable|integer|exists:users,id',
     ]);
 
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
-    // Referral system logic
-    $referredBy = $request->referred_by; // from hidden input
-    $refId = $request->ref_id;
+    // ডিফল্ট null
+    $referredBy = null;
 
-    if ($request->filled('ref_code') && !$referredBy) {
-        $refUser = User::where('username', $request->ref_code)
-                       ->orWhere('id', $request->ref_code)
-                       ->first();
+    // রেফারেল কোড থাকলে চেক
+    if ($request->filled('ref_code')) {
+        $refUser = User::where('ref_code', $request->ref_code)->first();
         if ($refUser) {
             $referredBy = $refUser->id;
         }
     }
 
-    // Create user
+    // নতুন ইউজার তৈরি
     $user = User::create([
-        'name'              => $request->name,
-        'email'             => $request->email,
-        'password'          => Hash::make($request->password),
-        'username'          => $request->username ?? Str::random(8),
-        'phone'             => $request->phone,
-        'referred_by'       => $referredBy,
-        'ref_id'            => $refId,
-        'refer_income'      => 0.00,
-        'generation_income' => 0.00,
-        'status'            => 'active',
-        'role'              => 'user'
+        'name'        => $request->name,
+        'email'       => $request->email,
+        'password'    => Hash::make($request->password),
+        'username'    => $request->username ?? Str::random(8),
+        'phone'       => $request->phone,
+        'ref_code'    => strtoupper(Str::random(8)),
+        'referred_by' => $referredBy,
+        'status'      => 'active',
+        'role'        => 'user'
     ]);
 
-    // Login after registration
     auth()->login($user);
 
-    return redirect()->route('userdashboard')->with('success', 'Registration successful!');
+    return redirect()->route('user.dashboard')->with('success', 'Registration successful!');
 }
+
+
+
+
+
 
 
 

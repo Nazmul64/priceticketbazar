@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CommissionSettingController;
+use App\Http\Controllers\Backend\DepositdetilsController;
+use App\Http\Controllers\Backend\DepositeController;
+use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\UserregistionController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +24,7 @@ Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('commissionsetting', CommissionSettingController::class);
+    Route::resource('waletesetting', WaletaSetupController::class);
 });
 
 // End Admin login routesadmin_login_submit
@@ -34,13 +38,12 @@ Route::get('register', [UserregistionController::class, 'register'])->name('regi
 Route::get('user/login', [UserregistionController::class, 'userlogin'])->name('user.login');
 
 // POST routes for form submissions
-Route::post('register/submit', [UserregistionController::class, 'registersubmit'])->name('registersubmit');
+Route::post('register/submit', [UserregistionController::class, 'registersubmit'])->name('register.submit');
 Route::post('login/submit', [UserregistionController::class, 'loginSubmit'])->name('login.submit');
 
 // Protected routes - IMPORTANT: Make sure this matches your URL
 Route::middleware(['user'])->group(function () {
-    Route::get('user/dashboard', [UserregistionController::class, 'userdashboard'])->name('userdashboard');
-    Route::post('user/logout', [UserregistionController::class, 'logout'])->name('logout');
+    Route::get('user/dashboard', [UserregistionController::class, 'userdashboard'])->name('user.dashboard');
 });
 
 

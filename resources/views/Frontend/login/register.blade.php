@@ -20,101 +20,91 @@
                 <p>Create your account to get started</p>
             </div>
 
-            <form action="{{ route('registersubmit') }}" method="POST" class="form" novalidate>
-                @csrf
+           <form action="{{ route('register.submit') }}" method="POST" class="form" novalidate>
+    @csrf
 
-                <div class="input-grid">
-                    <div class="input-wrapper">
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" required>
-                        <label for="name">Full Name</label>
-                        <div class="input-highlight"></div>
-                        @error('name')<span class="error-msg">{{ $message }}</span>@enderror
-                    </div>
+    <div class="input-grid">
+        {{-- Full Name --}}
+        <div class="input-wrapper">
+            <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+            <label for="name">Full Name</label>
+            <div class="input-highlight"></div>
+            @error('name')<span class="error-msg">{{ $message }}</span>@enderror
+        </div>
 
-                    <div class="input-wrapper phone-wrapper">
-                        <div class="phone-container">
-                            <span class="country-code">+880</span>
-                            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" required>
-                            <label for="phone">Phone Number</label>
-                        </div>
-                        <div class="input-highlight"></div>
-                        @error('phone')<span class="error-msg">{{ $message }}</span>@enderror
-                    </div>
+        {{-- Phone --}}
+        <div class="input-wrapper phone-wrapper">
+            <div class="phone-container">
+                <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" required>
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="input-highlight"></div>
+            @error('phone')<span class="error-msg">{{ $message }}</span>@enderror
+        </div>
 
-                    <div class="input-wrapper">
-                        <input type="email" name="email" id="email" value="{{ old('email') }}" required>
-                        <label for="email">Email Address</label>
-                        <div class="input-highlight"></div>
-                        @error('email')<span class="error-msg">{{ $message }}</span>@enderror
-                    </div>
+        {{-- Email --}}
+        <div class="input-wrapper">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+            <label for="email">Email Address</label>
+            <div class="input-highlight"></div>
+            @error('email')<span class="error-msg">{{ $message }}</span>@enderror
+        </div>
 
-                    <div class="input-wrapper">
-                        <input type="text" name="ref_code" id="ref_code" value="{{ old('ref_code') }}">
-                        <label for="ref_code">Referral Code</label>
-                        <div class="input-highlight"></div>
-                        <small class="helper-text">Optional</small>
-                        @error('ref_code')<span class="error-msg">{{ $message }}</span>@enderror
-                    </div>
+        {{-- Referral Code (Optional) --}}
+        <div class="input-wrapper">
+            <input type="text" name="ref_code" id="ref_code" value="{{ old('ref_code', request('ref')) }}">
+            <label for="ref_code">Referral Code</label>
+            <div class="input-highlight"></div>
+            <small class="helper-text">Optional</small>
+            @error('ref_code')<span class="error-msg">{{ $message }}</span>@enderror
+        </div>
 
-                    <div class="input-wrapper">
-                        <input type="text" name="username" id="username" value="{{ old('username') }}" required>
-                        <label for="username">Username</label>
-                        <div class="input-highlight"></div>
-                        @error('username')<span class="error-msg">{{ $message }}</span>@enderror
-                    </div>
+        {{-- Username --}}
+        <div class="input-wrapper">
+            <input type="text" name="username" id="username" value="{{ old('username') }}" required>
+            <label for="username">Username</label>
+            <div class="input-highlight"></div>
+            @error('username')<span class="error-msg">{{ $message }}</span>@enderror
+        </div>
 
-                    <div class="input-wrapper password-wrapper">
-                        <input type="password" name="password" id="password" required>
-                        <label for="password">Password</label>
-                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
-                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </button>
-                        <div class="input-highlight"></div>
-                        @error('password')<span class="error-msg">{{ $message }}</span>@enderror
-                    </div>
-                </div>
+        {{-- Password --}}
+        <div class="input-wrapper password-wrapper">
+            <input type="password" name="password" id="password" required>
+            <label for="password">Password</label>
+            <button type="button" class="toggle-password" onclick="togglePassword('password')">👁</button>
+            <div class="input-highlight"></div>
+            @error('password')<span class="error-msg">{{ $message }}</span>@enderror
+        </div>
+    </div>
 
-                <div class="input-wrapper full-width">
-                    <input type="password" name="password_confirmation" id="password_confirmation" required>
-                    <label for="password_confirmation">Confirm Password</label>
-                    <button type="button" class="toggle-password" onclick="togglePassword('password_confirmation')">
-                        <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </button>
-                    <div class="input-highlight"></div>
-                </div>
+    {{-- Confirm Password --}}
+    <div class="input-wrapper full-width">
+        <input type="password" name="password_confirmation" id="password_confirmation" required>
+        <label for="password_confirmation">Confirm Password</label>
+        <button type="button" class="toggle-password" onclick="togglePassword('password_confirmation')">👁</button>
+        <div class="input-highlight"></div>
+    </div>
 
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" name="terms" id="terms" required>
-                    <label for="terms">
-                        <span class="checkmark"></span>
-                        I agree to the <a href="#" class="link">Terms & Conditions</a>
-                    </label>
-                </div>
+    {{-- Terms --}}
+    <div class="checkbox-wrapper">
+        <input type="checkbox" name="terms" id="terms" required>
+        <label for="terms">
+            <span class="checkmark"></span>
+            I agree to the <a href="#" class="link">Terms & Conditions</a>
+        </label>
+    </div>
 
-                <button type="submit" class="submit-btn">
-                    <span class="btn-text">Create Account</span>
-                    <div class="btn-loader">
-                        <div class="spinner"></div>
-                    </div>
-                </button>
+    {{-- Submit --}}
+    <button type="submit" class="submit-btn">
+        <span class="btn-text">Create Account</span>
+        <div class="btn-loader"><div class="spinner"></div></div>
+    </button>
 
-                <div class="form-footer">
-                    <p>Already have an account? <a href="{{ route('user.login') }}" class="link">Sign In</a></p>
-                </div>
+    <div class="form-footer">
+        <p>Already have an account? <a href="{{ route('user.login') }}" class="link">Sign In</a></p>
+    </div>
+</form>
 
-                @if(session('success'))
-                    <div class="alert success">{{ session('success') }}</div>
-                @endif
-                @if(session('error'))
-                    <div class="alert error">{{ session('error') }}</div>
-                @endif
-            </form>
         </div>
     </div>
 </div>
@@ -331,25 +321,7 @@ document.querySelectorAll('input[required]').forEach(input => {
     margin-bottom: 1.5rem;
 }
 
-@media (min-width: 640px) {
-    .input-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .register-card {
-        max-width: 600px;
-        padding: 3rem;
-    }
-}
-
-.input-wrapper {
-    position: relative;
-}
-
-.full-width {
-    grid-column: 1 / -1;
-}
-
+/* Base input styles */
 .input-wrapper input {
     width: 100%;
     height: 3.5rem;
@@ -362,6 +334,85 @@ document.querySelectorAll('input[required]').forEach(input => {
     color: var(--gray-700);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
+}
+
+/* Medium devices (tablets) - 768px and up */
+@media (min-width: 768px) {
+    .register-wrapper {
+        max-width: 550px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem;
+    }
+
+    .input-wrapper input {
+        height: 4rem;
+        padding: 1.25rem 1rem 0.75rem;
+        font-size: 1.1rem;
+    }
+
+    .register-card {
+        padding: 3rem;
+    }
+}
+
+/* Large devices (desktops) - 1024px and up */
+@media (min-width: 1024px) {
+    .register-wrapper {
+        max-width: 650px;
+    }
+
+    .input-grid {
+        gap: 2rem;
+    }
+
+    .input-wrapper input {
+        height: 4.5rem;
+        padding: 1.5rem 1.25rem 1rem;
+        font-size: 1.125rem;
+        border-radius: var(--radius-xl);
+    }
+
+    .register-card {
+        padding: 3.5rem;
+    }
+
+    .submit-btn {
+        height: 4rem;
+        font-size: 1.125rem;
+    }
+}
+
+/* Extra large devices - 1280px and up */
+@media (min-width: 1280px) {
+    .register-wrapper {
+        max-width: 750px;
+    }
+
+    .input-wrapper input {
+        height: 5rem;
+        padding: 1.75rem 1.5rem 1.25rem;
+        font-size: 1.2rem;
+    }
+
+    .register-card {
+        padding: 4rem;
+    }
+
+    .submit-btn {
+        height: 4.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.full-width {
+    grid-column: 1 / -1;
 }
 
 .input-wrapper label {
@@ -377,6 +428,21 @@ document.querySelectorAll('input[required]').forEach(input => {
     background: transparent;
 }
 
+/* Responsive label adjustments for larger screens */
+@media (min-width: 1024px) {
+    .input-wrapper label {
+        left: 1.25rem;
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .input-wrapper label {
+        left: 1.5rem;
+        font-size: 1.2rem;
+    }
+}
+
 .input-wrapper input:focus,
 .input-wrapper input:not(:placeholder-shown) {
     border-color: var(--primary);
@@ -390,6 +456,23 @@ document.querySelectorAll('input[required]').forEach(input => {
     font-weight: 500;
     color: var(--primary);
     transform: translateY(0);
+}
+
+/* Responsive focused label adjustments */
+@media (min-width: 1024px) {
+    .input-wrapper input:focus + label,
+    .input-wrapper input:not(:placeholder-shown) + label {
+        top: 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .input-wrapper input:focus + label,
+    .input-wrapper input:not(:placeholder-shown) + label {
+        top: 1.25rem;
+        font-size: 1rem;
+    }
 }
 
 .input-highlight {
@@ -427,6 +510,21 @@ document.querySelectorAll('input[required]').forEach(input => {
     pointer-events: none;
 }
 
+/* Responsive country code adjustments */
+@media (min-width: 1024px) {
+    .country-code {
+        left: 1.25rem;
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .country-code {
+        left: 1.5rem;
+        font-size: 1.2rem;
+    }
+}
+
 .phone-wrapper input {
     padding-left: 4.5rem;
 }
@@ -435,11 +533,55 @@ document.querySelectorAll('input[required]').forEach(input => {
     left: 4.5rem;
 }
 
+/* Responsive phone wrapper adjustments */
+@media (min-width: 1024px) {
+    .phone-wrapper input {
+        padding-left: 5rem;
+    }
+
+    .phone-wrapper label {
+        left: 5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .phone-wrapper input {
+        padding-left: 5.5rem;
+    }
+
+    .phone-wrapper label {
+        left: 5.5rem;
+    }
+}
+
+/* Fixed phone label positioning - এইটাই মূল সমাধান */
 .phone-wrapper input:focus + label,
 .phone-wrapper input:not(:placeholder-shown) + label {
     left: 1rem;
     top: 0.75rem;
     font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0 0.25rem;
+    border-radius: 2px;
+}
+
+/* Responsive phone focused label adjustments */
+@media (min-width: 1024px) {
+    .phone-wrapper input:focus + label,
+    .phone-wrapper input:not(:placeholder-shown) + label {
+        left: 1.25rem;
+        top: 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .phone-wrapper input:focus + label,
+    .phone-wrapper input:not(:placeholder-shown) + label {
+        left: 1.5rem;
+        top: 1.25rem;
+        font-size: 1rem;
+    }
 }
 
 .password-wrapper {
@@ -458,6 +600,21 @@ document.querySelectorAll('input[required]').forEach(input => {
     padding: 0.25rem;
     border-radius: var(--radius-sm);
     transition: all 0.2s ease;
+    z-index: 3;
+}
+
+/* Responsive toggle password adjustments */
+@media (min-width: 1024px) {
+    .toggle-password {
+        right: 1.25rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .toggle-password {
+        right: 1.5rem;
+    }
 }
 
 .toggle-password:hover {
@@ -471,6 +628,14 @@ document.querySelectorAll('input[required]').forEach(input => {
     stroke-width: 2;
 }
 
+/* Responsive eye icon adjustments */
+@media (min-width: 1024px) {
+    .eye-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
 .helper-text {
     position: absolute;
     right: 0.75rem;
@@ -478,6 +643,23 @@ document.querySelectorAll('input[required]').forEach(input => {
     font-size: 0.75rem;
     color: var(--gray-400);
     font-weight: 500;
+}
+
+/* Responsive helper text adjustments */
+@media (min-width: 1024px) {
+    .helper-text {
+        right: 1rem;
+        top: 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .helper-text {
+        right: 1.25rem;
+        top: 1.25rem;
+        font-size: 1rem;
+    }
 }
 
 .error-msg {
