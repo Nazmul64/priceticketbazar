@@ -19,4 +19,8 @@ protected $fillable = [
     'photo',
     'new_photo',
 ];
+public function deposits()
+{
+    return $this->hasMany(Deposite::class,);
+}
 }

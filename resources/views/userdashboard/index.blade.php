@@ -10,13 +10,14 @@
             <div class="value">64820$</div>
           </div>
         </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💳</div>
-          <div>
-            <div class="label">Total Deposit</div>
-            <div class="value">815$</div>
-          </div>
+       <div class="card" tabindex="0">
+        <div class="icon">💳</div>
+            <div>
+                <div class="label">Total Deposit</div>
+                <div class="value">{{round($mainbalance ?? 0 )}} টাকা</div>
+            </div>
         </div>
+
         <div class="card" tabindex="0">
           <div class="icon">🏧</div>
           <div>

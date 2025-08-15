@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Models\Deposite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,10 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class UserregistionController extends Controller
 {
-      public function userdashboard()
-{
-    return view('Userdashboard.index');
+     public function userdashboard(){
+    $userId = Auth::user()->id;
+    $mainbalance = Deposite::where('user_id', $userId)->sum('amount');
+
+    return view('Userdashboard.index', compact('mainbalance'));
 }
+
     public function userlogin(){
         return view('Frontend.login.login');
     }
@@ -96,7 +100,7 @@ public function loginSubmit(Request $request)
 
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
-        return redirect()->route('userdashboard')->with('success', 'Login successful!');
+        return redirect()->route('user.dashboard')->with('success', 'Login successful!');
     }
 
     return back()->withErrors([

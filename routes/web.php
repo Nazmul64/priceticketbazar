@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CommissionSettingController;
 use App\Http\Controllers\Backend\DepositdetilsController;
+use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\FrontendController;
@@ -44,6 +45,7 @@ Route::post('login/submit', [UserregistionController::class, 'loginSubmit'])->na
 // Protected routes - IMPORTANT: Make sure this matches your URL
 Route::middleware(['user'])->group(function () {
     Route::get('user/dashboard', [UserregistionController::class, 'userdashboard'])->name('user.dashboard');
+    Route::resource('deposite', DepositeContrller::class);
 });
 
 

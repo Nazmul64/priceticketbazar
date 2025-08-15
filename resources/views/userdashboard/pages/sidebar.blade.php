@@ -21,7 +21,7 @@
         </div>
         <div class="row">
           <span class="label">Total Deposit:</span>
-          <span class="value">$815</span>
+          <span class="value">{{round($mainbalance ?? 0 )}} টাকা</span>
         </div>
       </div>
 
@@ -30,7 +30,7 @@
         <ul>
           <li class="menu-section"><strong>General</strong></li>
           <li>
-            <a href="dashboard.html" class="active"><i class="fa">🏠</i>Dashboard</a>
+            <a href="{{route('user.dashboard')}}" class="active"><i class="fa">🏠</i>Dashboard</a>
           </li>
           <li>
             <a href="transaction.html"><i class="fa">🔁</i>Transactions</a>
@@ -57,7 +57,7 @@
 
           <li class="menu-section"><strong>Deposits</strong></li>
           <li>
-            <a href="deposite.html"><i class="fa">➕</i>Create Deposit</a>
+            <a href="{{route('deposite.create')}}"><i class="fa">➕</i>Create Deposit</a>
           </li>
           <li>
             <a href="depositehistory.html"><i class="fa">👛</i>Deposit History</a>
