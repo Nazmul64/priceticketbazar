@@ -4,8 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\cr;
 use App\Http\Controllers\Controller;
+use App\Models\CommissionSetting;
 use App\Models\Deposite;
+use App\Models\profit;
+use App\Models\User;
+use App\Models\User_profit;
 use App\Models\Waleta_setup;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 class DepositeContrller extends Controller
@@ -13,9 +19,10 @@ class DepositeContrller extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function approveindex()
     {
-        //
+        $deposite = Deposite::all();
+        return view('Admin.userdeposite.index',compact('deposite'));
     }
 
     /**
@@ -38,7 +45,7 @@ class DepositeContrller extends Controller
      */
 public function store(Request $request)
 {
-    // Validate request
+     // Validate request
     $validated = $request->validate([
         'payment_method' => 'required|exists:waleta_setups,id', // Must match a payment method in DB
         'amount'         => 'required|numeric|min:500',         // Minimum 500 Taka
@@ -48,57 +55,133 @@ public function store(Request $request)
         'amount.min' => 'ন্যূনতম 500 টাকা ডিপোজিট করতে হবে।', // Custom Bangla message
     ]);
 
-    // Handle file upload
     $photoName = null;
     if ($request->hasFile('screenshot')) {
         $photoName = time() . '.' . $request->screenshot->extension();
         $request->screenshot->move(public_path('uploads/deposite'), $photoName);
     }
 
-    // Create deposit record
-    Deposite::create([
+    $deposit = Deposite::create([
         'user_id'        => auth()->id(),
-        'amount'         => $validated['amount'],
-        'payment_method' => $validated['payment_method'],
-        'transaction_id' => $validated['transaction_id'],
+        'amount'         => $request->amount,
+        'payment_method' => $request->payment_method,
+        'transaction_id' => $request->transaction_id,
         'screenshot'     => $photoName,
+        'status'         => 'pending',
     ]);
+
+    // Commission Distribution
+    $this->distributeCommission($deposit);
 
     return redirect()->back()->with('success', 'Deposit request submitted successfully!');
 }
 
+private function distributeCommission($deposit)
+{
+    $settings = CommissionSetting::first();
+    if (!$settings) return;
 
+    $amount = $deposit->amount * 0.60; // 60% distributeable
 
+    $percentages = [
+        $settings->generation_level_1,
+        $settings->generation_level_2,
+        $settings->generation_level_3,
+        $settings->generation_level_4,
+        $settings->generation_level_5,
+    ];
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(cr $cr)
-    {
-        //
+    $currentUser = $deposit->user;
+    for ($level = 0; $level < 5; $level++) {
+        if (!$currentUser->referred_by) break;
+
+        $refUser =User::find($currentUser->referred_by);
+        if ($refUser) {
+            $commission = ($amount * $percentages[$level]) / 100;
+
+            // Add to profit table
+            $profit =User_profit::firstOrCreate(['user_id' => $refUser->id]);
+            $profit->total_profit += $commission;
+            $profit->save();
+        }
+        $currentUser = $refUser;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(cr $cr)
-    {
-        //
+    // Update depositor's total deposit
+    $myProfit = User_profit::firstOrCreate(['user_id' => $deposit->user_id]);
+    $myProfit->total_deposit += $deposit->amount;
+    $myProfit->save();
+}
+
+
+
+public function updateStatus(Request $request, Deposite $deposit)
+{
+    $request->validate([
+        'status' => 'required|in:pending,approved,rejected',
+    ]);
+
+    if ($deposit->status === 'approved' && $request->status === 'approved') {
+        return back()->with('info', 'This deposit is already approved.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, cr $cr)
-    {
-        //
+    $deposit->update(['status' => $request->status]);
+
+    if ($request->status === 'approved') {
+        $this->distribute($deposit);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(cr $cr)
-    {
-        //
+    return back()->with('success', 'Deposit status updated successfully!');
+}
+
+private function distribute(Deposite $deposit): void
+{
+    if ($deposit->status !== 'approved') return;
+
+    if (Profit::where('deposit_id', $deposit->id)->exists()) return;
+
+    $user = $deposit->user;
+    if (!$user) return;
+
+    $stockAmount = round($deposit->amount * 0.60, 2);
+
+    $settings = CommissionSetting::first();
+    $percents = [
+        1 => ($settings->generation_level_1 ?? 40),
+        2 => ($settings->generation_level_2 ?? 25),
+        3 => ($settings->generation_level_3 ?? 15),
+        4 => ($settings->generation_level_4 ?? 10),
+        5 => ($settings->generation_level_5 ?? 10),
+    ];
+
+    DB::transaction(function () use ($user, $deposit, $stockAmount, $percents) {
+        $current = $user;
+
+        for ($level = 1; $level <= 5; $level++) {
+            $ref = $current->referrer; // <-- relation from User model
+            if (!$ref) break;
+
+            $bonus = round(($stockAmount * $percents[$level]) / 100, 2);
+            if ($bonus <= 0) break;
+
+            Profit::create([
+                'user_id'      => $ref->id,
+                'from_user_id' => $user->id,
+                'deposit_id'   => $deposit->id,
+                'amount'       => $bonus,
+                'level'        => $level,
+            ]);
+
+            $ref->increment('balance', $bonus);
+
+            $current = $ref;
+        }
+    });
+}
+
+    public function approvedelete($id){
+        $delete =Deposite::find($id);
+        $delete->delete();
+         return back()->with('success', 'Deposit delete successfully!');
     }
 }

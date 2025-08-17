@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\TotalreferreduseController;
 use App\Http\Controllers\UserregistionController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('commissionsetting', CommissionSettingController::class);
     Route::resource('waletesetting', WaletaSetupController::class);
+    Route::post('/deposites/{deposit}/status', [DepositeContrller::class, 'updateStatus'])->name('deposites.updateStatus');
+    Route::get('/deposites/index', [DepositeContrller::class, 'approveindex'])->name('approve.index');
+    Route::get('/deposites/delete/{id}', [DepositeContrller::class, 'approvedelete'])->name('approve.delete');
 });
 
 // End Admin login routesadmin_login_submit
@@ -46,6 +50,12 @@ Route::post('login/submit', [UserregistionController::class, 'loginSubmit'])->na
 Route::middleware(['user'])->group(function () {
     Route::get('user/dashboard', [UserregistionController::class, 'userdashboard'])->name('user.dashboard');
     Route::resource('deposite', DepositeContrller::class);
+    Route::get('/my-referrals', [TotalreferreduseController::class, 'myReferrals'])->name('my.referrals');
+    Route::get('/user-referrals/{id}', [TotalreferreduseController::class, 'userReferrals'])->name('user.referrals');
+    Route::get('/my-referrals-count', [TotalreferreduseController::class, 'totalCount'])->name('my.referrals.count');
+    Route::get('/commissions', [TotalreferreduseController::class, 'commissions'])->name('user.commissions');
+    Route::get('/referrals_nested', [TotalreferreduseController::class, 'referrals_nested'])->name('referrals.nested');
+
 });
 
 

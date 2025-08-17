@@ -2,93 +2,75 @@
 @section('content')
     <h1 class="dashboard-header">Dashboard</h1>
 
-      <div class="cards-grid" aria-label="Stats">
-        <div class="card" tabindex="0">
-          <div class="icon">💰</div>
-          <div>
-            <div class="label">Total Invest</div>
-            <div class="value">64820$</div>
-          </div>
-        </div>
-       <div class="card" tabindex="0">
-        <div class="icon">💳</div>
-            <div>
-                <div class="label">Total Deposit</div>
-                <div class="value">{{round($mainbalance ?? 0 )}} টাকা</div>
-            </div>
-        </div>
+     <div class="cards-grid" aria-label="Stats">
 
-        <div class="card" tabindex="0">
-          <div class="icon">🏧</div>
-          <div>
-            <div class="label">Total Withdraw</div>
-            <div class="value">325$</div>
-          </div>
+    <!-- Total Invest -->
+    <div class="card" tabindex="0">
+        <div class="icon">💰</div>
+        <div>
+            <div class="label">Total Invest</div>
+            <div class="value">${{ round($totalInvest) }}</div>
         </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
+    </div>
+
+    <!-- Total Deposit -->
+    <div class="card" tabindex="0">
+        <div class="icon">💳</div>
+        <div>
+            <div class="label">Total Deposit</div>
+            <div class="value">${{ round($mainDeposit) }}</div>
+        </div>
+    </div>
+
+    <!-- Direct Referral Income -->
+    <div class="card" tabindex="0">
+        <div class="icon">👥</div>
+        <div>
+            <div class="label">Direct Referral ({{ $commissionSetting->refer_commission }}%)</div>
+            <div class="value">${{ round($user->refer_income) }}</div>
+        </div>
+    </div>
+
+    <!-- Generation Income -->
+    @foreach($generationIncomePerLevel as $level => $amount)
+    <div class="card" tabindex="0">
+        <div class="icon">🔗</div>
+        <div>
+            <div class="label">Generation Level {{ $level }} ({{ $commissionSetting->{'generation_level_'.$level} }}%)</div>
+            <div class="value">${{ round($amount) }}</div>
+        </div>
+    </div>
+    @endforeach
+
+    <!-- Weekly Team Deposit -->
+    <div class="card" tabindex="0">
+        <div class="icon">🏢</div>
+        <div>
+            <div class="label">Weekly Team Deposit (0-500 USD)</div>
+            <div class="value">${{ round($weeklyDeposit) }}</div>
+        </div>
+    </div>
+
+    <!-- Weekly Team Commission -->
+    <div class="card" tabindex="0">
+        <div class="icon">💵</div>
+        <div>
+            <div class="label">Weekly Team Commission ({{ $commissionSetting->weekly_team_commission }}%)</div>
+            <div class="value">${{ round($weeklyTeamCommission) }}</div>
+        </div>
+    </div>
+
+    <!-- Main Balance -->
+    <div class="card" tabindex="0">
+        <div class="icon">💎</div>
+        <div>
             <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
+            <div class="value">${{ round($mainBalance) }}</div>
         </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-        <div class="card" tabindex="0">
-          <div class="icon">💵</div>
-          <div>
-            <div class="label">Main Balance</div>
-            <div class="value">6838.32$</div>
-          </div>
-        </div>
-      </div>
+    </div>
+
+</div>
+
 
   <section class="referral-section" aria-label="Referral URL">
     <label for="referral-url">Referral URL</label>

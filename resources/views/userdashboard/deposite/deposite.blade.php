@@ -47,6 +47,73 @@
                 @enderror
             </div>
 
+               <div class="mb-3">
+    <label class="form-label">📞 Deposit Numbers</label>
+    <div class="deposit-numbers">
+        @foreach ($walate as $item)
+            @if($item->accountnumber)
+                <div class="deposit-number">
+                    <span class="number-text">{{ $item->accountnumber }}</span>
+                    <button type="button" class="copy-btn" onclick="copyToClipboard('{{ $item->accountnumber }}', this)">
+                        📋 Copy
+                    </button>
+                </div>
+            @endif
+        @endforeach
+    </div>
+</div>
+
+<style>
+.deposit-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.deposit-number {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.number-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+.copy-btn {
+    background: #0d6efd;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.copy-btn:hover {
+    background: #0b5ed7;
+}
+.copy-btn.copied {
+    background: #198754 !important;
+}
+</style>
+
+<script>
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Copied!";
+        btn.classList.add("copied");
+        setTimeout(() => {
+            btn.textContent = "📋 Copy";
+            btn.classList.remove("copied");
+        }, 1500);
+    });
+}
+</script>
+
             <!-- Screenshot -->
             <div class="mb-3">
                 <label class="form-label">📷 Screenshot</label>
@@ -55,6 +122,8 @@
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
+
+
 
             <!-- Image Preview -->
             <div class="mb-3">

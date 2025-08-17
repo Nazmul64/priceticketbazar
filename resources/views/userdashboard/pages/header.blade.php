@@ -36,7 +36,7 @@
             src="https://avatars.githubusercontent.com/u/132064086?s=64&v=4"
             alt="User avatar"
           />
-          <span>Nazmul Hossain</span>
+         <span>{{ auth()->user()->name }}</span>
         </div>
       </div>
 

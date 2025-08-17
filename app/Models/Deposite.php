@@ -11,6 +11,20 @@ class Deposite extends Model
      "user_id","amount","payment_method","transaction_id","screenshot","status","new_screenshot",
    ];
 
+  protected $casts = [
+    'user_id' => 'string',
+    'amount' => 'string',
+    'payment_method' => 'string',
+    'transaction_id' => 'string',
+    'screenshot'=> 'string',
+    'status'=> 'string',
+    'status'=> 'string',
+];
+
+
+
+    public function user(){ return $this->belongsTo(User::class); }
+
    public function method_type()
 {
     return $this->belongsTo(Waleta_setup::class,"payment_method");

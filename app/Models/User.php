@@ -22,10 +22,19 @@ class User extends Authenticatable
     ];
 
 
-    public function referrer()
-    {
-        return $this->belongsTo(User::class, 'referred_by');
-    }
+
+public function referrer() { return $this->belongsTo(User::class, 'referred_by'); }
+public function referees() { return $this->hasMany(User::class, 'referred_by'); }
+public function deposits() { return $this->hasMany(\App\Models\Deposite::class); }
+public function profits()  { return $this->hasMany(\App\Models\Profit::class); }
+
+public function referrals()
+{
+    return $this->hasMany(User::class, 'referred_by')->with('referrals');
+    // nested referrals লোড হবে
+}
+
+
 
     /**
      * The attributes that should be hidden for serialization.

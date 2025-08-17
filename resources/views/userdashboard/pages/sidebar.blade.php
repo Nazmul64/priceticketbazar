@@ -10,20 +10,9 @@
           <span class="level-number">Level 3</span>
           <span class="star" aria-hidden="true">★</span>
         </div>
-        <small class="level-title">Hyip Captain</small>
+        <small class="level-title">{{ auth()->user()->name }}</small>
       </div>
 
-      <!-- Investment Info -->
-      <div class="info">
-        <div class="row">
-          <span class="label">Total Invest:</span>
-          <span class="value">$64,820</span>
-        </div>
-        <div class="row">
-          <span class="label">Total Deposit:</span>
-          <span class="value">{{round($mainbalance ?? 0 )}} টাকা</span>
-        </div>
-      </div>
 
       <!-- Navigation Menu -->
       <nav class="menu" aria-label="Main navigation">
@@ -73,10 +62,10 @@
 
           <li class="menu-section"><strong>Referral</strong></li>
           <li>
-            <a href="referrals.html"><i class="fa">👥</i>Referred Users</a>
+            <a href="{{route('my.referrals')}}"><i class="fa">👥</i>Referred Users</a>
           </li>
           <li>
-            <a href="refercommision.html"><i class="fa">🎁</i>Referral Commissions</a>
+            <a href="{{route('user.commissions')}}"><i class="fa">🎁</i>Referral Commissions</a>
           </li>
 
           <li class="menu-section"><strong>Account</strong></li>
