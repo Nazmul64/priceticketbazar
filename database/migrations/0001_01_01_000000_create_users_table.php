@@ -17,22 +17,33 @@ public function up(): void
 
         // Referral system
         $table->foreignId('referred_by')
-      ->nullable()
-      ->constrained('users')
-      ->nullOnDelete()
-      ->comment('User ID who referred this user');
-      // Users table migration এ যোগ করো
-       $table->decimal('balance')->default(0.00)->comment('User wallet balance');
-        $table->foreignId('ref_id')->nullable()->constrained('users')->nullOnDelete()->comment('Alternate referral user ID');
-         $table->string('ref_code')->unique()->nullable();
-        // Commission tracking
-        $table->decimal('refer_income')
+              ->nullable()
+              ->constrained('users')
+              ->nullOnDelete()
+              ->comment('User ID who referred this user');
+
+        $table->foreignId('ref_id')
+              ->nullable()
+              ->constrained('users')
+              ->nullOnDelete()
+              ->comment('Alternate referral user ID');
+
+        $table->string('ref_code')->unique()->nullable();
+
+        // Wallet & commission
+        $table->decimal('balance', 12, 2)
+              ->default(0.00)
+              ->comment('User wallet balance');
+
+        $table->decimal('refer_income', 12, 2)
               ->default(0.00)
               ->comment('Direct referral commission earned');
 
-        $table->decimal('generation_income')
+        $table->decimal('generation_income', 12, 2)
               ->default(0.00)
               ->comment('Generation level commission earned');
+
+        // Basic info
         $table->string('name');
         $table->string('email')->unique();
         $table->timestamp('email_verified_at')->nullable();
@@ -41,7 +52,7 @@ public function up(): void
         $table->string('address')->nullable();
         $table->string('username')->nullable()->unique();
 
-        // Roles & status
+        // Role & status
         $table->enum('role', ['user', 'admin'])->default('user');
         $table->enum('status', ['active', 'inactive'])->default('active');
 
@@ -73,6 +84,7 @@ public function up(): void
         $table->integer('last_activity')->index();
     });
 }
+
 
 
 

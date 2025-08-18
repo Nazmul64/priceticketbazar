@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CommissionSettingController;
 use App\Http\Controllers\Backend\DepositdetilsController;
 use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
+use App\Http\Controllers\Backend\LotterycreateController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
@@ -30,6 +31,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/deposites/{deposit}/status', [DepositeContrller::class, 'updateStatus'])->name('deposites.updateStatus');
     Route::get('/deposites/index', [DepositeContrller::class, 'approveindex'])->name('approve.index');
     Route::get('/deposites/delete/{id}', [DepositeContrller::class, 'approvedelete'])->name('approve.delete');
+    Route::resource('lottery', LotterycreateController::class);
 });
 
 // End Admin login routesadmin_login_submit

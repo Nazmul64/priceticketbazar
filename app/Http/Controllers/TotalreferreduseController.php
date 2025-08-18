@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TotalreferreduseController extends Controller
 {
@@ -54,14 +55,18 @@ public function myReferrals()
             'total_referred' => $count
         ]);
     }
-    public function referrals_nested()
+public function referrals_nested()
 {
-    $user = auth()->user();
+    $user = Auth::user();
 
-    // ডিরেক্ট রেফারাল এবং nested referrals লোড
-    $referrals = $user->referrals()->withCount('referrals')->with('referrals')->get();
+    // Eager load direct referrals recursively
+    $referrals = $user->referrals()
+        ->with('referrals') // load direct referrals
+        ->get();
 
     return view('userdashboard.referrals.referrals_nested', compact('user', 'referrals'));
 }
+
+
 
 }

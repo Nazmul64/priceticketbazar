@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('deposites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->decimal('amount', 10, 2);
-            $table->string('payment_method');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->decimal('amount', 12, 2);
+            $table->unsignedBigInteger('payment_method'); // যদি waleta_setups.id FK করতে চান:
+            // $table->foreignId('payment_method')->constrained('waleta_setups')->cascadeOnDelete();
             $table->string('transaction_id')->nullable();
             $table->string('screenshot')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');

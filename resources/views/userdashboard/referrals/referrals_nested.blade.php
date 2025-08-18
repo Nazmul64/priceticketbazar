@@ -21,9 +21,9 @@
                     $serial = 1;
 
                     function totalReferralsCount($user) {
-                        $count = $user->referrals->count(); // Direct referrals
+                        $count = $user->referrals->count();
                         foreach ($user->referrals as $ref) {
-                            $count += totalReferralsCount($ref); // Nested referrals
+                            $count += totalReferralsCount($ref);
                         }
                         return $count;
                     }
@@ -33,13 +33,13 @@
                             echo '<tr>';
                             echo '<td>'.($serial++).'</td>';
                             echo '<td style="padding-left: '.($level*20).'px;">';
-                            echo '<a href="'.route('user.referrals', $ref->id).'">'.$ref->name.'</a>';
+                            echo '<a href="#">'.$ref->name.'</a>';
                             echo '</td>';
                             echo '<td>'.$ref->email.'</td>';
                             echo '<td>'.($parentName ?? 'Self').'</td>';
-                            echo '<td>'.$ref->referrals_count.'</td>'; // Direct referrals
+                            echo '<td>'.$ref->referrals->count().'</td>'; // Direct referrals
                             echo '<td>'.totalReferralsCount($ref).'</td>'; // Nested total referrals
-                            echo '<td>'.$ref->created_at->diffForHumans().'</td>';
+                            echo '<td>'.$ref->created_at->format('d M, Y').'</td>';
                             echo '</tr>';
 
                             if ($ref->referrals->count() > 0) {
@@ -47,6 +47,7 @@
                             }
                         }
                     }
+
                     renderReferrals($referrals, 0, null, $serial);
                 @endphp
             </tbody>

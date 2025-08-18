@@ -23,16 +23,20 @@ class User extends Authenticatable
 
 
 
-public function referrer() { return $this->belongsTo(User::class, 'referred_by'); }
-public function referees() { return $this->hasMany(User::class, 'referred_by'); }
-public function deposits() { return $this->hasMany(\App\Models\Deposite::class); }
-public function profits()  { return $this->hasMany(\App\Models\Profit::class); }
-
-public function referrals()
-{
-    return $this->hasMany(User::class, 'referred_by')->with('referrals');
-    // nested referrals লোড হবে
+public function referrer() { // যিনি আমাকে রেফার করেছেন
+    return $this->belongsTo(User::class, 'referred_by');
 }
+public function referrals() { // আমি যাদের রেফার করেছি
+    return $this->hasMany(User::class, 'referred_by');
+}
+public function deposits() {
+    return $this->hasMany(Deposite::class, 'user_id');
+}
+public function profits() { // আমি যে প্রফিট পাই
+    return $this->hasMany(Profit::class, 'user_id');
+}
+
+
 
 
 

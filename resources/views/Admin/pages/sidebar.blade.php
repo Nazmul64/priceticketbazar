@@ -11,14 +11,11 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="javascript:;" class="has-arrow">
+            <a href="{{route('admin.dashboard')}}" >
                 <div class="parent-icon"><i class="bi bi-house-fill"></i></div>
                 <div class="menu-title">Dashboard</div>
             </a>
-            <ul>
-                <li> <a href="index.html"><i class="bi bi-circle"></i>Default</a></li>
-                <li> <a href="index2.html"><i class="bi bi-circle"></i>Alternate</a></li>
-            </ul>
+
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -48,7 +45,7 @@
         </li>
 
 
-        <li>
+           <li>
                 <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><i class="bi bi-cash-stack"></i></div>
                     <div class="menu-title">Deposit Approve</div>
@@ -61,19 +58,19 @@
                     </li>
                 </ul>
             </li>
-
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-cloud-arrow-down-fill"></i></div>
-                <div class="menu-title">Icons</div>
-            </a>
-            <ul>
-                <li> <a href="icons-line-icons.html"><i class="bi bi-circle"></i>Line Icons</a></li>
-                <li> <a href="icons-boxicons.html"><i class="bi bi-circle"></i>Boxicons</a></li>
-                <li> <a href="icons-feather-icons.html"><i class="bi bi-circle"></i>Feather Icons</a></li>
-            </ul>
-        </li>
-        <li class="menu-label">Forms & Tables</li>
+             <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-cash-stack"></i></div>
+                    <div class="menu-title">Lottery</div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('lottery.index') }}">
+                            <i class="bi bi-ticket-perforated"></i> Lottery Create
+                        </a>
+                    </li>
+                </ul>
+            </li>
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bi bi-file-earmark-break-fill"></i></div>
