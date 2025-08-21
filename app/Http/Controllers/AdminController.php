@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard()
-    {
-        return view('Admin.index');
-    }
+public function dashboard()
+{
+    $total_deposites_investor = Deposite::count();
+    $total_deposites = Deposite::sum('amount');
+    $last_wekly =Deposite::sum('amount');
+    $total_user=User::count();
+    return view('Admin.index', compact('total_deposites','total_deposites_investor','total_user','last_wekly'));
+}
 
     public function showLoginForm()
     {

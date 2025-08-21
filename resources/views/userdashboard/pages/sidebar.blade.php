@@ -25,12 +25,12 @@
             <a href="transaction.html"><i class="fa">🔁</i>Transactions</a>
           </li>
 
-          <li class="menu-section"><strong>Invest</strong></li>
+          <li class="menu-section"><strong>Lottery</strong></li>
           <li>
-            <a href="plan.html"><i class="fa">📈</i>Plans</a>
+            <a href="{{route('userlotter.index')}}"><i class="fa">📈</i>Lottery</a>
           </li>
           <li>
-            <a href="investhistory.html"><i class="fa">🕘</i>Invest History</a>
+            <a href="investhistory.html"><i class="fa">🕘</i>Lottery History</a>
           </li>
 
           <li class="menu-section"><strong>Transfer & Request</strong></li>

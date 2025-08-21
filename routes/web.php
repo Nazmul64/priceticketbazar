@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\LotterycreateController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
+use App\Http\Controllers\UserlottryController;
 use App\Http\Controllers\UserregistionController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +58,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('/my-referrals-count', [TotalreferreduseController::class, 'totalCount'])->name('my.referrals.count');
     Route::get('/commissions', [TotalreferreduseController::class, 'commissions'])->name('user.commissions');
     Route::get('/referrals_nested', [TotalreferreduseController::class, 'referrals_nested'])->name('referrals.nested');
-
+    Route::get('/userlotter/show', [UserlottryController::class, 'userlotter'])->name('userlotter.index');
 });
 
 
