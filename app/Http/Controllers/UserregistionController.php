@@ -55,7 +55,7 @@ class UserregistionController extends Controller
         ->whereBetween('created_at', [$start, $end])
         ->sum('amount');
 
-    $weeklyTeamCommission = $weeklyDeposit * (($commissionSetting->weekly_team_commission ?? 4) / 100);
+    $weeklyTeamCommission = $weeklyDeposit * (($commissionSetting->weekly_team_commission ?? 0) / 100);
 
     return view('Userdashboard.index', compact(
         'mainDeposit',

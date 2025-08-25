@@ -74,25 +74,26 @@
 <!-- Counter Section End -->
 <!-- About Us Section Start -->
 <div class="about-us-section">
-   <img src="{{asset('frontend')}}/assets/images/E09nhxw91704867367.png" alt="about-us" class="img-fluid about-img">
+    @foreach ($aboutus as  $item)
+    @if ($item->status)
+   <img src="{{asset($item->photo ?? '')}}" alt="about-us" class="img-fluid about-img">
    <div class="container">
       <div class="row about-us-row wow fadeInUp" data-wow-delay="0.2s">
          <div class="col-lg-6">
-            <h6 class="pb-3">Who We Are</h6>
-            <h2 class="pb-20">Know About Us</h2>
+            <h2 class="pb-20">{{$item->title ?? ''}}</h2>
             <p class="about-paragraph">
-               Eius modi soluta, sunt nulla odio deserunt aliquam tenetur commodi esse eveniet repellendus culpa neque? Molestiae officia architecto laborum ipsam.
-               <br><br>
-               Quis debitis at dolorem dolorum quae? Cum possimus natus esse molestias quaerat quo tempore harum, velit doloremque, facere labore assumenda sed explicabo. Temporibus illum, aliquid, voluptatem sint culpa fugit consequuntur in animi magni rerum distinctio sed ut libero incidunt sapiente.
+                <span>{{$item->description ?? ''}}</span>
             </p>
             <div class="d-flex gap-3 about-btn">
-               <a href="https://www.google.com/" class="template-btn primary-btn abt-btn">Read More</a>
-               <a href="contact.html" class="template-btn primary-outline abt-btn">Contact
+               <a href="" class="template-btn primary-btn abt-btn">Read More</a>
+               <a href="#" class="template-btn primary-outline abt-btn">Contact
                Us</a>
             </div>
          </div>
       </div>
    </div>
+    @endif
+ @endforeach
 </div>
 <!-- About Us Section End -->
 <!-- Calculator Section Start -->
@@ -157,118 +158,47 @@
 </div>
 <!-- Calculator Section End -->
 <!-- Choose Us Section Start -->
+@php
+    $whychoose = \App\Models\Whychooseinvestmentplan::first();
+@endphp
+
 <div class="choose-us-section">
-   <div class="container">
-      <div class="choose-section-header wow fadeInUp ">
-         <h6>Choose Investment</h6>
-         <h2>Why Choose Investment Plan</h2>
-         <p class="choose-section-paragraph">
-            <span>Help agencies to define their new business objectives and then create professional software.</span>
-         </p>
-      </div>
-      <div class="row choose-us-row">
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="choose-us-box ">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <i class="fas fa-user-circle"></i>
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h5 class="counter">Live Customer Support</h5>
-                  <p class="counter-text">
-                  <p><span>Replacing a maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create.</span><br></p>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="choose-us-box ">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <i class="fas fa-address-card"></i>
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h5 class="counter">Verified Security</h5>
-                  <p class="counter-text">
-                  <p><span>Replacing a maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create.</span><br></p>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="choose-us-box ">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <i class="fas fa-users"></i>
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h5 class="counter">Expert Management</h5>
-                  <p class="counter-text">
-                     Replacing a maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create.
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="choose-us-box ">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <i class="fas fa-cogs"></i>
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h5 class="counter">Secure Investment</h5>
-                  <p class="counter-text">
-                     Replacing a maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create.
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="choose-us-box ">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <i class="fas fa-registered"></i>
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h5 class="counter">Registered Company</h5>
-                  <p class="counter-text">
-                     Replacing a maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create.
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="choose-us-box ">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <i class="fas fa-cog"></i>
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h5 class="counter">Instant Withdrawal</h5>
-                  <p class="counter-text">
-                     <span>Replacing a maintains the amount of lines. When replacing a selection. help agencies to define their new business objectives and then create.</span>
-                  </p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+    <div class="container">
+        <div class="choose-section-header wow fadeInUp">
+            <h6>{{ $whychoose->title ?? '' }}</h6>
+            <p class="choose-section-paragraph">
+                <span>{{ $whychoose->description ?? '' }}</span>
+            </p>
+        </div>
+
+        <div class="row choose-us-row">
+          @foreach ($Whychooseinvestmentplan as $item)
+                @if ($item->status)
+                    <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
+                        <div class="choose-us-box">
+                            <div class="icon-wraper">
+                                <div class="overlay-box"></div>
+                                <div class="icon-box">
+                                    <i class="{{ $item->icon ?? '' }} fz_30"></i>
+                                </div>
+                            </div>
+                            <div class="counter-content">
+                                <h5 class="counter">{{ $item->main_title ?? '' }}</h5>
+                                <p class="counter-text">
+                                    <span>{{ $item->main_description ?? '' }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    </div>
 </div>
+
 <!-- Choose Us Section End -->
 <!-- Offer Section Start -->
-<div class="offer-section" data-background="{{asset('frontend')}}/assets/front/images/offer-bg.png">
+<div class="offer-section">
    <div class="container">
       <div class="offer-section-header wow fadeInUp">
          <h6>Invest Offer</h6>
@@ -276,223 +206,115 @@
          <p class="offer-section-paragraph">Deserunt hic consequatur ex placeat! atque repellendus inventore quisquam, perferendis, eum reiciendis quia nesciunt fuga magni.            </p>
       </div>
       <div class="row offer-row-box wow fadeInUp" data-wow-delay="0.1s">
-         <div class="col-lg-4 col-md-6 col-12">
+    @foreach ($lotterys as $item)
+       @if($item->status)
+        <div class="col-lg-4 col-md-6 col-12">
             <div class="offer-box business-bg">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box business-bg">
-                     <h6 class="pt-2">Orbit</h6>
-                  </div>
-               </div>
-               <div class="offer-content">
-                  <div class="offer-price">
-                     <h4>500$</h4>
-                     <h4>9% <span>
-                        Return                                </span>
-                     </h4>
-                  </div>
-                  <hr>
-                  <ul class="pb-40">
-                     <li>Fixed Amount: 500$</li>
-                     <li><span class="name me-1">Capital will back : </span>
-                        <span
-                           class="badge align-self-center me-auto bg-primary">Yes</span>
-                     </li>
-                     <li><span class="name">Profit :</span>
-                        <span class="info">
-                        Every Week
-                        </span>
-                     </li>
-                  </ul>
-               </div>
-               <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                  data-bs-toggle="modal" data-bs-target="#invest-modal" data-title="Orbit"
-                  data-id="9" data-type="1"
-                  data-fixAmount="500">Invest Now</button>
+                <!-- Lottery Title -->
+                <div class="icon-wraper">
+                    <div class="overlay-box"></div>
+                    <div class="icon-box business-bg">
+                        <h6 class="pt-2">{{ $item->name ?? '' }}</h6>
+                    </div>
+                </div>
+
+                <!-- Lottery Content -->
+                <div class="offer-content">
+                    <div class="offer-price">
+                        <h4>{{ round($item->price ?? 0) }}$</h4>
+                    </div>
+                    <hr>
+
+                    <!-- Lottery Details -->
+                    <ul class="pb-40">
+                        <li>{{ $item->first_prize ?? '' }}</li>
+                        <li>{{ $item->second_prize ?? '' }}</li>
+                        <li>{{ $item->third_prize ?? '' }}</li>
+
+                        <!-- Countdown -->
+                        <li class="lottery-item">
+                            <span class="name">{{ $item->win_type ?? '' }}</span>
+                            <span id="countdown-{{ $item->id }}" class="countdown"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Invest Button -->
+                <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
+                        data-bs-toggle="modal" data-bs-target="#invest-modal"
+                        data-title="{{ $item->name }}"
+                        data-id="{{ $item->id }}"
+                        data-type="1"
+                        data-fixAmount="{{ round($item->price ?? 0) }}">
+                    Invest Now
+                </button>
             </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12">
-            <div class="offer-box business-bg">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box business-bg">
-                     <h6 class="pt-2">Platinum</h6>
-                  </div>
-               </div>
-               <div class="offer-content">
-                  <div class="offer-price">
-                     <h4>300$</h4>
-                     <h4>5% <span>
-                        Return                                </span>
-                     </h4>
-                  </div>
-                  <hr>
-                  <ul class="pb-40">
-                     <li>Fixed Amount: 300$</li>
-                     <li><span class="name me-1">Capital will back : </span>
-                        <span
-                           class="badge align-self-center me-auto bg-primary">Yes</span>
-                     </li>
-                     <li><span class="name">Profit :</span>
-                        <span class="info">
-                        Every Day
-                        </span>
-                     </li>
-                  </ul>
-               </div>
-               <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                  data-bs-toggle="modal" data-bs-target="#invest-modal" data-title="Platinum"
-                  data-id="8" data-type="1"
-                  data-fixAmount="300">Invest Now</button>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12">
-            <div class="offer-box business-bg">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box business-bg">
-                     <h6 class="pt-2">Diamond</h6>
-                  </div>
-               </div>
-               <div class="offer-content">
-                  <div class="offer-price">
-                     <h4>100$</h4>
-                     <h4>3% <span>
-                        Return                                </span>
-                     </h4>
-                  </div>
-                  <hr>
-                  <ul class="pb-40">
-                     <li>Fixed Amount: 100$</li>
-                     <li><span class="name me-1">Capital will back : </span>
-                        <span
-                           class="badge align-self-center me-auto bg-primary">Yes</span>
-                     </li>
-                     <li><span class="name">Profit :</span>
-                        <span class="info">
-                        Every Week
-                        </span>
-                     </li>
-                  </ul>
-               </div>
-               <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                  data-bs-toggle="modal" data-bs-target="#invest-modal" data-title="Diamond"
-                  data-id="7" data-type="1"
-                  data-fixAmount="100">Invest Now</button>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12">
-            <div class="offer-box business-bg">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box business-bg">
-                     <h6 class="pt-2">Broonze</h6>
-                  </div>
-               </div>
-               <div class="offer-content">
-                  <div class="offer-price">
-                     <h4>100$ - 300$
-                     </h4>
-                     <h4>7% <span>
-                        Return                                </span>
-                     </h4>
-                  </div>
-                  <hr>
-                  <ul class="pb-40">
-                     <li>Minimum Invest: 100$</li>
-                     <li>Maximum Invest: 300$</li>
-                     <li><span class="name me-1">Capital will back : </span>
-                        <span
-                           class="badge align-self-center me-auto bg-danger">No</span>
-                     </li>
-                     <li><span class="name">Profit :</span>
-                        <span class="info">
-                        Lifetime
-                        </span>
-                     </li>
-                  </ul>
-               </div>
-               <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                  data-bs-toggle="modal" data-bs-target="#invest-modal" data-title="Broonze"
-                  data-id="6" data-type="0"
-                  data-fixAmount="0">Invest Now</button>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12">
-            <div class="offer-box business-bg">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box business-bg">
-                     <h6 class="pt-2">Gold</h6>
-                  </div>
-               </div>
-               <div class="offer-content">
-                  <div class="offer-price">
-                     <h4>1000$ - 5000$
-                     </h4>
-                     <h4>11% <span>
-                        Return                                </span>
-                     </h4>
-                  </div>
-                  <hr>
-                  <ul class="pb-40">
-                     <li>Minimum Invest: 1000$</li>
-                     <li>Maximum Invest: 5000$</li>
-                     <li><span class="name me-1">Capital will back : </span>
-                        <span
-                           class="badge align-self-center me-auto bg-primary">Yes</span>
-                     </li>
-                     <li><span class="name">Profit :</span>
-                        <span class="info">
-                        Every Month
-                        </span>
-                     </li>
-                  </ul>
-               </div>
-               <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                  data-bs-toggle="modal" data-bs-target="#invest-modal" data-title="Gold"
-                  data-id="5" data-type="0"
-                  data-fixAmount="0">Invest Now</button>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12">
-            <div class="offer-box business-bg">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box business-bg">
-                     <h6 class="pt-2">Professional</h6>
-                  </div>
-               </div>
-               <div class="offer-content">
-                  <div class="offer-price">
-                     <h4>10$ - 200$
-                     </h4>
-                     <h4>3% <span>
-                        Return                                </span>
-                     </h4>
-                  </div>
-                  <hr>
-                  <ul class="pb-40">
-                     <li>Minimum Invest: 10$</li>
-                     <li>Maximum Invest: 200$</li>
-                     <li><span class="name me-1">Capital will back : </span>
-                        <span
-                           class="badge align-self-center me-auto bg-primary">Yes</span>
-                     </li>
-                     <li><span class="name">Profit :</span>
-                        <span class="info">
-                        Every Week
-                        </span>
-                     </li>
-                  </ul>
-               </div>
-               <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                  data-bs-toggle="modal" data-bs-target="#invest-modal" data-title="Professional"
-                  data-id="4" data-type="0"
-                  data-fixAmount="0">Invest Now</button>
-            </div>
-         </div>
-      </div>
+        </div>
+
+        <!-- Countdown Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const countdownEl = document.getElementById('countdown-{{ $item->id }}');
+                const drawDate = new Date("{{ $item->draw_date }}");
+
+                function format12Hour(date) {
+                    let hours = date.getHours();
+                    const minutes = date.getMinutes();
+                    const seconds = date.getSeconds();
+                    const ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12 || 12;
+                    return `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
+                }
+
+                function updateCountdown() {
+                    const now = new Date();
+                    const diff = drawDate - now;
+
+                    if (diff <= 0) {
+                        countdownEl.textContent = '🎉 Draw time has arrived!';
+                        return;
+                    }
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    countdownEl.textContent = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s | Draw: ${format12Hour(drawDate)}`;
+                }
+
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            });
+        </script>
+        @endif
+    @endforeach
+</div>
+
+<!-- Styles -->
+<style>
+    .lottery-item {
+        list-style: none;
+        margin: 10px 0;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .lottery-item .name {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .countdown {
+        font-family: monospace;
+        color: #ff5722;
+        font-weight: bold;
+    }
+</style>
+
    </div>
 </div>
 <div class="stat-section">

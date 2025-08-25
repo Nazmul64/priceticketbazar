@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\CommissionSettingController;
 use App\Http\Controllers\Backend\DepositdetilsController;
 use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\LotterycreateController;
 use App\Http\Controllers\Backend\WaletaSetupController;
+use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
 use App\Http\Controllers\UserlottryController;
@@ -33,6 +35,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/deposites/index', [DepositeContrller::class, 'approveindex'])->name('approve.index');
     Route::get('/deposites/delete/{id}', [DepositeContrller::class, 'approvedelete'])->name('approve.delete');
     Route::resource('lottery', LotterycreateController::class);
+    Route::resource('whychooseusinvesment', WhychooseinvestmentplanConroller::class);
+    Route::resource('aboutus', AboutController::class);
 });
 
 // End Admin login routesadmin_login_submit
@@ -59,6 +63,8 @@ Route::middleware(['user'])->group(function () {
     Route::get('/commissions', [TotalreferreduseController::class, 'commissions'])->name('user.commissions');
     Route::get('/referrals_nested', [TotalreferreduseController::class, 'referrals_nested'])->name('referrals.nested');
     Route::get('/userlotter/show', [UserlottryController::class, 'userlotter'])->name('userlotter.index');
+    Route::post('/buy-package/{packageId}', [UserlottryController::class, 'buyPackage'])->name('buy.package');
+
 });
 
 

@@ -20,6 +20,7 @@ return new class extends Migration
 
         $table->decimal('amount');
         $table->unsignedTinyInteger('level')->comment('Referral level');
+        $table->string('note')->nullable();
 
         $table->timestamps();
         $table->softDeletes();

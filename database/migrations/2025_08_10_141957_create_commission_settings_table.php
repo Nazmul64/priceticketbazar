@@ -14,22 +14,25 @@ public function up(): void
     Schema::create('commission_settings', function (Blueprint $table) {
         $table->id();
 
-        $table->decimal('refer_commission', 5, 2)->default(10.00);
-        $table->decimal('generation_commission', 5, 2)->default(10.00);
+        $table->decimal('refer_commission')->default(0.00)->nullable();
+        $table->decimal('generation_commission')->default(0.00)->nullable();
 
-        $table->decimal('generation_level_1', 5, 2)->default(40.00);
-        $table->decimal('generation_level_2', 5, 2)->default(25.00);
-        $table->decimal('generation_level_3', 5, 2)->default(15.00);
-        $table->decimal('generation_level_4', 5, 2)->default(10.00);
-        $table->decimal('generation_level_5', 5, 2)->default(10.00);
+        $table->decimal('generation_level_1')->default(0.00)->nullable();
+        $table->decimal('generation_level_2')->default(0.00)->nullable();
+        $table->decimal('generation_level_3')->default(0.00)->nullable();
+        $table->decimal('generation_level_4')->default(0.00)->nullable();
+        $table->decimal('generation_level_5')->default(0.00)->nullable();
 
-        $table->decimal('weekly_team_commission', 5, 2)->default(4.00);
-            // Status (1 = active, 0 = inactive)
+        $table->decimal('weekly_team_commission')->default(0.00)->nullable();
+        $table->decimal('lottery_percentages')->default(0.00)->nullable();
+
+        // Status (1 = active, 0 = inactive)
         $table->boolean('status')->default(1);
 
         $table->timestamps();
     });
 }
+
 
 
 

@@ -15,7 +15,10 @@ class profit extends Model
         'deposit_id' => 'integer',
         'amount' => 'decimal:2',
         'level' => 'integer',
+        'user_id',
+        'note',
     ];
+
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');

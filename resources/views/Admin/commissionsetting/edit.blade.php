@@ -15,8 +15,16 @@
                 <form action="{{ route('commissionsetting.update', $commission->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
                     {{-- Refer Commission --}}
+                    <div class="mb-3">
+                        <label class="form-label">Lottery Percentages (%)</label>
+                        <input type="number" step="0.01" name="lottery_percentages" class="form-control"
+                            value="{{ old('lottery_percentages', $commission->refer_commission) }}"
+                            placeholder="Enter refer lottery_percentages">
+                        @error('lottery_percentages')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Refer Commission (%)</label>
                         <input type="number" step="0.01" name="refer_commission" class="form-control"

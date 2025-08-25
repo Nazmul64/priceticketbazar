@@ -31,18 +31,19 @@ public function index()
      */
  public function store(Request $request)
 {
-    // ✅ Validation
-    $request->validate([
-        'refer_commission'        => 'required|numeric|min:0',
-        'generation_commission'   => 'required|numeric|min:0',
-        'generation_level_1'      => 'required|numeric|min:0',
-        'generation_level_2'      => 'required|numeric|min:0',
-        'generation_level_3'      => 'required|numeric|min:0',
-        'generation_level_4'      => 'required|numeric|min:0',
-        'generation_level_5'      => 'required|numeric|min:0',
-        'weekly_team_commission'  => 'required|numeric|min:0',
-        'status'                  => 'required|in:0,1',
-    ]);
+    // // ✅ Validation
+    // $request->validate([
+    //     'refer_commission'        => 'required|numeric|min:0',
+    //     'generation_commission'   => 'required|numeric|min:0',
+    //     'generation_level_1'      => 'required|numeric|min:0',
+    //     'generation_level_2'      => 'required|numeric|min:0',
+    //     'generation_level_3'      => 'required|numeric|min:0',
+    //     'generation_level_4'      => 'required|numeric|min:0',
+    //     'generation_level_5'      => 'required|numeric|min:0',
+    //     'weekly_team_commission'  => 'required|numeric|min:0',
+    //     'lottery_percentages'=>'required|numeric|min:0',
+    //     'status'                  => 'required|in:0,1',
+    // ]);
 
     // ✅ Create Commission
     CommissionSetting::create([
@@ -54,6 +55,7 @@ public function index()
         'generation_level_4'      => $request->generation_level_4,
         'generation_level_5'      => $request->generation_level_5,
         'weekly_team_commission'  => $request->weekly_team_commission,
+        'lottery_percentages'     => $request->lottery_percentages,
          'status' => (int) $request->status,
 
     ]);
@@ -87,18 +89,19 @@ public function index()
      */
   public function update(Request $request, string $id)
 {
-    // Validate incoming request data
-    $request->validate([
-        'refer_commission'       => 'required|numeric|min:0',
-        'generation_commission'  => 'required|numeric|min:0',
-        'generation_level_1'     => 'required|numeric|min:0',
-        'generation_level_2'     => 'required|numeric|min:0',
-        'generation_level_3'     => 'required|numeric|min:0',
-        'generation_level_4'     => 'required|numeric|min:0',
-        'generation_level_5'     => 'required|numeric|min:0',
-        'weekly_team_commission' => 'required|numeric|min:0',
-        'status'                 => 'required|in:0,1',
-    ]);
+    // // Validate incoming request data
+    // $request->validate([
+    //     'refer_commission'       => 'required|numeric|min:0',
+    //     'generation_commission'  => 'required|numeric|min:0',
+    //     'generation_level_1'     => 'required|numeric|min:0',
+    //     'generation_level_2'     => 'required|numeric|min:0',
+    //     'generation_level_3'     => 'required|numeric|min:0',
+    //     'generation_level_4'     => 'required|numeric|min:0',
+    //     'generation_level_5'     => 'required|numeric|min:0',
+    //     'weekly_team_commission' => 'required|numeric|min:0',
+    //     'lottery_percentages'=>'required|numeric|min:0',
+    //     'status'                 => 'required|in:0,1',
+    // ]);
 
     // Find commission record
     $commission = CommissionSetting::findOrFail($id);
@@ -112,6 +115,7 @@ public function index()
     $commission->generation_level_4     = $request->generation_level_4;
     $commission->generation_level_5     = $request->generation_level_5;
     $commission->weekly_team_commission = $request->weekly_team_commission;
+    $commission->lottery_percentages = $request->lottery_percentages;
     $commission->status                 = $request->status;
 
     // Save updated record

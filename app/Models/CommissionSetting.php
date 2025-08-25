@@ -16,6 +16,7 @@ class CommissionSetting extends Model
     'generation_level_5',
     'weekly_team_commission',
     'status',
+    'lottery_percentages',
 ];
 
 }

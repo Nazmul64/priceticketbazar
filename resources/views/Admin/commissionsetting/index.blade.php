@@ -24,6 +24,7 @@
                 <table id="commissionTable" class="table table-hover table-bordered align-middle">
                     <thead class="table-dark text-center">
                         <tr>
+                            <th>Lottery Percentages</th>
                             <th>Refer Commission</th>
                             <th>Generation Commission</th>
                             <th>Level 1</th>
@@ -39,14 +40,16 @@
                     <tbody class="text-center">
                         @forelse ($commissions as $commission)
                             <tr>
-                                <td>{{ $commission->refer_commission }}%</td>
-                                <td>{{ $commission->generation_commission }}%</td>
-                                <td>{{ $commission->generation_level_1 }}%</td>
-                                <td>{{ $commission->generation_level_2 }}%</td>
-                                <td>{{ $commission->generation_level_3 }}%</td>
-                                <td>{{ $commission->generation_level_4 }}%</td>
-                                <td>{{ $commission->generation_level_5 }}%</td>
-                                <td>{{ $commission->weekly_team_commission }}%</td>
+                                <td>{{ round($commission->lottery_percentages) }}%</td>
+                                <td>{{ round($commission->refer_commission) }}%</td>
+                                <td>{{ round($commission->generation_commission) }}%</td>
+                                <td>{{ round($commission->generation_level_1) }}%</td>
+                                <td>{{ round($commission->generation_level_2) }}%</td>
+                                <td>{{ round($commission->generation_level_3) }}%</td>
+                                <td>{{ round($commission->generation_level_4) }}%</td>
+                                <td>{{ round($commission->generation_level_5) }}%</td>
+                                <td>{{ round($commission->weekly_team_commission) }}%</td>
+
                                <td>
                                 <span class="badge {{ $commission->status == 1 ? 'bg-success' : 'bg-danger' }}">
                                     {{ $commission->status == 1 ? 'Active' : 'Inactive' }}

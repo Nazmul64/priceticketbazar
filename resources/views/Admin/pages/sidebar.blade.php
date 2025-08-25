@@ -73,31 +73,24 @@
             </li>
         <li>
             <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-file-earmark-break-fill"></i></div>
-                <div class="menu-title">Forms</div>
+                <div class="parent-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <div class="menu-title">Why Choose Us Investment</div>
             </a>
             <ul>
-                <li> <a href="form-elements.html"><i class="bi bi-circle"></i>Form Elements</a></li>
-                <li> <a href="form-input-group.html"><i class="bi bi-circle"></i>Input Groups</a></li>
-                <li> <a href="form-layouts.html"><i class="bi bi-circle"></i>Forms Layouts</a></li>
-                <li> <a href="form-validations.html"><i class="bi bi-circle"></i>Form Validation</a></li>
-                <li> <a href="form-wizard.html"><i class="bi bi-circle"></i>Form Wizard</a></li>
-                <li> <a href="form-date-time-pickes.html"><i class="bi bi-circle"></i>Date Pickers</a></li>
-                <li> <a href="form-select2.html"><i class="bi bi-circle"></i>Select2</a></li>
+                <li><a href="{{route('whychooseusinvesment.index')}}"><i class="bi bi-circle"></i>Why Choose Us Investment</a></li>
             </ul>
         </li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-file-earmark-spreadsheet-fill"></i></div>
-                <div class="menu-title">Tables</div>
-            </a>
-            <ul>
-                <li> <a href="table-basic-table.html"><i class="bi bi-circle"></i>Basic Table</a></li>
-                <li> <a href="table-advance-tables.html"><i class="bi bi-circle"></i>Advance Tables</a></li>
-                <li> <a href="table-datatable.html"><i class="bi bi-circle"></i>Data Table</a></li>
-            </ul>
-        </li>
-        <li class="menu-label">Pages</li>
+
+           <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-info-circle"></i></div>
+                    <div class="menu-title">About Us</div>
+                </a>
+                <ul>
+                    <li> <a href="{{route('aboutus.index')}}"><i class="bi bi-circle"></i>About Us</a></li>
+                </ul>
+            </li>
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bi bi-lock-fill"></i></div>

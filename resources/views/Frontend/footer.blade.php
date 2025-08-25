@@ -77,42 +77,7 @@
    </div>
 </footer>
 <!-- Invest Modal -->
-<div class="modal modal-position fade" id="invest-modal">
-   <div class="modal-dialog">
-      <div class="modal-content model-area">
-         <form class="investForm modal-form" action="https://demo.geniusocean.com/hyip-king/user/invest/amount" method="POST">
-            <input type="hidden" name="_token" value="Gety1CLWTuqmcpc0MjWKHAV1zB7MfyVZDAr9wSFy" autocomplete="off">
-            <div class="modal-body p-4">
-               <h4 class="modal-title text-center plan-title">Basic Plan</h4>
-               <div class="pt-3 pb-1">
-                  <label for="amount" class="form-label">Enter Amount</label>
-                  <div class="input-group input--group">
-                     <input type="number" step="any" name="amount"
-                        class="form-group-input form-control form--control bg--section" placeholder="0.00"
-                        id="modalAmount">
-                     <button type="button" class="input-group-text">USD</button>
-                  </div>
-                  <label for="amount" class="form-label">Select Wallet</label>
-                  <div class="input-group input--group">
-                     <select name="wallet" id="investMethod" class="forms nice_select w-100 rounded"
-                        required>
-                        <option value="checkout">Checkout</option>
-                        <option value="main_wallet">Main Balance</option>
-                        <option value="interest_wallet">Interest Balance</option>
-                     </select>
-                  </div>
-               </div>
-               <input type="hidden" name="investId" id="investId" value="">
-               <div class="d-flex gap-3 modal-btns">
-                  <button type="button" class="template-btn primary-outline w-50"
-                     data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="template-btn primary-btn w-50">Proceed</button>
-               </div>
-            </div>
-         </form>
-      </div>
-   </div>
-</div>
+
 <!--Esential Js Files-->
 <script src="{{asset('frontend')}}/assets/front/js/jquery.min.js"></script>
 <script src="{{asset('frontend')}}/assets/front/js/popper.min.js"></script>

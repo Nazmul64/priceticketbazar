@@ -11,10 +11,16 @@
                     @csrf
 
                     <div class="mb-3">
+                        <label class="form-label">lottery percentages(%)</label>
+                        <input type="number" step="0.01" name="lottery_percentages" class="form-control" value="{{ old('lottery_percentages') }}" placeholder="Enter Lottery percentages">
+                        @error('lottery_percentages') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
+                     <div class="mb-3">
                         <label class="form-label">Refer Commission (%)</label>
                         <input type="number" step="0.01" name="refer_commission" class="form-control" value="{{ old('refer_commission') }}" placeholder="Enter refer commission">
                         @error('refer_commission') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+
 
                     <div class="mb-3">
                         <label class="form-label">Generation Commission (%)</label>
