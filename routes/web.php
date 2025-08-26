@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
 use App\Http\Controllers\UserlottryController;
@@ -68,12 +69,14 @@ Route::middleware(['user'])->group(function () {
     Route::get('/referrals_nested', [TotalreferreduseController::class, 'referrals_nested'])->name('referrals.nested');
     Route::get('/userlotter/show', [UserlottryController::class, 'userlotter'])->name('userlotter.index');
     Route::post('/buy-package/{packageId}', [UserlottryController::class, 'buyPackage'])->name('buy.package');
+    Route::get('/user/chat', [ChatController::class, 'index'])->name('user.chat');
 
 });
 
 
-
+// Frontend route
  Route::get('/', [FrontendController::class, 'frontend'])->name('frontend');
+ Route::get('privacy', [FrontendController::class, 'privacy'])->name('privacy');
 
 
 

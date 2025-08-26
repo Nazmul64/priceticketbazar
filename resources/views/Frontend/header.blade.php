@@ -83,10 +83,10 @@
                   <div class="col-xl-7 col-lg-7 d-none d-lg-block">
                      <nav class="crete-navmenu text-center ps-xl-5">
                         <ul>
-                           <li class="active"><a href="https://demo.geniusocean.com/hyip-king"
+                           <li class="active"><a href="{{route('frontend')}}"
                               target="_self">Home</a>
                            </li>
-                           <li class=""><a href="about.html"
+                           <li class=""><a href="#about"
                               target="_self">About</a>
                            </li>
                            <li class=""><a href="plans.html"
@@ -95,6 +95,8 @@
                            <li class=""><a href="contact.html"
                               target="_self">Contact Us</a>
                            </li>
+
+
                         </ul>
                      </nav>
                   </div>

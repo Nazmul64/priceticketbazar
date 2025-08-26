@@ -73,9 +73,10 @@
 </div>
 <!-- Counter Section End -->
 <!-- About Us Section Start -->
-<div class="about-us-section">
-    @foreach ($aboutus as  $item)
+ @foreach ($aboutus as  $item)
     @if ($item->status)
+<div class="about-us-section"id='about'>
+
    <img src="{{asset($item->photo ?? '')}}" alt="about-us" class="img-fluid about-img">
    <div class="container">
       <div class="row about-us-row wow fadeInUp" data-wow-delay="0.2s">
@@ -92,70 +93,13 @@
          </div>
       </div>
    </div>
-    @endif
+
+</div>
+   @endif
  @endforeach
-</div>
 <!-- About Us Section End -->
-<!-- Calculator Section Start -->
-<div class="calculator-section position-relative" data-background="{{asset('frontend')}}/assets/front/images/calculator-bg.png">
-   <div class="container pt-100 pb-100 calculate-container ">
-      <div class="row justify-content-center">
-         <div class="col-lg-6 col-md-6 col-sm-12 col-12 ">
-            <img class="calcultor-img wow fadeInUp" src="{{asset('frontend')}}/assets/images/QkC6B5ul1703994506.png"
-               alt="img">
-         </div>
-         <div class="col-lg-6 col-md-6 col-sm-12 col-12 calculation-details wow fadeInUp" data-wow-delay="0.1s">
-            <div>
-               <h6 class="pb-3 ">Profit Calculator</h6>
-               <h2 class="pb-20  ">Calculate Your Profit</h2>
-               <p class="calculator-paragraph ">
-                  Aenean vulputate eleifend tellus. Aenean leo ligul porttitoeu consequat vitae eleifend acenim.
-               </p>
-            </div>
-            <div class="calculate-form">
-               <form id="profitCalculate" class="form-areas" action="https://demo.geniusocean.com/hyip-king/profit/calculate">
-                  <div class="alert alert-success alert-dismissible fade show" style="display: none;">
-                     <p class="m-0 text-success"></p>
-                  </div>
-                  <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert">
-                     <p class="m-0 text-danger"></p>
-                  </div>
-                  <input type="hidden" name="_token" value="Gety1CLWTuqmcpc0MjWKHAV1zB7MfyVZDAr9wSFy" autocomplete="off">
-                  <fieldset class="form-feild">
-                     <div class="form-inpt">
-                        <label for="plan" class="form-label">Select Plan</label>
-                        <select id="plan" name="plan" class="forms nice_select w-100 rounded">
-                           <option value="9">Orbit</option>
-                           <option value="8">Platinum</option>
-                           <option value="7">Diamond</option>
-                           <option value="6">Broonze</option>
-                           <option value="5">Gold</option>
-                           <option value="4">Professional</option>
-                        </select>
-                     </div>
-                     <div class="form-inpt">
-                        <label for="amount" class="form-label">Enter Amount</label>
-                        <input type="number" step="any" name="amount" id="amount" class="form-control forms"
-                           placeholder="Enter Amount">
-                     </div>
-                     <div class="form-inpt">
-                        <label for="profit-calculate-amount" class="form-label">Profit Amount</label>
-                        <input readonly type="text" name="profit-amount" id="profit-calculate-amount"
-                           class="form-control disable-forms profitCalBoxAmount" placeholder="00.00">
-                     </div>
-                     <div>
-                        <div class="form-inpt">
-                           <button type="submit" class="form-btn primary-btn-forms btn-forms">
-                           Calculate Now</button>
-                        </div>
-                     </div>
-                  </fieldset>
-               </form>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+
+
 <!-- Calculator Section End -->
 <!-- Choose Us Section Start -->
 @php
@@ -201,9 +145,7 @@
 <div class="offer-section">
    <div class="container">
       <div class="offer-section-header wow fadeInUp">
-         <h6>Invest Offer</h6>
-         <h2>Best Investment Packages</h2>
-         <p class="offer-section-paragraph">Deserunt hic consequatur ex placeat! atque repellendus inventore quisquam, perferendis, eum reiciendis quia nesciunt fuga magni.            </p>
+         <h2>Best  Packages</h2>
       </div>
       <div class="row offer-row-box wow fadeInUp" data-wow-delay="0.1s">
     @foreach ($lotterys as $item)
@@ -665,5 +607,88 @@
       </div>
    </div>
 </div>
+<script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const countdownEl = document.getElementById('countdown-{{ $item->id }}');
+                const drawDate = new Date("{{ $item->draw_date }}");
 
+                function format12Hour(date) {
+                    let hours = date.getHours();
+                    const minutes = date.getMinutes();
+                    const seconds = date.getSeconds();
+                    const ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12 || 12;
+                    return `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
+                }
+
+                function updateCountdown() {
+                    const now = new Date();
+                    const diff = drawDate - now;
+
+                    if (diff <= 0) {
+                        countdownEl.textContent = '🎉 Draw time has arrived!';
+                        return;
+                    }
+
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    countdownEl.textContent = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s | Draw: ${format12Hour(drawDate)}`;
+                }
+
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            });
+        </script>
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const textElement = document.getElementById("about-text");
+    const button = document.getElementById("toggle-btn");
+
+    let fullText = textElement.innerText.trim();
+    let words = fullText.split(" ");
+    let shortText = words.slice(0, 50).join(" ") + (words.length > 100 ? "..." : "");
+
+    let isExpanded = false;
+
+    // Start with short text
+    textElement.innerText = shortText;
+
+    button.addEventListener("click", function () {
+        if (!isExpanded) {
+            textElement.innerText = fullText;
+            button.innerText = "Read Less";
+            isExpanded = true;
+        } else {
+            textElement.innerText = shortText;
+            button.innerText = "Read More";
+            isExpanded = false;
+        }
+    });
+});
+</script>
+<style>
+    .lottery-item {
+        list-style: none;
+        margin: 10px 0;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .lottery-item .name {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .countdown {
+        font-family: monospace;
+        color: #5309c9;
+        font-weight: bold;
+    }
+</style>
 @endsection

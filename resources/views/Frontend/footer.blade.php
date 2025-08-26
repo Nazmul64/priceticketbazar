@@ -42,7 +42,7 @@
                   <hr class="m-0 p-0">
                   <ul>
                      <li>
-                        <a href="provicay.html">Privacy Policy</a>
+                        <a href="{{route('privacy')}}">Privacy Policy</a>
                      </li>
                      <li>
                         <a href="support-policy.html">Support</a>

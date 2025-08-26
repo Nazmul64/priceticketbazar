@@ -102,6 +102,11 @@
                                 <i class="bi bi-circle"></i>Settings
                             </a>
                         </li>
+                         <li>
+                            <a href="{{route('privacypolicy.index')}}" target="_blank">
+                                <i class="bi bi-circle"></i>privacypolicy
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
