@@ -1,21 +1,40 @@
+   @php
+        $setting =\App\Models\Setting::first();
+   @endphp
 <footer class="footer-section" data-background="{{asset('frontend')}}/assets/front/images/Footer-bg.png">
    <div class="container">
       <div class="footer-tops">
          <div class="row gap-4 gap-md-0 footer-section-row">
             <div class="col-xl-4 col-lg-3 col-md-6 wow fadeInLeft" data-wow-delay="0.1s">
                <div class="footer-logo">
-                  <img src="{{asset('frontend')}}/assets/images/WrK86hHx1659607850.png" alt="">
+                  <img src="{{asset('uploads/settings/'.$setting->photo ?? '')}}" alt="">
                </div>
                <div class="footer-paragraph">
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo...</p>
+                  <p>{{$setting->footer_about ?? ''}}</p>
                </div>
-               <div class="footer-socials-icons">
-                  <div class="d-flex gap-2 social-links">
-                     <a class="common-icon" href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                     <a class="common-icon" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                     <a class="common-icon" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                  </div>
-               </div>
+              <div class="footer-socials-icons">
+                <div class="d-flex gap-2 social-links">
+                    @if(!empty($setting->linkedin))
+                        <a class="common-icon" href="{{ $setting->linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+                    @endif
+                    @if(!empty($setting->twitter))
+                        <a class="common-icon" href="{{ $setting->twitter }}"><i class="fab fa-twitter"></i></a>
+                    @endif
+                    @if(!empty($setting->facebook))
+                        <a class="common-icon" href="{{ $setting->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                    @endif
+                    @if(!empty($setting->instagram))
+                        <a class="common-icon" href="{{ $setting->instagram }}"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if(!empty($setting->tilegram))
+                        <a class="common-icon" href="{{ $setting->tilegram }}"><i class="fab fa-telegram-plane"></i></a>
+                    @endif
+                    @if(!empty($setting->youtube))
+                        <a class="common-icon" href="{{ $setting->youtube }}"><i class="fab fa-youtube"></i></a>
+                    @endif
+                </div>
+            </div>
+
             </div>
             <div class="col-xl-2 offset-xl-1 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                <div class="footer-links ">
@@ -62,9 +81,9 @@
                   <h5 class="p-0 m-0">Contact Us</h5>
                   <hr class="m-0 p-0 footer-contact-hr">
                   <ul>
-                     <li><i class="fas fa-phone-alt px-1"></i> +0123456789</li>
-                     <li><i class="fas fa-envelope px-1"></i>admin@geniusocean.com</li>
-                     <li><i class="fas fa-map-marker-alt px-1"></i> New York, United States</li>
+                     <li><i class="fas fa-phone-alt px-1"></i>{{$setting->phone ?? ''}}</li>
+                     <li><i class="fas fa-envelope px-1"></i>{{$setting->email ?? ''}}</li>
+                     <li><i class="fas fa-map-marker-alt px-1"></i> {{$setting->address ?? ''}}</li>
                   </ul>
                </div>
             </div>

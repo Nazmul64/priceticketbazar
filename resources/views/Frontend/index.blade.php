@@ -82,13 +82,13 @@
          <div class="col-lg-6">
             <h2 class="pb-20">{{$item->title ?? ''}}</h2>
             <p class="about-paragraph">
-                <span>{{$item->description ?? ''}}</span>
+                <span id="about-text">{{ $item->description ?? '' }}</span>
             </p>
             <div class="d-flex gap-3 about-btn">
-               <a href="" class="template-btn primary-btn abt-btn">Read More</a>
-               <a href="#" class="template-btn primary-outline abt-btn">Contact
-               Us</a>
+                <a href="javascript:void(0)" id="toggle-btn" class="template-btn primary-btn abt-btn">Read More</a>
+                <a href="#" class="template-btn primary-outline abt-btn">Contact Us</a>
             </div>
+
          </div>
       </div>
    </div>
@@ -250,70 +250,12 @@
                 </button>
             </div>
         </div>
-
-        <!-- Countdown Script -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const countdownEl = document.getElementById('countdown-{{ $item->id }}');
-                const drawDate = new Date("{{ $item->draw_date }}");
-
-                function format12Hour(date) {
-                    let hours = date.getHours();
-                    const minutes = date.getMinutes();
-                    const seconds = date.getSeconds();
-                    const ampm = hours >= 12 ? 'PM' : 'AM';
-                    hours = hours % 12 || 12;
-                    return `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
-                }
-
-                function updateCountdown() {
-                    const now = new Date();
-                    const diff = drawDate - now;
-
-                    if (diff <= 0) {
-                        countdownEl.textContent = '🎉 Draw time has arrived!';
-                        return;
-                    }
-
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                    countdownEl.textContent = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s | Draw: ${format12Hour(drawDate)}`;
-                }
-
-                updateCountdown();
-                setInterval(updateCountdown, 1000);
-            });
-        </script>
         @endif
     @endforeach
 </div>
 
 <!-- Styles -->
-<style>
-    .lottery-item {
-        list-style: none;
-        margin: 10px 0;
-        padding: 10px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .lottery-item .name {
-        font-weight: 600;
-        font-size: 16px;
-    }
-    .countdown {
-        font-family: monospace;
-        color: #ff5722;
-        font-weight: bold;
-    }
-</style>
+
 
    </div>
 </div>
@@ -352,158 +294,47 @@
                         <th>Status</th>
                      </tr>
                   </thead>
-                  <tbody class="tb-body">
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Jun 23, 2024
-                        </td>
-                        <td data-label="Transaction Number">7LQZWRDNXW6W
-                        </td>
-                        <td data-label="Method">Paypal</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">100$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           May 11, 2024
-                        </td>
-                        <td data-label="Transaction Number">NHUSLR8WEOEM
-                        </td>
-                        <td data-label="Method">Paypal</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">500$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Jan 13, 2024
-                        </td>
-                        <td data-label="Transaction Number">W2ZO4B7ISCGU
-                        </td>
-                        <td data-label="Method">Paypal</td>
-                        <td data-label="Account Name">
-                           Jerald Dias
-                        </td>
-                        <td data-label="Amount">10000$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Jan 13, 2024
-                        </td>
-                        <td data-label="Transaction Number">DELFPQ6TQNDO
-                        </td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Mr. Mostafa
-                        </td>
-                        <td data-label="Amount">10000$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Jan 01, 2024
-                        </td>
-                        <td data-label="Transaction Number">48BVHTLHNL4R
-                        </td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Dark Loard
-                        </td>
-                        <td data-label="Amount">1000$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Nov 06, 2023
-                        </td>
-                        <td data-label="Transaction Number">US4EDP4UZDIG
-                        </td>
-                        <td data-label="Method">Mercadopago</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">50$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Nov 05, 2023
-                        </td>
-                        <td data-label="Transaction Number">SXU66N7LKT0S
-                        </td>
-                        <td data-label="Method">Mercadopago</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">20$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Nov 05, 2023
-                        </td>
-                        <td data-label="Transaction Number">UWIG1UH9TDTY
-                        </td>
-                        <td data-label="Method">Mercadopago</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">10$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Nov 05, 2023
-                        </td>
-                        <td data-label="Transaction Number">EKZ7AOXBWKFP
-                        </td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">60$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">
-                           Nov 05, 2023
-                        </td>
-                        <td data-label="Transaction Number">86RXIN0SKXXZ
-                        </td>
-                        <td data-label="Method">Paypal</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">55$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                  </tbody>
+                    <tbody class="tb-body">
+                        @foreach ($deposite as $item)
+                            <tr class="tb-row">
+                                <!-- Date -->
+                                <td data-label="Date">
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
+                                </td>
+
+                                <!-- Transaction Number -->
+                                <td data-label="Transaction Number">
+                                    {{ $item->transaction_id ?? '' }}
+                                </td>
+
+                                <!-- Payment Method -->
+                                <td data-label="Method">
+                                    {{ $item->payment_method ?? '' }}
+                                </td>
+                                 @php
+                                     $user_name=\App\Models\User::where('id',$item->user_id)->first();
+                                 @endphp
+                                <!-- Account Name -->
+                                <td data-label="Account Name">
+                                    {{ $user_name->name ?? '' }}
+                                </td>
+
+                                <!-- Amount -->
+                                <td data-label="Amount">
+                                    {{ round($item->amount ?? '') }}$
+                                </td>
+
+                                <!-- Status -->
+                                <td data-label="Status">
+                                    @if($item->status == 'approved')
+                                        <p class="text-success">{{ ucfirst($item->status) }}</p>
+                                    @else
+                                        <p class="text-danger">{{ ucfirst($item->status) }}</p>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                </table>
             </div>
             <div class="tab-pane fade table-responsive p-4 tb-tb" id="nav-withdraw" role="tabpanel"
@@ -619,57 +450,7 @@
       </div>
    </div>
 </div>
-<div class="get-started-section">
-   <div class="container">
-      <div class="gstarted-section-header wow fadeInUp">
-         <h6>How To Get Started</h6>
-         <h2>We have some easy steps!</h2>
-         <p class="stat-section-paragraph">
-            Deserunt hic consequatur ex placeat! atque repellendus inventore quisquam, perferendis, eum reiciendis quia nesciunt fuga magni.
-         </p>
-      </div>
-      <div class="row about-us-row position-relative justify-content-end wow fadeInUp" data-wow-delay="0.2s">
-         <div class="col-lg-6">
-            <img src="{{asset('frontend')}}/assets/images/FqzjrRoG1704874429.png" alt="about-us" class="img-fluid about-img">
-         </div>
-         <div class="col-lg-6">
-            <div class="about-short d-flex">
-               <div class="license-img">
-                  <i class="fas fa-user-plus"></i>
-               </div>
-               <div class="short-details">
-                  <h6 class="license-details-head">Create Account</h6>
-                  <p>
-                     Repellendus consequuntur vel nam numquam labore reiciendis rem neque eveniet, dicta molestias.
-                  </p>
-               </div>
-            </div>
-            <div class="about-short d-flex">
-               <div class="license-img">
-                  <i class="fas fa-user-check"></i>
-               </div>
-               <div class="short-details">
-                  <h6 class="license-details-head">Purchase Investment Plan</h6>
-                  <p>
-                     Repellendus consequuntur vel nam numquam labore reiciendis rem neque eveniet, dicta molestias.
-                  </p>
-               </div>
-            </div>
-            <div class="about-short d-flex">
-               <div class="license-img">
-                  <i class="fas fa-exchange-alt"></i>
-               </div>
-               <div class="short-details">
-                  <h6 class="license-details-head">Get Profit</h6>
-                  <p>
-                     Repellendus consequuntur vel nam numquam labore reiciendis rem neque eveniet, dicta molestias.
-                  </p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+
 <div class="gateways-section">
    <div class="container">
       <div class="gateways-section-header wow fadeInUp">
@@ -884,89 +665,5 @@
       </div>
    </div>
 </div>
-<div class="blog-section">
-   <div class="container">
-      <div class="blog-section-header wow fadeInUp">
-         <h6>Blog Posts</h6>
-         <h2>Our Latest News &amp; Tips</h2>
-         <p class="blog-section-paragraph">
-            Deserunt hic consequatur ex placeat! atque repellendus inventore quisquam, perferendis, eum reiciendis quia nesciunt fuga magni.
-         </p>
-      </div>
-      <div class="row blog-section-row wow fadeInUp" data-wow-delay="0.2s">
-         <div class="col-lg-4 col-md-6">
-            <a href="blog/rune-exclusive-campaign-winner-announcement.html">
-               <div class="blog-box">
-                  <div class="icon-wraper">
-                     <div class="overlay-box"></div>
-                     <div class="icon-box">
-                        <h5>15
-                           <br>Mar
-                        </h5>
-                     </div>
-                  </div>
-                  <div class="blog-content">
-                     <img src="{{asset('frontend')}}/assets/images/D0trrRpB1647403318.jpg" alt="">
-                     <div class="blog-short-details">
-                        <h5>Aenean Ligul Porttitoe Consequ...</h5>
-                        <p>As of my last knowledge update in January 2022, I don&#039;t have specific informatio...
-            <a href="blog/rune-exclusive-campaign-winner-announcement.html">
-            <span class="read-more">Read More...</span>
-            </p>
-            </div>
-            </div>
-            </div>
-            </a>
-         </div>
-         <div class="col-lg-4 col-md-6">
-            <a href="blog/the-first-margin-trading-race-of-2022-has-landed.html">
-               <div class="blog-box">
-                  <div class="icon-wraper">
-                     <div class="overlay-box"></div>
-                     <div class="icon-box">
-                        <h5>15
-                           <br>Mar
-                        </h5>
-                     </div>
-                  </div>
-                  <div class="blog-content">
-                     <img src="{{asset('frontend')}}/assets/images/73oKoC6W1647403134.jpg" alt="">
-                     <div class="blog-short-details">
-                        <h5>Aenean Ligul Porttitoe Consequ...</h5>
-                        <p>As of my last knowledge update in January 2022, I don&#039;t have specific informatio...
-            <a href="blog/the-first-margin-trading-race-of-2022-has-landed.html">
-            <span class="read-more">Read More...</span>
-            </p>
-            </div>
-            </div>
-            </div>
-            </a>
-         </div>
-         <div class="col-lg-4 col-md-6">
-            <a href="blog/cryptocom-app-lists-idex-idex.html">
-               <div class="blog-box">
-                  <div class="icon-wraper">
-                     <div class="overlay-box"></div>
-                     <div class="icon-box">
-                        <h5>02
-                           <br>Jan
-                        </h5>
-                     </div>
-                  </div>
-                  <div class="blog-content">
-                     <img src="{{asset('frontend')}}/assets/images/nMI5Kv5P1647402900.jpg" alt="">
-                     <div class="blog-short-details">
-                        <h5>Aenean Ligul Porttitoe Consequ...</h5>
-                        <p>As of my last knowledge update in January 2022, I don&#039;t have specific informatio...
-            <a href="blog/cryptocom-app-lists-idex-idex.html">
-            <span class="read-more">Read More...</span>
-            </p>
-            </div>
-            </div>
-            </div>
-            </a>
-         </div>
-      </div>
-   </div>
-</div>
+
 @endsection

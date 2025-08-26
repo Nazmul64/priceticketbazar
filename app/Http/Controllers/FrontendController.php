@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Deposite;
 use App\Models\Lotter;
 use App\Models\Whychooseinvestmentplan;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class FrontendController extends Controller
         $Whychooseinvestmentplan = Whychooseinvestmentplan::all();
         $lotterys=Lotter::all();
         $aboutus=About::all();
-        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus'));
+        $deposite =Deposite::where('status','approved')->get();
+        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite'));
     }
     // User registration and login methods can be added here
 

@@ -91,18 +91,20 @@
                 </ul>
             </li>
 
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-lock-fill"></i></div>
-                <div class="menu-title">Authentication</div>
-            </a>
-            <ul>
-                <li> <a href="authentication-signin.html" target="_blank"><i class="bi bi-circle"></i>Sign In</a></li>
-                <li> <a href="authentication-signup.html" target="_blank"><i class="bi bi-circle"></i>Sign Up</a></li>
-                <li> <a href="authentication-forgot-password.html" target="_blank"><i class="bi bi-circle"></i>Forgot Password</a></li>
-                <li> <a href="authentication-reset-password.html" target="_blank"><i class="bi bi-circle"></i>Reset Password</a></li>
-            </ul>
-        </li>
+             <li>
+                    <a class="has-arrow" href="javascript:;">
+                        <div class="parent-icon"><i class="bi bi-gear-fill"></i></div>
+                        <div class="menu-title">Settings</div>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="{{route('settings.index')}}" target="_blank">
+                                <i class="bi bi-circle"></i>Settings
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
         <li>
             <a href="pages-user-profile.html">
                 <div class="parent-icon"><i class="bi bi-person-lines-fill"></i></div>

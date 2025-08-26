@@ -65,6 +65,9 @@
     </script>
     @endif
    </head>
+   @php
+        $setting =\App\Models\Setting::first();
+   @endphp
    <body>
       <header class="header-section position-relative z-2 header-sticky">
          <div class="container-header">
@@ -72,8 +75,8 @@
                <div class="row align-items-center">
                   <div class="col-lg-2 col-xl-2 col-6">
                      <div class="logo-wrapper">
-                        <a href="https://demo.geniusocean.com/hyip-king"> <img src="{{asset('frontend')}}/assets/images/WrK86hHx1659607850.png"
-                           alt="logo" class="img-fluid logo-dsgn">
+                        <a href="https://demo.geniusocean.com/hyip-king"> <img src="{{asset('uploads/settings/'.$setting->photo)}}"
+                           alt="logo" class="img-fluid logo-dsgn" style="height: 60px; width: auto;">
                         </a>
                      </div>
                   </div>
@@ -88,9 +91,6 @@
                            </li>
                            <li class=""><a href="plans.html"
                               target="_self">Plans</a>
-                           </li>
-                           <li class=""><a href="blogs.html"
-                              target="_self">Blog</a>
                            </li>
                            <li class=""><a href="contact.html"
                               target="_self">Contact Us</a>
@@ -115,21 +115,21 @@
       <!-- Mobile Menu Start -->
       <div class="mobile-menu">
          <img class="mobile-menu-logo"
-            src="../../product.geniusocean.com/genius-hyip-light/assets/images/ldNavhzl1674033807.png" alt="">
+            src="{{asset('uploads/settings/'.$setting->photo)}}" alt=""style="height: 60px; width: auto;">
          <a href="javascript:void(0)" class="close"><i class="fas fa-xmark"></i></a>
          <ul class="mobile-nav-menu">
-            <li><a href="https://demo.geniusocean.com/hyip-king" target="_self">Home</a>
+            <li><a href="{{route('frontend')}}" target="_self">Home</a>
             </li>
-            <li><a href="about.html" target="_self">About</a>
+            <li><a href="#" target="_self">About</a>
             </li>
-            <li><a href="plans.html" target="_self">Plans</a>
+            <li><a href="#" target="_self">Plans</a>
             </li>
-            <li><a href="blogs.html" target="_self">Blog</a>
+            <li><a href="#" target="_self">Blog</a>
             </li>
-            <li><a href="contact.html" target="_self">Contact Us</a>
+            <li><a href="#" target="_self">Contact Us</a>
             </li>
             <div class="mobile-menu-login">
-               <a href="contact-2.html" class="mobile-menu-btn white-btn d-xl-block">Login</a>
+               <a href="{{route('register')}}" class="mobile-menu-btn white-btn d-xl-block">Login</a>
             </div>
          </ul>
       </div>
