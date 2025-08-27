@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\LotterycreateController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
 use App\Http\Controllers\ChatController;
@@ -45,6 +46,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/users', [AdminController::class, 'userList'])->name('chat.users');   // sidebar list
     Route::get('/fetch', [AdminController::class, 'fetch'])->name('chat.fetch');      // fetch messages
     Route::post('/send', [AdminController::class, 'send'])->name('chat.send');
+     Route::resource('slider',SliderController::class);
 });
 
 // End Admin login routesadmin_login_submit
@@ -76,6 +78,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('user/chat/fetch',  [ChatController::class, 'fetch'])->name('user.chat.fetch');
     Route::post('user/chat/send',  [ChatController::class, 'send'])->name('user.chat.send');
     Route::get('user/chat/list',   [ChatController::class, 'userList'])->name('user.chat.list');
+
 
 });
 

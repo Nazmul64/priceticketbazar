@@ -18,6 +18,13 @@
 
         </li>
         <li>
+            <a href="{{ route('slider.index') }}">
+                <div class="parent-icon"><i class="fas fa-sliders-h"></i></div>
+                <div class="menu-title">Slider</div>
+            </a>
+        </li>
+
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bi bi-cash-coin"></i></div>
                 <div class="menu-title">Commission</div>
@@ -110,12 +117,7 @@
                     </ul>
                 </li>
 
-        <li>
-            <a href="pages-user-profile.html">
-                <div class="parent-icon"><i class="bi bi-person-lines-fill"></i></div>
-                <div class="menu-title">User Profile</div>
-            </a>
-        </li>
+
         <li>
             <a href="pages-timeline.html">
                 <div class="parent-icon"><i class="bi bi-collection-play-fill"></i></div>

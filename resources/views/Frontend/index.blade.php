@@ -1,20 +1,25 @@
 @extends('Frontend.master')
 @section('content')
 <!-- Hero Section Start -->
-<div class="hero-section" data-background="{{asset('frontend')}}/assets/images/duJ03Fhd1705123205.png">
-   <div class="container">
-      <div class="row px-45">
-         <div class="col-lg-7">
-            <div class="hero-content">
-               <h1 class="pt-20 hero-header wow fadeInUp" data-wow-delay="0.2s">Invest for Future in Stable Platform.
-               </h1>
-               <p class="pt-20 hero-p wow fadeInUp" data-wow-delay="0.3s">Make a profitable business from these niches, Grow your profit, invest now. See The Platform, Feel The Shine</p>
-               <a href="http://localhost/geniushyip/" data-wow-delay="0.3s" class=" template-btn secondary-btn d-xl-inline-block mt-20 wow fadeInUp">Get Started</a>
+@foreach ($slider as $item)
+    @if ($item->status)
+        <div class="hero-section" style="background-image: url('{{ asset($item->photo ?? 'default.jpg') }}');">
+            <div class="container">
+                <div class="row px-45">
+                    <div class="col-lg-7">
+                        <div class="hero-content">
+                            <h1 class="pt-20 hero-header wow fadeInUp" data-wow-delay="0.2s">{{ $item->title ?? '' }}</h1>
+                            <p class="pt-20 hero-p wow fadeInUp" data-wow-delay="0.3s">{{ $item->description ?? '' }}</p>
+                            <a href="#" class="template-btn secondary-btn d-xl-inline-block mt-20 wow fadeInUp" data-wow-delay="0.3s">Get Started</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-</div>
+        </div>
+    @endif
+@endforeach
+
+
 <!-- Hero Section End -->
 <!-- Counter Section Start -->
 <div class="counter-section">
