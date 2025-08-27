@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\DepositdetilsController;
 use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\LotterycreateController;
+use App\Http\Controllers\Backend\PartnarController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
@@ -51,6 +52,7 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('slider',SliderController::class);
     Route::resource('counter',CounterController::class);
     Route::resource('contact',ContactController::class);
+     Route::resource('partner',PartnarController::class);
 });
 
 // End Admin login routesadmin_login_submit

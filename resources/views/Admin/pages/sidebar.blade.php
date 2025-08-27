@@ -137,11 +137,12 @@
                 </ul>
             </li>
         <li>
-            <a href="pages-faq.html">
-                <div class="parent-icon"><i class="bi bi-question-lg"></i></div>
-                <div class="menu-title">FAQ</div>
+            <a href="{{ route('partner.index') }}">
+                <div class="parent-icon"><i class="bi bi-handshake"></i></div>
+                <div class="menu-title">Partner</div>
             </a>
         </li>
+
         <li>
             <a href="pages-pricing-tables.html">
                 <div class="parent-icon"><i class="bi bi-tags-fill"></i></div>

@@ -366,68 +366,25 @@
 </div>
 
 <div class="gateways-section">
-   <div class="container">
-      <div class="gateways-section-header wow fadeInUp">
-         <h6>Payment Getaways</h6>
-         <h2>Our Payment Gateway</h2>
-         <p class="gateways-section-paragraph">
-            Deserunt hic consequatur ex placeat! atque repellendus inventore quisquam, perferendis, eum reiciendis quia nesciunt fuga magni
-         </p>
-      </div>
-      <div class="row px-45 gateways-sliderr wow fadeInUp" data-wow-delay="0.2s">
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/k5R7wnnZ1704874703.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/0Irqc6ug1704874692.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/cISchOW01704874681.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/X2uWfb701704874671.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/pbBZTyJF1704874655.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/x8DGNrrI1704874583.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/DlOwnD2g1704874511.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/5iYGWthV1704874547.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/RYoblVwB1704874559.png" alt="">
-            </div>
-         </div>
-         <div class="col px-2">
-            <div class="gateways-box">
-               <img class="mx-auto d-block" src="{{asset('frontend')}}/assets/images/kCDqJMGY1704874571.png" alt="">
-            </div>
-         </div>
-      </div>
-   </div>
+    <div class="container">
+        <div class="gateways-section-header wow fadeInUp">
+            <h6>Payment Gateways</h6>
+            <h2>Our Payment Gateway</h2>
+        </div>
+        <div class="row px-45 gateways-slider wow fadeInUp" data-wow-delay="0.2s">
+            @foreach ($partner as $item)
+                <div class="col px-2">
+                    <div class="gateways-box">
+                        <img class="mx-auto d-block"
+                             src="{{ $item->photo ? asset($item->photo) : asset('frontend/assets/images/default-partner.png') }}"
+                             alt="Partner Logo">
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
+
 <div class="testimonial-section">
    <div class="container">
       <div class="testimonial-section-header wow fadeInUp">
