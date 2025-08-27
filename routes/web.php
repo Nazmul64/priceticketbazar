@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\CommissionSettingController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CounterController;
 use App\Http\Controllers\Backend\DepositdetilsController;
 use App\Http\Controllers\Backend\DepositeContrller;
@@ -49,6 +50,7 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/send', [AdminController::class, 'send'])->name('chat.send');
     Route::resource('slider',SliderController::class);
     Route::resource('counter',CounterController::class);
+    Route::resource('contact',ContactController::class);
 });
 
 // End Admin login routesadmin_login_submit
@@ -88,6 +90,7 @@ Route::middleware(['user'])->group(function () {
 // Frontend route
  Route::get('/', [FrontendController::class, 'frontend'])->name('frontend');
  Route::get('privacy', [FrontendController::class, 'privacy'])->name('privacy');
+ Route::get('contacts', [FrontendController::class, 'contacts'])->name('contacts');
 
 
 

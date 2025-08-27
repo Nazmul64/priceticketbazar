@@ -123,21 +123,19 @@
                         </li>
                     </ul>
                 </li>
-
-
-
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
-                <div class="menu-title">Errors</div>
-            </a>
-            <ul>
-                <li> <a href="pages-errors-404-error.html" target="_blank"><i class="bi bi-circle"></i>404 Error</a></li>
-                <li> <a href="pages-errors-500-error.html" target="_blank"><i class="bi bi-circle"></i>500 Error</a></li>
-                <li> <a href="pages-errors-coming-soon.html" target="_blank"><i class="bi bi-circle"></i>Coming Soon</a></li>
-                <li> <a href="pages-blank-page.html" target="_blank"><i class="bi bi-circle"></i>Blank Page</a></li>
-            </ul>
-        </li>
+                <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-envelope-fill"></i></div>
+                    <div class="menu-title">Contact</div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('contact.index') }}" target="_blank">
+                            <i class="bi bi-circle"></i> Contact
+                        </a>
+                    </li>
+                </ul>
+            </li>
         <li>
             <a href="pages-faq.html">
                 <div class="parent-icon"><i class="bi bi-question-lg"></i></div>

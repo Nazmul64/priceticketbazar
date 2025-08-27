@@ -2,13 +2,16 @@
 <html lang="en">
    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
    <head>
+    @php
+        $setting =\App\Models\Setting::first();
+   @endphp
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <!-- SEO Meta Tags -->
       <meta name="keywords" content="Genius, Ocean, Sea, Etc">
       <meta name="author" content="GeniusOcean" />
-      <title>Price Ticket Bazar</title>
+      <title>{{$setting->footer_text ?? ''}}</title>
       <!-- Essential CSS Files -->
       <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/all.css') }}">
       <link rel="stylesheet" href="{{ asset('frontend/assets/front/css/bootstrap.min.css') }}">
@@ -21,7 +24,7 @@
       <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
       <link rel="stylesheet" id="colorr" href="{{ asset('frontend/assets/front/css/font9f05.css?font_familly=IBM%20Plex%20Sans') }}">
       <!-- Favicon -->
-      <link rel="shortcut icon" href="{{ asset('frontend/assets/images/Yo7c3v0R1650180806.png') }}">
+      <link rel="shortcut icon" href="{{ asset('uploads/settings/' . ($setting->favicon ?? '')) }}">
       <!-- Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137437974-1"></script>
       <script>
@@ -65,9 +68,7 @@
     </script>
     @endif
    </head>
-   @php
-        $setting =\App\Models\Setting::first();
-   @endphp
+
    <body>
       <header class="header-section position-relative z-2 header-sticky">
          <div class="container-header">
@@ -75,7 +76,7 @@
                <div class="row align-items-center">
                   <div class="col-lg-2 col-xl-2 col-6">
                      <div class="logo-wrapper">
-                        <a href="https://demo.geniusocean.com/hyip-king"> <img src="{{asset('uploads/settings/'.$setting->photo)}}"
+                        <a href="{{route('frontend')}}"> <img src="{{asset('uploads/settings/'.$setting->photo)}}"
                            alt="logo" class="img-fluid logo-dsgn" style="height: 60px; width: auto;">
                         </a>
                      </div>
@@ -92,7 +93,7 @@
                            <li class=""><a href="#plane"
                               target="_self">Plans</a>
                            </li>
-                           <li class=""><a href="contact.html"
+                           <li class=""><a href="{{route('contacts')}}"
                               target="_self">Contact Us</a>
                            </li>
 

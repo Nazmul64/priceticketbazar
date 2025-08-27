@@ -30,6 +30,12 @@ class FrontendController extends Controller
         $priavacypolicy =Privacypolicy::all();
         return view('Frontend.pages.privacy',compact('priavacypolicy'));
     }
+
+    public function contacts()
+    {
+        $contacts = \App\Models\Contact::all();
+         return view('Frontend.pages.contact', compact('contacts'));
+    }
     // User registration and login methods can be added here
 
 
