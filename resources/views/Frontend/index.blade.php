@@ -205,11 +205,7 @@
    <img class="stat-section-img" src="{{asset('frontend')}}/assets/front/images/Frame76.png" alt="">
    <div class="container">
       <div class="stat-section-header wow fadeInUp">
-         <h6>User Statistics</h6>
-         <h2>Last Deposits & Withdrawals</h2>
-         <p class="stat-section-paragraph">
-            Our goal is to simplify investing so that anyone can be an investor.
-         </p>
+         <h6>Last Deposits & Withdrawals</h6>
       </div>
       <div class="stat-table wow fadeInUp" data-wow-delay="0.1s">
          <nav>
@@ -236,7 +232,7 @@
                         <th>Status</th>
                      </tr>
                   </thead>
-                    <tbody class="tb-body">
+                     <tbody class="tb-body">
                         @foreach ($deposite as $item)
                             <tr class="tb-row">
                                 <!-- Date -->

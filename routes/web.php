@@ -42,6 +42,9 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('aboutus', AboutController::class);
     Route::resource('settings', SettingController::class);
     Route::resource('privacypolicy',PrivacypolicyController::class);
+    Route::get('/users', [AdminController::class, 'userList'])->name('chat.users');   // sidebar list
+    Route::get('/fetch', [AdminController::class, 'fetch'])->name('chat.fetch');      // fetch messages
+    Route::post('/send', [AdminController::class, 'send'])->name('chat.send');
 });
 
 // End Admin login routesadmin_login_submit
@@ -69,7 +72,10 @@ Route::middleware(['user'])->group(function () {
     Route::get('/referrals_nested', [TotalreferreduseController::class, 'referrals_nested'])->name('referrals.nested');
     Route::get('/userlotter/show', [UserlottryController::class, 'userlotter'])->name('userlotter.index');
     Route::post('/buy-package/{packageId}', [UserlottryController::class, 'buyPackage'])->name('buy.package');
-    Route::get('/user/chat', [ChatController::class, 'index'])->name('user.chat');
+    Route::get('user/chat',        [ChatController::class, 'index'])->name('user.chat');
+    Route::get('user/chat/fetch',  [ChatController::class, 'fetch'])->name('user.chat.fetch');
+    Route::post('user/chat/send',  [ChatController::class, 'send'])->name('user.chat.send');
+    Route::get('user/chat/list',   [ChatController::class, 'userList'])->name('user.chat.list');
 
 });
 

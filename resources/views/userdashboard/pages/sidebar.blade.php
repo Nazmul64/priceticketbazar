@@ -22,7 +22,7 @@
             <a href="{{route('user.dashboard')}}" class="active"><i class="fa">🏠</i>Dashboard</a>
           </li>
           <li>
-            <a href="{{route('user.chat')}}"><i class="fa">🔁</i>Chat Admin</a>
+            <a href="{{route('user.chat')}}"><i class="fa">🔁</i>Live Chart</a>
           </li>
 
           <li class="menu-section"><strong>Lottery</strong></li>

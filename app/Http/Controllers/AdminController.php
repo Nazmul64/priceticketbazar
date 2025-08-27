@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Deposite;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -69,5 +70,76 @@ public function login(Request $request)
         return redirect()
             ->route('admin.login')
             ->with('success', 'Logged out successfully.');
+    }
+// ✅ Fetch messages between auth user and receiver
+    public function fetch(Request $request)
+    {
+        $receiverId = $request->get('receiver_id');
+
+        if (!$receiverId) {
+            return response()->json([]);
+        }
+
+        // mark unread → seen
+        Chat::where('sender_id', $receiverId)
+            ->where('receiver_id', Auth::id())
+            ->where('seen', false)
+            ->update(['seen' => true]);
+
+        $messages = Chat::where(function ($q) use ($receiverId) {
+                $q->where('sender_id', Auth::id())
+                  ->where('receiver_id', $receiverId);
+            })
+            ->orWhere(function ($q) use ($receiverId) {
+                $q->where('sender_id', $receiverId)
+                  ->where('receiver_id', Auth::id());
+            })
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        return response()->json($messages);
+    }
+
+    // ✅ Send message
+    public function send(Request $request)
+    {
+        $request->validate([
+            'message'     => 'required|string',
+            'receiver_id' => 'required|integer'
+        ]);
+
+        $msg = Chat::create([
+            'sender_id'   => Auth::id(),
+            'receiver_id' => $request->receiver_id,
+            'message'     => $request->message,
+            'seen'        => false,
+        ]);
+
+        return response()->json($msg);
+    }
+
+    // ✅ Sidebar user list
+    public function userList()
+    {
+        $userId = Auth::id();
+
+        $chats = Chat::where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+
+        $users = $chats->map(function ($chat) use ($userId) {
+            $user = $chat->sender_id == $userId ? $chat->receiver : $chat->sender;
+            if (!$user) return null;
+
+            return [
+                'id'       => $user->id,
+                'name'     => $user->name,
+                'photo'    => $user->photo ?? null,
+                'last_msg' => $chat->message,
+            ];
+        })->filter()->unique('id')->values();
+
+        return response()->json($users);
     }
 }
