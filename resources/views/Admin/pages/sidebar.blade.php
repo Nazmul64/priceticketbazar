@@ -98,6 +98,13 @@
                 </ul>
             </li>
 
+
+            <li>
+                <a href="{{ route('counter.index') }}">
+                    <div class="parent-icon"><i class="bi bi-speedometer2"></i></i></div>
+                    <div class="menu-title">counter</div>
+                </a>
+            </li>
              <li>
                     <a class="has-arrow" href="javascript:;">
                         <div class="parent-icon"><i class="bi bi-gear-fill"></i></div>
@@ -118,12 +125,7 @@
                 </li>
 
 
-        <li>
-            <a href="pages-timeline.html">
-                <div class="parent-icon"><i class="bi bi-collection-play-fill"></i></div>
-                <div class="menu-title">Timeline</div>
-            </a>
-        </li>
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>

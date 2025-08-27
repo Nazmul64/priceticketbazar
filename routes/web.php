@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\CommissionSettingController;
+use App\Http\Controllers\Backend\CounterController;
 use App\Http\Controllers\Backend\DepositdetilsController;
 use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
@@ -46,7 +47,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/users', [AdminController::class, 'userList'])->name('chat.users');   // sidebar list
     Route::get('/fetch', [AdminController::class, 'fetch'])->name('chat.fetch');      // fetch messages
     Route::post('/send', [AdminController::class, 'send'])->name('chat.send');
-     Route::resource('slider',SliderController::class);
+    Route::resource('slider',SliderController::class);
+    Route::resource('counter',CounterController::class);
 });
 
 // End Admin login routesadmin_login_submit

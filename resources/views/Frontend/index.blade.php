@@ -23,59 +23,30 @@
 <!-- Hero Section End -->
 <!-- Counter Section Start -->
 <div class="counter-section">
-   <div class="container">
-      <div class="row counter-row">
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="counter-box">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <img src='{{asset('frontend')}}/assets/images/MeK1pBLt1704866949.png'
-                     alt="">
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h3 class="counter"> <span class="counterr">1338</span> +
-                  </h3>
-                  <p class="counter-text ">All Members</p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="counter-box">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <img src='{{asset('frontend')}}/assets/images/kEEGt3Hk1704867219.png'
-                     alt="">
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h3 class="counter"> <span class="counterr">12.5</span> M
-                  </h3>
-                  <p class="counter-text ">Average Investment</p>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-4 col-md-6 col-12 wow fadeInUp">
-            <div class="counter-box">
-               <div class="icon-wraper">
-                  <div class="overlay-box"></div>
-                  <div class="icon-box">
-                     <img src='{{asset('frontend')}}/assets/images/uEfOC1lW1704867303.png'
-                     alt="">
-                  </div>
-               </div>
-               <div class="counter-content">
-                  <h3 class="counter"> <span class="counterr">200</span> +
-                  </h3>
-                  <p class="counter-text ">Countries</p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+    <div class="container">
+        <div class="row counter-row">
+            @foreach ($counter as $item)
+                <div class="col-lg-4 col-md-6 col-12 wow fadeInUp mb-4">
+                    <div class="counter-box">
+                        <div class="icon-wraper">
+                            <div class="overlay-box"></div>
+                            <div class="icon-box">
+                                <i class="{{ $item->icon ?? '' }}" style="font-size:45px;"></i>
+                            </div>
+                        </div>
+                        <div class="counter-content text-center mt-3">
+                            <h3 class="counter">
+                                <span class="counterr">{{ $item->value ?? '0' }}</span>+
+                            </h3>
+                            <p class="counter-text">{{ $item->title ?? '' }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
+
 <!-- Counter Section End -->
 <!-- About Us Section Start -->
  @foreach ($aboutus as  $item)
@@ -147,7 +118,7 @@
 
 <!-- Choose Us Section End -->
 <!-- Offer Section Start -->
-<div class="offer-section">
+<div class="offer-section"id="plane">
    <div class="container">
       <div class="offer-section-header wow fadeInUp">
          <h2>Best  Packages</h2>

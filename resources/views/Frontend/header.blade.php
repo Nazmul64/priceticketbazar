@@ -89,7 +89,7 @@
                            <li class=""><a href="#about"
                               target="_self">About</a>
                            </li>
-                           <li class=""><a href="plans.html"
+                           <li class=""><a href="#plane"
                               target="_self">Plans</a>
                            </li>
                            <li class=""><a href="contact.html"

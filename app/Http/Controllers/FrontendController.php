@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Counter;
 use App\Models\Deposite;
 use App\Models\Lotter;
 use App\Models\Privacypolicy;
@@ -20,8 +21,9 @@ class FrontendController extends Controller
         $aboutus=About::all();
         $deposite =Deposite::where('status','approved')->get();
         $slider=Slider::all();
+        $counter=Counter::all();
         // $priavacypolicy =Privacypolicy::all();
-        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite','slider'));
+        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite','slider','counter'));
     }
     public function privacy()
     {
