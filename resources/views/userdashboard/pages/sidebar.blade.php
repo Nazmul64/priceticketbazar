@@ -30,7 +30,7 @@
             <a href="{{route('userlotter.index')}}"><i class="fa">📈</i>Lottery</a>
           </li>
           <li>
-            <a href="investhistory.html"><i class="fa">🕘</i>Lottery History</a>
+            <a href="{{route('userlotter.history')}}"><i class="fa">🕘</i>Lottery History</a>
           </li>
 
           <li class="menu-section"><strong>Transfer & Request</strong></li>

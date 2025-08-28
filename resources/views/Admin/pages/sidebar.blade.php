@@ -151,52 +151,6 @@
             </a>
         </li>
 
-        <li class="menu-label">Charts & Maps</li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-bar-chart-line-fill"></i></div>
-                <div class="menu-title">Charts</div>
-            </a>
-            <ul>
-                <li> <a href="charts-apex-chart.html"><i class="bi bi-circle"></i>Apex</a></li>
-                <li> <a href="charts-chartjs.html"><i class="bi bi-circle"></i>Chartjs</a></li>
-                <li> <a href="charts-highcharts.html"><i class="bi bi-circle"></i>Highcharts</a></li>
-            </ul>
-        </li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-pin-map-fill"></i></div>
-                <div class="menu-title">Maps</div>
-            </a>
-            <ul>
-                <li> <a href="map-google-maps.html"><i class="bi bi-circle"></i>Google Maps</a></li>
-                <li> <a href="map-vector-maps.html"><i class="bi bi-circle"></i>Vector Maps</a></li>
-            </ul>
-        </li>
-        <li class="menu-label">Others</li>
-        <li>
-            <a class="has-arrow" href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-music-note-list"></i></div>
-                <div class="menu-title">Menu Levels</div>
-            </a>
-            <ul>
-                <li> <a class="has-arrow" href="javascript:;"><i class="bi bi-circle"></i>Level One</a>
-                    <ul>
-                        <li> <a class="has-arrow" href="javascript:;"><i class="bi bi-circle"></i>Level Two</a>
-                            <ul>
-                                <li> <a href="javascript:;"><i class="bi bi-circle"></i>Level Three</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-file-code-fill"></i></div>
-                <div class="menu-title">Documentation</div>
-            </a>
-        </li>
         <li>
             <a href="javascript:;">
                 <div class="parent-icon"><i class="bi bi-telephone-fill"></i></div>

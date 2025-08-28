@@ -55,6 +55,9 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('contact',ContactController::class);
     Route::resource('partner',PartnarController::class);
     Route::resource('Termscondition',TermsconditionController::class);
+    Route::get('userlist-for-admin', [AdminController::class, 'userlistadmin'])->name('admin.userlist');
+    Route::put('/users/{id}/status', [AdminController::class, 'updateStatus'])->name('users.updateStatus');
+
 });
 
 // End Admin login routesadmin_login_submit
@@ -86,6 +89,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('user/chat/fetch',  [ChatController::class, 'fetch'])->name('user.chat.fetch');
     Route::post('user/chat/send',  [ChatController::class, 'send'])->name('user.chat.send');
     Route::get('user/chat/list',   [ChatController::class, 'userList'])->name('user.chat.list');
+    Route::get('/userlotter/history', [UserlottryController::class, 'userlotterhistory'])->name('userlotter.history');
 
 
 });

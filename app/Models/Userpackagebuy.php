@@ -22,4 +22,10 @@ class Userpackagebuy extends Model
     public function package() {
         return $this->belongsTo(Lotter::class, 'package_id');
     }
+
+
+  protected $casts = [
+    'purchased_at' => 'datetime',
+];
+
 }

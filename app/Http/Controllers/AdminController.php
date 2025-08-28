@@ -142,4 +142,20 @@ public function login(Request $request)
 
         return response()->json($users);
     }
+
+
+    // user list for admin
+    public function userlistadmin(){
+        $users=User::where('role','user')->get();
+        return view('Admin.pages.userlist.index',compact('users'));
+    }
+    public function updateStatus(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+    $user->status = $request->status;
+    $user->save();
+
+    return redirect()->back()->with('success', 'User status updated successfully!');
+}
+
 }

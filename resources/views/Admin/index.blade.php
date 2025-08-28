@@ -48,7 +48,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <p class="mb-1">Total Users</p>
-                        <h4 class="mb-0">{{ $total_user }}</h4>
+                        <h4 class="mb-0"><a href="{{route('admin.userlist')}}">{{ $total_user }}</a></h4>
                     </div>
                     <div class="ms-auto widget-icon bg-orange text-white">
                         <i class="bi bi-people"></i>

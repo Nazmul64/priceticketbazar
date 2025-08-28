@@ -18,58 +18,57 @@ class UserregistionController extends Controller
     /**
      * User dashboard
      */
-   public function userdashboard()
-{
-    $user = Auth::user();
+    public function userdashboard()
+    {
+        $user = Auth::user();
 
-    // Approved deposits (own)
-    $mainDeposit = Deposite::where('user_id', $user->id)
-        ->where('status', 'approved')
-        ->sum('amount');
-
-    $totalInvest = Deposite::where('user_id', $user->id)->sum('amount');
-    $mainBalance = $mainDeposit;
-
-    $commissionSetting = CommissionSetting::first();
-
-    // Direct Referral Income (level 1)
-    $referIncome = Profit::where('user_id', $user->id)
-        ->where('level', 1)
-        ->sum('amount');
-
-    // Generation Income per level
-    $generationIncomePerLevel = [];
-    for ($level = 1; $level <= 5; $level++) {
-        $generationIncomePerLevel[$level] = Profit::where('user_id', $user->id)
-            ->where('level', $level)
+        // Approved deposits (own)
+        $mainDeposit = Deposite::where('user_id', $user->id)
+            ->where('status', 'approved')
             ->sum('amount');
+
+        $totalInvest = Deposite::where('user_id', $user->id)->sum('amount');
+        $mainBalance = $mainDeposit;
+
+        $commissionSetting = CommissionSetting::first();
+
+        // Direct Referral Income (level 1)
+        $referIncome = Profit::where('user_id', $user->id)
+            ->where('level', 1)
+            ->sum('amount');
+
+        // Generation Income per level
+        $generationIncomePerLevel = [];
+        for ($level = 1; $level <= 5; $level++) {
+            $generationIncomePerLevel[$level] = Profit::where('user_id', $user->id)
+                ->where('level', $level)
+                ->sum('amount');
+        }
+
+        // Weekly team deposits (level-1 referrals)
+        $start = now()->startOfWeek();
+        $end = now()->endOfWeek();
+
+        $referralIds = $user->referrals()->pluck('id');
+        $weeklyDeposit = Deposite::whereIn('user_id', $referralIds)
+            ->where('status', 'approved')
+            ->whereBetween('created_at', [$start, $end])
+            ->sum('amount');
+
+        $weeklyTeamCommission = $weeklyDeposit * (($commissionSetting->weekly_team_commission ?? 0) / 100);
+
+        return view('Userdashboard.index', compact(
+            'mainDeposit',
+            'totalInvest',
+            'mainBalance',
+            'user',
+            'referIncome',
+            'generationIncomePerLevel',
+            'weeklyDeposit',
+            'weeklyTeamCommission',
+            'commissionSetting'
+        ));
     }
-
-    // Weekly team deposits (level-1 referrals)
-    $start = now()->startOfWeek();
-    $end = now()->endOfWeek();
-
-    $referralIds = $user->referrals()->pluck('id');
-    $weeklyDeposit = Deposite::whereIn('user_id', $referralIds)
-        ->where('status', 'approved')
-        ->whereBetween('created_at', [$start, $end])
-        ->sum('amount');
-
-    $weeklyTeamCommission = $weeklyDeposit * (($commissionSetting->weekly_team_commission ?? 0) / 100);
-
-    return view('Userdashboard.index', compact(
-        'mainDeposit',
-        'totalInvest',
-        'mainBalance',
-        'user',
-        'referIncome',
-        'generationIncomePerLevel',
-        'weeklyDeposit',
-        'weeklyTeamCommission',
-        'commissionSetting'
-    ));
-}
-
 
     /**
      * Show login form
@@ -122,7 +121,7 @@ class UserregistionController extends Controller
             'phone'       => $request->phone,
             'ref_code'    => strtoupper(Str::random(8)),
             'referred_by' => $referredBy,
-            'status'      => 'active',
+            'status'      => 'active', // default active
             'role'        => 'user'
         ]);
 
@@ -141,6 +140,15 @@ class UserregistionController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            // Status check (active/inactive)
+            if (Auth::user()->status != 'active' && Auth::user()->status != 1) {
+                Auth::logout();
+                return redirect()->route('user.login')->withErrors([
+                    'email' => 'Your account is inactive. Please contact support.',
+                ]);
+            }
+
             return redirect()->route('user.dashboard')->with('success', 'Login successful!');
         }
 
