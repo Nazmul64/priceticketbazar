@@ -15,17 +15,29 @@ class Userpackagebuy extends Model
         'purchased_at',
     ];
 
-    public function user() {
+    protected $casts = [
+        'purchased_at' => 'datetime',
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function package() {
+    public function package()
+    {
         return $this->belongsTo(Lotter::class, 'package_id');
     }
 
+    public function results()
+    {
+        return $this->hasMany(Lottery_result::class, 'user_package_buy_id');
+    }
 
-  protected $casts = [
-    'purchased_at' => 'datetime',
-];
+public function userPackageBuys()
+{
+    return $this->hasMany(Userpackagebuy::class, 'package_id');
+}
+
 
 }

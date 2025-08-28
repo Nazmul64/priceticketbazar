@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\DepositdetilsController;
 use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\LotterycreateController;
+use App\Http\Controllers\Backend\LotteryResultController;
 use App\Http\Controllers\Backend\PartnarController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TermsconditionController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
+use App\Http\Controllers\Backend\WithdrawcommissonController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
@@ -57,6 +59,21 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('Termscondition',TermsconditionController::class);
     Route::get('userlist-for-admin', [AdminController::class, 'userlistadmin'])->name('admin.userlist');
     Route::put('/users/{id}/status', [AdminController::class, 'updateStatus'])->name('users.updateStatus');
+    Route::resource('withdrawcommisson',WithdrawcommissonController::class);
+
+
+// Show all lotteries with purchased tickets count
+Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])
+    ->name('admin.lottery.purchases');
+
+// Show form to declare winners
+Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'showDeclareForm'])
+    ->name('admin.lottery.showDeclare');
+
+// Declare winners
+Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])
+    ->name('admin.lottery.declare');
+
 
 });
 

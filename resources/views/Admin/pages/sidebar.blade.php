@@ -37,6 +37,12 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{ route('withdrawcommisson.index') }}">
+                <div class="parent-icon"><i class="bi bi-cash-stack"></i></div>
+                <div class="menu-title">Withdraw Commission</div>
+            </a>
+        </li>
             <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bi bi-wallet2"></i></div>
@@ -78,6 +84,22 @@
                     </li>
                 </ul>
             </li>
+
+             <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-ticket-perforated"></i></div>
+                    <div class="menu-title">Lottery Show Declare</div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('admin.lottery.purchases') }}">
+                            <i class="bi bi-ticket-perforated"></i> Lottery Show Declare
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="bi bi-graph-up-arrow"></i></div>
@@ -151,12 +173,8 @@
             </a>
         </li>
 
-        <li>
-            <a href="javascript:;">
-                <div class="parent-icon"><i class="bi bi-telephone-fill"></i></div>
-                <div class="menu-title">Support</div>
-            </a>
-        </li>
+
+
     </ul>
     <!--end navigation-->
 </aside>

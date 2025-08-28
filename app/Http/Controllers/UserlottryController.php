@@ -159,13 +159,13 @@ class UserlottryController extends Controller
     }
     public function userlotterhistory()
     {
-        $user = Auth::user();
+       $user = Auth::user();
 
-        $purchases = Userpackagebuy::with('package') // eager load lottery package
-            ->where('user_id', $user->id)
-            ->orderBy('purchased_at', 'desc')
-            ->get();
+    $purchases = Userpackagebuy::with(['package', 'results'])
+        ->where('user_id', $user->id)
+        ->orderBy('purchased_at', 'desc')
+        ->get();
 
-        return view('userdashboard.lotteryhistory.lotteryhistory', compact('purchases'));
+    return view('userdashboard.lotteryhistory.lotteryhistory', compact('purchases'));
     }
 }
