@@ -102,15 +102,23 @@
                      </nav>
                   </div>
                   <div class="col-xl-3 col-lg-3 col-6 ">
-                     <div class="text-end d-flex align-items-center justify-content-end header-right gap-3 d-none d-lg-block contact-btn-head">
-                        <a href="{{route('register')}}"class="template-btn white-btn d-xl-block contact-btn">Login Now</a>
-                     </div>
-                     <button type="button" class="header-toggle mobile-menu-toggle d-flex d-lg-none">
-                     <span></span>
-                     <span></span>
-                     <span></span>
-                     </button>
-                  </div>
+                    <div class="text-end d-flex align-items-center justify-content-end header-right gap-3 contact-btn-head">
+                        @auth
+                            <!-- If logged in -->
+                            <a href="{{ route('user.dashboard') }}" class="template-btn-offer primary-outline-offer">Dashboard</a>
+                        @else
+                            <!-- If not logged in -->
+                            <a href="{{ route('user.login') }}" class="template-btn white-btn d-xl-block contact-btn">Login Now</a>
+                        @endauth
+                    </div>
+
+                    <!-- Mobile menu toggle button -->
+                    <button type="button" class="header-toggle mobile-menu-toggle d-flex d-lg-none">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
                </div>
             </div>
          </div>

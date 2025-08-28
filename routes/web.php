@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\PartnarController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\TermsconditionController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
 use App\Http\Controllers\ChatController;
@@ -52,7 +53,8 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('slider',SliderController::class);
     Route::resource('counter',CounterController::class);
     Route::resource('contact',ContactController::class);
-     Route::resource('partner',PartnarController::class);
+    Route::resource('partner',PartnarController::class);
+    Route::resource('Termscondition',TermsconditionController::class);
 });
 
 // End Admin login routesadmin_login_submit
@@ -93,6 +95,7 @@ Route::middleware(['user'])->group(function () {
  Route::get('/', [FrontendController::class, 'frontend'])->name('frontend');
  Route::get('privacy', [FrontendController::class, 'privacy'])->name('privacy');
  Route::get('contacts', [FrontendController::class, 'contacts'])->name('contacts');
+ Route::get('termsconditions', [FrontendController::class, 'termsconditions'])->name('termsconditions');
 
 
 

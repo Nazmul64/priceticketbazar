@@ -39,6 +39,10 @@ class FrontendController extends Controller
          return view('Frontend.pages.contact', compact('contacts'));
     }
     // User registration and login methods can be added here
-
+    public function termsconditions()
+    {
+        $termscondition = \App\Models\Termscondition::all();
+         return view('Frontend.pages.termscondition', compact('termscondition'));
+    }
 
 }

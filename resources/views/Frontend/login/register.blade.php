@@ -90,7 +90,7 @@
         <input type="checkbox" name="terms" id="terms" required>
         <label for="terms">
             <span class="checkmark"></span>
-            I agree to the <a href="#" class="link">Terms & Conditions</a>
+            I agree to the <a href="{{route('termsconditions')}}" class="link">Terms & Conditions</a>
         </label>
     </div>
 

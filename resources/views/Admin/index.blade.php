@@ -87,15 +87,25 @@
     </div>
 </div>
 
+<!-- Mobile Chat Toggle -->
+<div class="d-lg-none mb-3">
+    <button class="btn btn-primary" id="toggleSidebar">
+        <i class="fas fa-bars"></i> Toggle Chat List
+    </button>
+</div>
+
 <!-- Modern Chat System -->
 <div class="chat-container-wrapper">
     <div class="chat-container">
         <!-- Sidebar -->
-        <div class="chat-sidebar">
+        <div class="chat-sidebar" id="chatSidebar">
             <div class="sidebar-header">
                 <i class="fas fa-comments"></i>
-                Admin Chat Center
+                <span class="sidebar-title">Admin Chat Center</span>
                 <div class="total-unread" id="totalUnreadBadge">0</div>
+                <button class="d-lg-none btn-close-sidebar" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
             <div class="search-box">
@@ -147,6 +157,9 @@
                     </div>
                 </div>
                 <div class="chat-actions">
+                    <button class="action-icon-btn d-lg-none" id="showSidebar" title="Show Chat List">
+                        <i class="fas fa-list"></i>
+                    </button>
                     <button class="action-icon-btn" id="clearChat" title="Clear Chat History">
                         <i class="fas fa-trash"></i>
                     </button>
@@ -194,6 +207,9 @@
     </div>
 </div>
 
+<!-- Overlay for mobile -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <style>
 /* Base Styles */
 .chat-container-wrapper {
@@ -209,6 +225,7 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
 }
 
 /* Chat Notification Styles */
@@ -267,6 +284,8 @@
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    position: relative;
+    min-width: 0;
 }
 
 .sidebar-header {
@@ -277,12 +296,32 @@
     font-size: 18px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     position: relative;
+    flex-shrink: 0;
 }
 
-.sidebar-header .fas {
-    margin-right: 10px;
+.sidebar-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.btn-close-sidebar {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: none;
+}
+
+.btn-close-sidebar:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .total-unread {
@@ -296,7 +335,7 @@
     justify-content: center;
     font-size: 12px;
     font-weight: bold;
-    margin-left: auto;
+    flex-shrink: 0;
 }
 
 .search-box {
@@ -304,6 +343,7 @@
     background: white;
     border-bottom: 1px solid #e2e8f0;
     position: relative;
+    flex-shrink: 0;
 }
 
 .search-input {
@@ -341,6 +381,7 @@
     padding: 10px 20px;
     background: rgba(79, 172, 254, 0.1);
     border-bottom: 1px solid #e2e8f0;
+    flex-shrink: 0;
 }
 
 .action-btn {
@@ -364,6 +405,7 @@
     flex: 1;
     overflow-y: auto;
     padding: 10px 0;
+    min-height: 0;
 }
 
 .no-users-message {
@@ -414,6 +456,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .user-avatar img {
@@ -425,6 +468,7 @@
 .user-info {
     flex: 1;
     overflow: hidden;
+    min-width: 0;
 }
 
 .user-name {
@@ -435,6 +479,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user-role {
@@ -444,6 +491,7 @@
     padding: 2px 6px;
     border-radius: 10px;
     font-weight: 500;
+    flex-shrink: 0;
 }
 
 .user-last-msg {
@@ -452,6 +500,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
 }
 
 .unread-count {
@@ -468,6 +517,7 @@
     justify-content: center;
     font-size: 11px;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 .online-indicator {
@@ -502,6 +552,7 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
 }
 
 .summary-item {
@@ -521,6 +572,7 @@
     display: flex;
     flex-direction: column;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    min-width: 0;
 }
 
 .chat-header {
@@ -533,23 +585,37 @@
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
 .chat-header-info {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex: 1;
+    min-width: 0;
 }
 
 .chat-header-details {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-header-details span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user-status {
     color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
     margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chat-header-avatar {
@@ -558,11 +624,13 @@
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.3);
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .chat-actions {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .action-icon-btn {
@@ -577,6 +645,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .action-icon-btn:hover {
@@ -589,6 +658,7 @@
     overflow-y: auto;
     padding: 20px 30px;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23f1f5f9" opacity="0.5"/><circle cx="75" cy="75" r="1" fill="%23f1f5f9" opacity="0.3"/><circle cx="50" cy="10" r="1" fill="%23f1f5f9" opacity="0.4"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+    min-height: 0;
 }
 
 .message {
@@ -596,6 +666,7 @@
     display: flex;
     align-items: flex-end;
     animation: slideInMessage 0.3s ease;
+    max-width: 100%;
 }
 
 @keyframes slideInMessage {
@@ -620,6 +691,8 @@
     position: relative;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .message.admin .message-bubble {
@@ -649,6 +722,7 @@
     border: 2px solid white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     object-fit: cover;
+    flex-shrink: 0;
 }
 
 .message-time {
@@ -660,6 +734,8 @@
 
 .message-text {
     line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Enhanced Chat Input */
@@ -667,6 +743,7 @@
     padding: 20px 30px;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
 .input-container {
@@ -683,6 +760,7 @@
 .input-actions {
     display: flex;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .input-action-btn {
@@ -711,6 +789,7 @@
     min-height: 20px;
     font-family: inherit;
     margin: 0 10px;
+    min-width: 0;
 }
 
 .chat-textarea:disabled {
@@ -722,6 +801,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .send-btn {
@@ -737,6 +817,7 @@
     justify-content: center;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+    flex-shrink: 0;
 }
 
 .send-btn:hover:not(:disabled) {
@@ -769,12 +850,25 @@
     height: 100%;
     color: #64748b;
     text-align: center;
+    padding: 20px;
 }
 
 .empty-chat i {
     font-size: 64px;
     margin-bottom: 20px;
     opacity: 0.3;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
 /* Custom Scrollbar */
@@ -799,10 +893,106 @@
     background: rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive */
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .chat-sidebar {
+        width: 320px;
+    }
+
+    .chat-header {
+        padding: 20px 25px;
+    }
+
+    .chat-messages {
+        padding: 15px 25px;
+    }
+
+    .chat-input {
+        padding: 15px 25px;
+    }
+
+    .chat-header-info {
+        gap: 10px;
+    }
+
+    .chat-header-details span {
+        font-size: 14px;
+    }
+
+    .user-status {
+        font-size: 11px;
+    }
+
+    .message-bubble {
+        max-width: 85%;
+        padding: 12px 16px;
+    }
+
+    .input-container {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .send-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-notification {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .user-last-msg {
+        font-size: 12px;
+    }
+
+    .user-avatar {
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+    }
+
+    .chat-user {
+        padding: 12px 15px;
+    }
+
+    .summary-item {
+        font-size: 12px;
+    }
+
+    .action-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .admin-actions {
+        padding: 8px 15px;
+    }
+
+    .search-box {
+        padding: 12px 15px;
+    }
+
+    .search-input {
+        padding: 10px 12px 10px 35px;
+        font-size: 13px;
+    }
+}
+
 @media (max-width: 768px) {
     .chat-container {
-        height: 500px;
+        height: 600px;
+        border-radius: 15px;
         margin: 10px;
     }
 
@@ -813,14 +1003,32 @@
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         height: 100%;
+        max-width: 350px;
     }
 
     .chat-sidebar.show {
         transform: translateX(0);
     }
 
-    .message-bubble {
-        max-width: 85%;
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    .btn-close-sidebar {
+        display: block;
+    }
+
+    .sidebar-header {
+        padding: 20px;
+    }
+
+    .sidebar-title {
+        font-size: 16px;
+    }
+
+    .chat-header {
+        padding: 20px;
+        font-size: 14px;
     }
 
     .chat-messages {
@@ -831,12 +1039,136 @@
         padding: 15px 20px;
     }
 
-    .chat-notification {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        max-width: none;
+    .message-bubble {
+        max-width: 90%;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .chat-user {
+        padding: 10px 12px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+
+    .user-last-msg {
+        font-size: 11px;
+    }
+
+    .unread-count {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        top: 8px;
+        right: 12px;
+    }
+
+    .message-time-indicator {
+        font-size: 10px;
+        bottom: 8px;
+        right: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        height: 500px;
+        margin: 5px;
+        border-radius: 10px;
+    }
+
+    .chat-sidebar {
+        max-width: 100%;
+    }
+
+    .sidebar-header {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .total-unread {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+    }
+
+    .chat-header {
+        padding: 15px;
+    }
+
+    .chat-header-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .action-icon-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .chat-messages {
+        padding: 10px 15px;
+    }
+
+    .chat-input {
+        padding: 10px 15px;
+    }
+
+    .input-container {
+        padding: 10px 12px;
+        border-radius: 20px;
+    }
+
+    .send-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .message-bubble {
+        max-width: 90%;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .chat-user {
+        padding: 10px 12px;
+    }
+
+    .user-name {
+        font-size: 13px;
+    }
+
+    .user-last-msg {
+        font-size: 11px;
+    }
+
+    .unread-count {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        top: 8px;
+        right: 12px;
+    }
+
+    .message-time-indicator {
+        font-size: 10px;
+        bottom: 8px;
+        right: 12px;
     }
 }
 
@@ -870,6 +1202,92 @@
 
 .bounce-animation {
     animation: bounce 2s ease-in-out;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #4facfe;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .chat-container {
+        background: rgba(17, 24, 39, 0.95);
+        color: #f9fafb;
+    }
+
+    .chat-sidebar {
+        background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+    }
+
+    .search-input {
+        background: #374151;
+        border-color: #4b5563;
+        color: #f9fafb;
+    }
+
+    .search-input::placeholder {
+        color: #9ca3af;
+    }
+
+    .chat-area {
+        background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+    }
+
+    .input-container {
+        background: #374151;
+        border-color: #4b5563;
+    }
+
+    .chat-textarea {
+        background: transparent;
+        color: #f9fafb;
+    }
+
+    .chat-textarea::placeholder {
+        color: #9ca3af;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .chat-user:hover,
+    .chat-user.active {
+        border: 2px solid #000;
+    }
+
+    .message-bubble {
+        border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .send-btn {
+        border: 2px solid #000;
+    }
 }
 </style>
 
@@ -912,10 +1330,28 @@ function initializeNotificationSound() {
     }
 }
 
+// Mobile sidebar controls
+function showSidebar() {
+    $('#chatSidebar').addClass('show');
+    $('#sidebarOverlay').addClass('show');
+    $('body').addClass('overflow-hidden');
+}
+
+function hideSidebar() {
+    $('#chatSidebar').removeClass('show');
+    $('#sidebarOverlay').removeClass('show');
+    $('body').removeClass('overflow-hidden');
+}
+
+// Mobile toggle events
+$('#toggleSidebar, #showSidebar').on('click', showSidebar);
+$('#closeSidebar, #sidebarOverlay').on('click', hideSidebar);
+
 // Show notification
 function showNotification(message, userName) {
     const notification = $('#chatNotification');
-    $('#notificationText').text(`New message from ${userName}: ${message.substring(0, 50)}${message.length > 50 ? '...' : ''}`);
+    const truncatedMessage = message.length > 50 ? message.substring(0, 50) + '...' : message;
+    $('#notificationText').text(`New message from ${userName}: ${truncatedMessage}`);
 
     notification.removeClass('hide').addClass('show');
 
@@ -975,7 +1411,7 @@ function loadUserList(){
                 html += `
                     <div class="chat-user ${hasUnread ? 'has-unread' : ''}" data-id="${u.id}" data-name="${u.name}" data-avatar="${avatar}">
                         <div class="user-avatar">
-                            <img src="${avatar}" alt="${u.name}">
+                            <img src="${avatar}" alt="${u.name}" loading="lazy">
                             ${isOnline ? '<div class="online-indicator"></div>' : ''}
                         </div>
                         <div class="user-info">
@@ -1020,6 +1456,11 @@ function loadUserList(){
             $('#chatInput').prop('disabled', false).attr('placeholder', `Type your message to ${selectedUserName}...`);
             $('#sendBtn').prop('disabled', false);
 
+            // Hide sidebar on mobile after selection
+            if (window.innerWidth <= 768) {
+                hideSidebar();
+            }
+
             fetchMessages();
         });
     }).fail(function() {
@@ -1056,7 +1497,7 @@ function fetchMessages(){
 
             let messageHtml = `
                 <div class="message ${cls}">
-                    ${!isAdmin ? `<img src="${avatar}" alt="Avatar" class="message-avatar">` : ''}
+                    ${!isAdmin ? `<img src="${avatar}" alt="Avatar" class="message-avatar" loading="lazy">` : ''}
                     <div class="message-bubble">
                         <div class="message-text">${escapeHtml(msg.message)}</div>
                         <small class="message-time">${formatTime(msg.created_at)} • ${senderName}</small>
@@ -1099,13 +1540,15 @@ function sendMessage() {
     // Show typing indicator
     $('#typingIndicator').show().find('span').text('Admin');
 
+    // Disable send button to prevent double sending
+    $('#sendBtn').prop('disabled', true);
+
     $.post("{{ route('chat.send') }}", {
         _token: '{{ csrf_token() }}',
         message: message,
         receiver_id: receiverId
     }, function(response){
         $('#chatInput').val('');
-        $('#sendBtn').prop('disabled', true);
         $('#typingIndicator').hide();
         resetTextareaHeight();
         fetchMessages();
@@ -1118,13 +1561,17 @@ function sendMessage() {
         console.error('Failed to send message');
         let errorMsg = xhr.responseJSON?.message || 'Failed to send message. Please try again.';
         showErrorMessage(errorMsg);
+    }).always(function() {
+        // Re-enable send button
+        const hasContent = $('#chatInput').val().trim() !== '';
+        $('#sendBtn').prop('disabled', !hasContent);
     });
 }
 
 // Show success message
 function showSuccessMessage(message) {
     const successDiv = $(`
-        <div class="alert alert-success" style="position: fixed; top: 80px; right: 20px; z-index: 9999; border-radius: 10px;">
+        <div class="alert alert-success" style="position: fixed; top: 80px; right: 20px; z-index: 9999; border-radius: 10px; max-width: 300px;">
             <i class="fas fa-check-circle"></i> ${message}
         </div>
     `);
@@ -1137,7 +1584,7 @@ function showSuccessMessage(message) {
 // Show error message
 function showErrorMessage(message) {
     const errorDiv = $(`
-        <div class="alert alert-danger" style="position: fixed; top: 80px; right: 20px; z-index: 9999; border-radius: 10px;">
+        <div class="alert alert-danger" style="position: fixed; top: 80px; right: 20px; z-index: 9999; border-radius: 10px; max-width: 300px;">
             <i class="fas fa-exclamation-circle"></i> ${message}
         </div>
     `);
@@ -1165,6 +1612,7 @@ $('#markAllRead').on('click', function() {
 $('#clearSearch').on('click', function() {
     $('#searchInput').val('');
     $('.chat-user').show();
+    $('.no-search-results').remove();
 });
 
 // Chat header actions
@@ -1270,18 +1718,15 @@ $('#searchInput').on('input', function() {
     });
 
     // Show search results count
+    $('.no-search-results').remove();
     if (searchTerm && visibleCount === 0) {
-        if ($('.no-search-results').length === 0) {
-            $('#chatList').append(`
-                <div class="no-search-results" style="padding: 20px; text-align: center; color: #64748b;">
-                    <i class="fas fa-search"></i>
-                    <p>No users found for "${searchTerm}"</p>
-                    <small>Try a different search term</small>
-                </div>
-            `);
-        }
-    } else {
-        $('.no-search-results').remove();
+        $('#chatList').append(`
+            <div class="no-search-results" style="padding: 20px; text-align: center; color: #64748b;">
+                <i class="fas fa-search"></i>
+                <p>No users found for "${searchTerm}"</p>
+                <small>Try a different search term</small>
+            </div>
+        `);
     }
 });
 
@@ -1313,22 +1758,13 @@ function formatTime(dateString) {
     }
 }
 
-// Simulate new message notifications (for demo purposes)
-function simulateNewMessage() {
-    // This would be replaced with real-time updates (WebSocket/Pusher)
-    const users = $('.chat-user');
-    if (users.length > 0) {
-        const randomUser = users.eq(Math.floor(Math.random() * users.length));
-        const userId = randomUser.data('id');
-        const userName = randomUser.data('name');
-
-        if (userId !== receiverId) { // Don't notify for current chat
-            unreadMessages[userId] = (unreadMessages[userId] || 0) + 1;
-            showNotification('Hey admin, I need help with my account!', userName);
-            loadUserList();
-        }
+// Handle window resize
+$(window).on('resize', function() {
+    if (window.innerWidth > 768) {
+        hideSidebar();
+        $('#chatSidebar').removeClass('show');
     }
-}
+});
 
 // Auto refresh messages every 3 seconds
 setInterval(function() {
@@ -1342,13 +1778,6 @@ setInterval(function() {
     loadUserList();
 }, 10000);
 
-// Simulate random notifications every 30 seconds (for demo)
-setInterval(function() {
-    if (Math.random() > 0.7) { // 30% chance
-        simulateNewMessage();
-    }
-}, 30000);
-
 // Initialize on document ready
 $(document).ready(function() {
     initializeNotificationSound();
@@ -1356,7 +1785,7 @@ $(document).ready(function() {
 
     // Welcome message
     setTimeout(() => {
-        showSuccessMessage('Welcome to Admin Chat Center! 👋');
+        showSuccessMessage('Welcome to Admin Chat Center!');
     }, 1000);
 
     // Request notification permission
@@ -1377,6 +1806,13 @@ document.addEventListener('visibilitychange', function() {
 $(document).on('keydown', function(e) {
     if (e.target.id === 'chatInput' && e.which === 13 && !e.shiftKey) {
         e.preventDefault();
+    }
+});
+
+// Handle escape key to close sidebar on mobile
+$(document).on('keydown', function(e) {
+    if (e.which === 27 && $('#chatSidebar').hasClass('show')) {
+        hideSidebar();
     }
 });
 </script>

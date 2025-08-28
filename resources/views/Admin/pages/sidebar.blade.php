@@ -136,19 +136,21 @@
                     </li>
                 </ul>
             </li>
-        <li>
+       <li>
             <a href="{{ route('partner.index') }}">
-                <div class="parent-icon"><i class="bi bi-handshake"></i></div>
+                <div class="parent-icon"><i class="bi bi-people"></i></div>
                 <div class="menu-title">Partner</div>
             </a>
         </li>
 
+
         <li>
-            <a href="pages-pricing-tables.html">
-                <div class="parent-icon"><i class="bi bi-tags-fill"></i></div>
-                <div class="menu-title">Pricing Tables</div>
+            <a href="{{ route('Termscondition.index') }}">
+                <div class="parent-icon"><i class="bi bi-file-text-fill"></i></div>
+                <div class="menu-title">Terms & Conditions</div>
             </a>
         </li>
+
         <li class="menu-label">Charts & Maps</li>
         <li>
             <a class="has-arrow" href="javascript:;">

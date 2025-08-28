@@ -151,21 +151,18 @@
 
                         <!-- Countdown -->
                         <li class="lottery-item">
-                            <span class="name">{{ $item->win_type ?? '' }}</span>
+                            <span class="name"style="color:black;">{{ $item->win_type ?? '' }}</span>
                             <span id="countdown-{{ $item->id }}" class="countdown"></span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Invest Button -->
-                <button class="template-btn-offer primary-outline-offer invest-plan" type="button"
-                        data-bs-toggle="modal" data-bs-target="#invest-modal"
-                        data-title="{{ $item->name }}"
-                        data-id="{{ $item->id }}"
-                        data-type="1"
-                        data-fixAmount="{{ round($item->price ?? 0) }}">
-                    Invest Now
-                </button>
+              @auth
+                 <a href="{{ route('user.login') }}" class="template-btn-offer primary-outline-offer invest-plan">Invest Now</a>
+              @else
+                <a href="{{ route('user.login') }}" class="template-btn-offer primary-outline-offer">Invest Now</a>
+              @endauth
+
             </div>
         </div>
         @endif
