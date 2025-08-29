@@ -90,4 +90,9 @@ class WithdrawcommissonController extends Controller
 
         return redirect()->route('withdrawcommisson.index')->with('success', 'Withdraw Commission deleted successfully.');
     }
+
+    public function Withdraw()
+    {
+        return view('userdashboard.Withdraw.index');
+    }
 }

@@ -2180,3 +2180,506 @@ select.form-control option {
 .floating {
     animation: float 6s ease-in-out infinite;
 }
+
+/* End Withdraw css desgin css */
+/* Withdraw css desgin css */
+/* Modal Centering Fix - Add this to your existing CSS */
+
+/* Override Bootstrap modal positioning */
+.modal {
+    padding: 0 !important;
+}
+
+.modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    max-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-dialog-centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    min-height: calc(100vh - 60px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure modal content doesn't overflow */
+.withdraw-modal .modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* Modal backdrop fix */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1040;
+}
+
+.modal {
+    z-index: 1050;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .modal-dialog {
+        width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .modal-lg {
+        max-width: calc(100vw - 20px) !important;
+        width: calc(100vw - 20px) !important;
+    }
+
+    .withdraw-modal .modal-body {
+        padding: 1rem;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        width: calc(100vw - 10px);
+        max-width: calc(100vw - 10px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+        margin: 0;
+    }
+
+    .withdraw-modal .modal-content {
+        max-height: calc(100vh - 20px);
+        border-radius: 15px;
+    }
+
+    .withdraw-modal .modal-header {
+        padding: 1rem 1.5rem;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .withdraw-modal .modal-body {
+        padding: 1rem;
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+    }
+}
+
+/* Ensure modal appears above everything */
+.modal.show {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show .modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    margin: 0;
+}
+
+/* Animation improvements */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: translate(-50%, -60%) !important;
+}
+
+.modal.show .modal-dialog {
+    transform: translate(-50%, -50%) !important;
+}
+
+/* Scrollable content fix */
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* For very small screens */
+@media (max-height: 600px) {
+    .modal-dialog {
+        top: 20px;
+        transform: translateX(-50%) !important;
+        position: fixed;
+        left: 50%;
+        margin: 0;
+    }
+
+    .modal-body {
+        max-height: calc(100vh - 160px);
+        overflow-y: auto;
+    }
+}
+
+/* Additional viewport fixes */
+@media screen and (max-height: 500px) {
+    .withdraw-modal .modal-content {
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+
+    .modal-dialog {
+        top: 2.5vh;
+        transform: translateX(-50%) !important;
+        margin: 0;
+    }
+}
+/* Custom Styles */
+.balance-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    min-width: 200px;
+}
+
+.payment-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.payment-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: #667eea;
+}
+
+.payment-header {
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem 1.5rem 1rem;
+    text-align: center;
+}
+
+.payment-logo {
+    height: 50px;
+    width: auto;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+.payment-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.payment-body {
+    padding: 1.5rem;
+}
+
+.payment-title {
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.payment-info {
+    margin-bottom: 1.5rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row .label {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.info-row .value {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.btn-withdraw {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-withdraw:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    color: white;
+}
+
+.btn-withdraw i {
+    transition: transform 0.3s ease;
+}
+
+.btn-withdraw:hover i {
+    transform: translateX(5px);
+}
+
+.transactions-section {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-title {
+    color: #2d3748;
+    font-weight: 700;
+    margin: 0;
+}
+
+.transaction-table {
+    margin: 0;
+    border: none;
+}
+
+.transaction-table thead th {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: none;
+    color: #475569;
+    font-weight: 600;
+    padding: 1rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.transaction-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+.transaction-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.transaction-table td {
+    padding: 1.2rem 1rem;
+    vertical-align: middle;
+    border: none;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e2e8f0;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.95rem;
+}
+
+.user-email {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.amount {
+    font-weight: 700;
+    color: #059669;
+    font-size: 1.05rem;
+}
+
+.fee {
+    font-weight: 600;
+    color: #dc2626;
+}
+
+.date {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-completed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.withdraw-modal .modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.withdraw-modal .modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    padding: 1.5rem 2rem;
+    border: none;
+}
+
+.withdraw-modal .modal-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.amount-input {
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: border-color 0.3s ease;
+}
+
+.amount-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.fee-calculator {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+.fee-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.fee-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.fee-value {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .balance-card {
+        margin-bottom: 1rem;
+    }
+
+    .user-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .transaction-table {
+        font-size: 0.85rem;
+    }
+    .modal-dialog-centered {
+        display: flex !important;
+        align-items: center !important;
+        min-height: calc(100vh - 1rem) !important;
+    }
+}

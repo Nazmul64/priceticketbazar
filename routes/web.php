@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\TermsconditionController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
 use App\Http\Controllers\Backend\WithdrawcommissonController;
+use App\Http\Controllers\Backend\WithdrawController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
@@ -107,7 +108,9 @@ Route::middleware(['user'])->group(function () {
     Route::post('user/chat/send',  [ChatController::class, 'send'])->name('user.chat.send');
     Route::get('user/chat/list',   [ChatController::class, 'userList'])->name('user.chat.list');
     Route::get('/userlotter/history', [UserlottryController::class, 'userlotterhistory'])->name('userlotter.history');
-
+    Route::resource('withdrawcommisson',WithdrawcommissonController::class);
+    Route::get('Withdraw',   [WithdrawController::class, 'Withdraw'])->name('Withdraw.index');
+    Route::get('Withdraw/submit',   [WithdrawController::class, 'Withdrawsubmit'])->name('Withdraw.submit');
 
 });
 

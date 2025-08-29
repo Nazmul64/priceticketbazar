@@ -7,8 +7,8 @@
     <div class="card" tabindex="0">
         <div class="icon">💰</div>
         <div>
-            <div class="label">Total Invest</div>
-            <div class="value">${{ round($totalInvest) }}</div>
+            <div class="label">Win Balance </div>
+            <div class="value">$500</div>
         </div>
     </div>
 

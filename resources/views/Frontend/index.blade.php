@@ -533,7 +533,7 @@
       </div>
    </div>
 </div>
-<script>
+{{-- <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const countdownEl = document.getElementById('countdown-{{ $item->id }}');
                 const drawDate = new Date("{{ $item->draw_date }}");
@@ -594,7 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-</script>
+</script> --}}
 <style>
     .lottery-item {
         list-style: none;

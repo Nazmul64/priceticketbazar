@@ -75,11 +75,15 @@
             <div class="crete-navbar">
                <div class="row align-items-center">
                   <div class="col-lg-2 col-xl-2 col-6">
-                     <div class="logo-wrapper">
-                        <a href="{{route('frontend')}}"> <img src="{{asset('uploads/settings/'.$setting->photo)}}"
-                           alt="logo" class="img-fluid logo-dsgn" style="height: 60px; width: auto;">
+                    <div class="logo-wrapper">
+                        <a href="{{ route('frontend') }}">
+                            <img src="{{ asset('uploads/settings/' . ($setting->photo ?? 'default.png')) }}"
+                                alt="logo"
+                                class="img-fluid logo-dsgn"
+                                style="height: 60px; width: auto;">
                         </a>
-                     </div>
+                    </div>
+
                   </div>
                   <div class="col-xl-7 col-lg-7 d-none d-lg-block">
                      <nav class="crete-navmenu text-center ps-xl-5">
@@ -125,9 +129,12 @@
       </header>
       <!-- Mobile Menu Start -->
       <div class="mobile-menu">
-         <img class="mobile-menu-logo"
-            src="{{asset('uploads/settings/'.$setting->photo)}}" alt=""style="height: 60px; width: auto;">
-         <a href="javascript:void(0)" class="close"><i class="fas fa-xmark"></i></a>
+          <img class="mobile-menu-logo"
+            src="{{ asset('uploads/settings/' . ($setting?->photo ?? 'default.png')) }}"
+            alt="logo"
+            style="height: 60px; width: auto;">
+        <a href="javascript:void(0)" class="close"><i class="fas fa-xmark"></i></a>
+
          <ul class="mobile-nav-menu">
             <li><a href="{{route('frontend')}}" target="_self">Home</a>
             </li>

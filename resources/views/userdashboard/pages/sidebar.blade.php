@@ -33,31 +33,22 @@
             <a href="{{route('userlotter.history')}}"><i class="fa">🕘</i>Lottery History</a>
           </li>
 
-          <li class="menu-section"><strong>Transfer & Request</strong></li>
-          <li>
-            <a href="transfermeny.html"><i class="fa">💱</i>Transfer Money</a>
-          </li>
-          <li>
-            <a href="sendmany.html"><i class="fa">✈️</i>Send Request Money</a>
-          </li>
-          <li>
-            <a href="receivmoneyrequest.html"><i class="fa">🤝</i>Receive Request Money</a>
-          </li>
-
+          <li class="menu-section"><strong>Money Exchange</strong></li>
+         <li><a href="transfermoney.html">💱 Money Exchange</a></li>
           <li class="menu-section"><strong>Deposits</strong></li>
           <li>
             <a href="{{route('deposite.create')}}"><i class="fa">➕</i>Create Deposit</a>
           </li>
           <li>
-            <a href="depositehistory.html"><i class="fa">👛</i>Deposit History</a>
+            <a href="#"><i class="fa">👛</i>Deposit History</a>
           </li>
 
-          <li class="menu-section"><strong>Payouts</strong></li>
+          <li class="menu-section"><strong>Withdraw</strong></li>
           <li>
-            <a href="withrow.html"><i class="fa">💸</i>Payout</a>
+            <a href="{{route('Withdraw.index')}}"><i class="fa">💸</i>Withdraw</a>
           </li>
           <li>
-            <a href="withrowhistory.html"><i class="fa">📄</i>Payout History</a>
+            <a href="#"><i class="fa">📄</i>Withdraw History</a>
           </li>
 
           <li class="menu-section"><strong>Referral</strong></li>
@@ -68,15 +59,13 @@
             <a href="{{route('user.commissions')}}"><i class="fa">🎁</i>Referral Commissions</a>
           </li>
 
-          <li class="menu-section"><strong>Account</strong></li>
-          <li>
-            <a href="supporttecket.html"><i class="fa">🎧</i>Support Ticket</a>
-          </li>
+          <li class="menu-section"><strong>Teligram Support</strong></li>
+        <li>
+            <a href="#"><i class="fa">🎧</i>Support </a>
+        </li>
+
           <li>
             <a href="profile.html"><i class="fa">✏️</i>Edit Profile</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa">🔒</i>2FA Security</a>
           </li>
           <li>
             <a href="changepassword.html"><i class="fa">🔑</i>Change Password</a>

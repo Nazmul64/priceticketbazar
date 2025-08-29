@@ -29,12 +29,12 @@ class DepositeContrller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'amount' => 'required|numeric|min:500',
+            'amount' => 'required|numeric|min:2',
             'payment_method' => 'required',
             'transaction_id' => 'required|string|max:255',
             'screenshot' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
-            'amount.min' => 'ন্যূনতম 500 টাকা ডিপোজিট করতে হবে।'
+            'amount.min' => 'ন্যূনতম 2 টাকা ডিপোজিট করতে হবে।'
         ]);
 
         $photoName = null;
