@@ -8,7 +8,7 @@
         <div class="icon">💰</div>
         <div>
             <div class="label">Win Balance </div>
-            <div class="value">$500</div>
+            <div class="value">${{round($winbalance)}}</div>
         </div>
     </div>
 

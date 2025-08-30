@@ -34,7 +34,10 @@ class Lotter extends Model
         return $this->hasMany(Userpackagebuy::class, 'package_id');
     }
 
-
+public function lotteryResults()
+{
+    return $this->hasMany(Lottery_result::class, 'user_package_buy_id', 'id');
+}
 
 // Userpackagebuy.php
 public function user()

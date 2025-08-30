@@ -63,18 +63,14 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('withdrawcommisson',WithdrawcommissonController::class);
 
 
-// Show all lotteries with purchased tickets count
-Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])
-    ->name('admin.lottery.purchases');
+// Show all undeclared lotteries
+Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])->name('admin.lottery.purchases');
 
 // Show form to declare winners
-Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'showDeclareForm'])
-    ->name('admin.lottery.showDeclare');
+Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'showDeclareForm'])->name('admin.lottery.showDeclare');
 
 // Declare winners
-Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])
-    ->name('admin.lottery.declare');
-
+Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
 
 });
 
@@ -111,6 +107,11 @@ Route::middleware(['user'])->group(function () {
     Route::resource('withdrawcommisson',WithdrawcommissonController::class);
     Route::get('Withdraw',   [WithdrawController::class, 'Withdraw'])->name('Withdraw.index');
     Route::get('Withdraw/submit',   [WithdrawController::class, 'Withdrawsubmit'])->name('Withdraw.submit');
+    Route::get('/income/index', [UserlottryController::class, 'indexconvert'])->name('indexconvert');
+    Route::post('/income/convert', [UserlottryController::class, 'convert'])->name('income.convert');
+
+  // user profile update route and controller
+
 
 });
 

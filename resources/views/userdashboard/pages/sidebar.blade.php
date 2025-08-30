@@ -34,7 +34,9 @@
           </li>
 
           <li class="menu-section"><strong>Money Exchange</strong></li>
-         <li><a href="transfermoney.html">💱 Money Exchange</a></li>
+         <li>
+            <a href="{{route('indexconvert')}}">💱 Money Exchange</a>
+        </li>
           <li class="menu-section"><strong>Deposits</strong></li>
           <li>
             <a href="{{route('deposite.create')}}"><i class="fa">➕</i>Create Deposit</a>

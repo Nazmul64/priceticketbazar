@@ -37,6 +37,8 @@ class UserregistionController extends Controller
             ->where('level', 1)
             ->sum('amount');
 
+          $winbalance = $user->balance;
+
         // Generation Income per level
         $generationIncomePerLevel = [];
         for ($level = 1; $level <= 5; $level++) {
@@ -57,7 +59,7 @@ class UserregistionController extends Controller
 
         $weeklyTeamCommission = $weeklyDeposit * (($commissionSetting->weekly_team_commission ?? 0) / 100);
 
-        return view('Userdashboard.index', compact(
+        return view('userdashboard.index', compact(
             'mainDeposit',
             'totalInvest',
             'mainBalance',
@@ -66,7 +68,8 @@ class UserregistionController extends Controller
             'generationIncomePerLevel',
             'weeklyDeposit',
             'weeklyTeamCommission',
-            'commissionSetting'
+            'commissionSetting',
+            'winbalance',
         ));
     }
 

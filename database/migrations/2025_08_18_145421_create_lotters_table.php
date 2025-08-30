@@ -17,9 +17,9 @@ public function up(): void
         $table->decimal('price')->nullable();
         $table->text('description')->nullable();
         $table->string('photo')->nullable();
-        $table->string('first_prize')->nullable();
-        $table->string('second_prize')->nullable();
-        $table->string('third_prize')->nullable();
+        $table->decimal('first_prize')->nullable();
+        $table->decimal('second_prize')->nullable();
+        $table->decimal('third_prize')->nullable();
         $table->enum('status', ['active', 'inactive'])->default('active');
         $table->date('draw_date')->nullable();
 

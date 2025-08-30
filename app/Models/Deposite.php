@@ -9,6 +9,7 @@ class Deposite extends Model
 {
    protected $fillable=[
      "user_id","amount","payment_method","transaction_id","screenshot","status","new_screenshot",
+
    ];
 
   protected $casts = [

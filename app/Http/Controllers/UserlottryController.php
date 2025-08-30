@@ -11,6 +11,7 @@ use App\Models\Deposite;
 use App\Models\Profit;
 use App\Models\User;
 use App\Models\Userpackagebuy;
+use App\Models\WithdrawCommission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -167,5 +168,48 @@ class UserlottryController extends Controller
         ->get();
 
     return view('userdashboard.lotteryhistory.lotteryhistory', compact('purchases'));
+    }
+
+    public function indexconvert(){
+       return view('userdashboard.monyconvert.manyconvert');
+    }
+public function convert(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validate input
+        $request->validate([
+            'amount' => "required|numeric|min:1|max:{$user->balance}"
+        ]);
+
+        // Get admin-set commission %
+        $commissionSetting = WithdrawCommission::first();
+        $percentage = $commissionSetting?->money_exchange_commission ?? 0;
+
+        $amount = $request->amount;
+
+        // Commission calculation
+        $commission = ($amount * $percentage) / 100;
+        $finalAmount = $amount - $commission;
+
+        if ($finalAmount <= 0) {
+            return back()->with('error', 'Invalid amount after commission deduction.');
+        }
+
+        DB::transaction(function () use ($user, $amount, $finalAmount) {
+            // Deduct full convert amount from user balance
+            $user->balance -= $amount;
+            $user->save();
+
+            // Add final amount to deposits table
+            Deposite::create([
+                'user_id' => $user->id,
+                'amount'  => $finalAmount,
+                'status'  => 'approved',
+                'payment_method' => 'conversion', // Required for DB
+            ]);
+        });
+
+        return back()->with('success', "Converted {$amount} Dollar. Commission: {$commission} Dollar. Final deposit: {$finalAmount} Dollar");
     }
 }

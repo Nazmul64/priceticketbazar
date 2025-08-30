@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_package_buy_id')->constrained('userpackagebuys')->cascadeOnDelete();
             $table->enum('win_status', ['won', 'lost'])->default('lost');
             $table->decimal('win_amount', 10, 2)->default(0);
+             $table->string('position')->nullable();
             $table->timestamp('draw_date');
             $table->timestamps();
         });
