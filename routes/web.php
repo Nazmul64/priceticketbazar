@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TermsconditionController;
+use App\Http\Controllers\Backend\UserprofileController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
 use App\Http\Controllers\Backend\WithdrawcommissonController;
@@ -111,7 +112,7 @@ Route::middleware(['user'])->group(function () {
     Route::post('/income/convert', [UserlottryController::class, 'convert'])->name('income.convert');
 
   // user profile update route and controller
-
+   Route::get('profile', [UserprofileController::class, 'profile'])->name('profile.index');
 
 });
 

@@ -23,10 +23,7 @@ body {
 /* Body with background image + overlay */
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg)
-        url("https://images.unsplash.com/photo-1561414927-6d86591d0c4f")
-        no-repeat center center fixed;
-    background-size: cover;
+
     color: var(--muted);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

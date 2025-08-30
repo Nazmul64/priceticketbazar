@@ -67,10 +67,10 @@
         </li>
 
           <li>
-            <a href="profile.html"><i class="fa">✏️</i>Edit Profile</a>
+            <a href="{{route('profile.index')}}"><i class="fa">✏️</i>Edit Profile</a>
           </li>
           <li>
-            <a href="changepassword.html"><i class="fa">🔑</i>Change Password</a>
+            <a href="#"><i class="fa">🔑</i>Change Password</a>
           </li>
          <li>
             <form action="{{ route('logout') }}" method="POST" style="display:inline;">
