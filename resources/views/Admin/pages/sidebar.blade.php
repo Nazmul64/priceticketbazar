@@ -74,6 +74,19 @@
              <li>
                 <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><i class="bi bi-cash-stack"></i></div>
+                    <div class="menu-title">Withdraw Approve</div>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ route('admin.withdraw.show') }}">
+                            <i class="bi bi-circle"></i> Withdraw Approve
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a class="has-arrow" href="javascript:;">
+                    <div class="parent-icon"><i class="bi bi-cash-stack"></i></div>
                     <div class="menu-title">Lottery</div>
                 </a>
                 <ul>

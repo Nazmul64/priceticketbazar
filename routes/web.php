@@ -64,6 +64,12 @@ Route::middleware(['admin'])->group(function () {
     Route::get('userlist-for-admin', [AdminController::class, 'userlistadmin'])->name('admin.userlist');
     Route::put('/users/{id}/status', [AdminController::class, 'updateStatus'])->name('users.updateStatus');
     Route::resource('withdrawcommisson',WithdrawcommissonController::class);
+    // Show withdrawals
+    Route::get('admin/withdraw/show', [WithdrawController::class, 'Withdrawshow'])->name('admin.withdraw.show');
+
+    // Approve & Reject
+    Route::get('admin/withdraw/approve/{id}', [WithdrawController::class,'approve'])->name('admin.withdraw.approve');
+    Route::get('admin/withdraw/reject/{id}', [WithdrawController::class,'reject'])->name('admin.withdraw.reject');
 
 
 // Show all undeclared lotteries
@@ -108,7 +114,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('user/chat/list',   [ChatController::class, 'userList'])->name('user.chat.list');
     Route::get('/userlotter/history', [UserlottryController::class, 'userlotterhistory'])->name('userlotter.history');
     Route::get('Withdraw',   [WithdrawController::class, 'Withdraw'])->name('Withdraw.index');
-    Route::get('Withdraw/submit',   [WithdrawController::class, 'Withdrawsubmit'])->name('Withdraw.submit');
+    Route::post('/withdraw/submit', [WithdrawController::class, 'submit'])->name('Withdraw.submit');
     Route::get('/income/index', [UserlottryController::class, 'indexconvert'])->name('indexconvert');
     Route::post('/income/convert', [UserlottryController::class, 'convert'])->name('income.convert');
     Route::get('/all/ticket', [AllTicketController::class, 'ticket'])->name('all.ticket');

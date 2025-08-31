@@ -15,5 +15,8 @@ class User_widthdraw extends Model
         'charge',
         'account_number',
     ];
-
+public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
