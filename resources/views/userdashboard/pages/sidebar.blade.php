@@ -29,6 +29,7 @@
           <li>
             <a href="{{route('userlotter.index')}}"><i class="fa">📈</i>Lottery</a>
           </li>
+
           <li>
             <a href="{{route('userlotter.history')}}"><i class="fa">🕘</i>Lottery History</a>
           </li>
@@ -37,6 +38,11 @@
          <li>
             <a href="{{route('indexconvert')}}">💱 Money Exchange</a>
         </li>
+         <li class="menu-section"><strong>All ticket</strong></li>
+          <li>
+            <a href="{{route('all.ticket')}}"><i class="fa">📈</i>All ticket</a>
+            <a href="{{route('my.ticket')}}"><i class="fa">📈</i>My ticket</a>
+          </li>
           <li class="menu-section"><strong>Deposits</strong></li>
           <li>
             <a href="{{route('deposite.create')}}"><i class="fa">➕</i>Create Deposit</a>

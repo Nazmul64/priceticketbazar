@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\AllTicketController;
 use App\Http\Controllers\Backend\CommissionSettingController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CounterController;
@@ -105,14 +106,18 @@ Route::middleware(['user'])->group(function () {
     Route::post('user/chat/send',  [ChatController::class, 'send'])->name('user.chat.send');
     Route::get('user/chat/list',   [ChatController::class, 'userList'])->name('user.chat.list');
     Route::get('/userlotter/history', [UserlottryController::class, 'userlotterhistory'])->name('userlotter.history');
-    Route::resource('withdrawcommisson',WithdrawcommissonController::class);
     Route::get('Withdraw',   [WithdrawController::class, 'Withdraw'])->name('Withdraw.index');
     Route::get('Withdraw/submit',   [WithdrawController::class, 'Withdrawsubmit'])->name('Withdraw.submit');
     Route::get('/income/index', [UserlottryController::class, 'indexconvert'])->name('indexconvert');
     Route::post('/income/convert', [UserlottryController::class, 'convert'])->name('income.convert');
+    Route::get('/all/ticket', [AllTicketController::class, 'ticket'])->name('all.ticket');
+    Route::get('/my/ticket', [AllTicketController::class, 'myticket'])->name('my.ticket');
 
   // user profile update route and controller
-   Route::get('profile', [UserprofileController::class, 'profile'])->name('profile.index');
+
+   Route::get('/profile', [UserprofileController::class, 'profile'])->name('profile.index');
+   Route::put('/profile/{id}', [UserprofileController::class, 'updateProfile'])->name('profile.update');
+
 
 });
 

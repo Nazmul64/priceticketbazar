@@ -4,6 +4,7 @@
 <div class="container py-5">
     <h4 class="fw-bold mb-4 text-white text-center">🎲 Available Lotteries</h4>
 
+
     <div class="row g-4">
         @forelse($lotteries as $lottery)
             <div class="col-lg-4 col-md-6 col-sm-12">

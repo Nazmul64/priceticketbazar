@@ -30,62 +30,85 @@ class UserlottryController extends Controller
     /**
      * Buy Lottery Package
      */
-    public function buyPackage(Request $request, $packageId)
-    {
-        $user = Auth::user();
-        $package = Lotter::findOrFail($packageId);
+public function buyPackage(Request $request, $packageId)
+{
+    $user = Auth::user();
+    $package = Lotter::findOrFail($packageId);
 
-        DB::beginTransaction();
-        try {
-            // Approved deposit lock করে আনা (race condition এড়াতে)
-            $deposit = Deposite::where('user_id', $user->id)
-                ->where('status', 'approved')
-                ->lockForUpdate()
-                ->first();
+    DB::beginTransaction();
+    try {
+        // 1️⃣ Lock approved deposit to prevent race condition
+        $deposit = Deposite::where('user_id', $user->id)
+            ->where('status', 'approved')
+            ->lockForUpdate()
+            ->first();
 
-            if (!$deposit || $deposit->amount < $package->price) {
-                DB::rollBack();
-                return back()->with('error', 'Insufficient balance in deposite to buy this package.');
-            }
-
-            // 1) Deposite amount decrement
-            $deposit->decrement('amount', $package->price);
-
-            // 2) Package buy log
-            Userpackagebuy::create([
-                'user_id'    => $user->id,
-                'package_id' => $package->id,
-                'price'      => $package->price,
-                'status'     => 'active',
-            ]);
-
-            // 3) User expense log (negative)
-            Profit::create([
-                'user_id'      => $user->id,
-                'from_user_id' => $user->id,
-                'deposit_id'   => $deposit->id, // <-- MUST NOT BE NULL
-                'amount'       => -$package->price,
-                'level'        => 0,
-                'note'         => 'User purchased package: '.$package->id,
-            ]);
-
-            // 4) Commissions
-            $settings = CommissionSetting::first();
-
-            if ($settings && $settings->status) {
-                $this->distributeReferralCommission($user, $package, $settings, $deposit->id);
-                if ($package->type !== 'lottery') {
-                    $this->distributeGenerationCommission($user, $package, $settings, $deposit->id);
-                }
-            }
-
-            DB::commit();
-            return back()->with('success', 'Package purchased successfully!');
-        } catch (\Throwable $e) {
+        if (!$deposit || $deposit->amount < $package->price) {
             DB::rollBack();
-            return back()->with('error', 'Something went wrong: '.$e->getMessage());
+            return back()->with('error', 'Insufficient balance in deposit to buy this package.');
         }
+
+        // 2️⃣ Decrement deposit
+        $deposit->decrement('amount', $package->price);
+
+        // 3️⃣ Generate unique ticket number if lottery
+        $ticketNumber = null;
+        if ($package->type === 'lottery') {
+            do {
+                $candidate = 'L-' . now()->format('Ymd') . '-' . strtoupper(uniqid());
+            } while (Userpackagebuy::where('ticket_number', $candidate)->exists());
+
+            $ticketNumber = $candidate;
+        }
+
+        // 4️⃣ Save user package purchase
+        $userPackageBuy = Userpackagebuy::create([
+            'user_id'       => $user->id,
+            'package_id'    => $package->id,
+            'ticket_number' => $ticketNumber,
+            'price'         => $package->price,
+            'status'        => 'active',
+        ]);
+
+        // 5️⃣ Log user expense
+        Profit::create([
+            'user_id'      => $user->id,
+            'from_user_id' => $user->id,
+            'deposit_id'   => $deposit->id,
+            'amount'       => -$package->price,
+            'level'        => 0,
+            'note'         => 'User purchased package: ' . $package->id,
+        ]);
+
+        // 6️⃣ Commissions
+        $settings = CommissionSetting::first();
+        if ($settings && $settings->status) {
+            $this->distributeReferralCommission($user, $package, $settings, $deposit->id);
+            if ($package->type !== 'lottery') {
+                $this->distributeGenerationCommission($user, $package, $settings, $deposit->id);
+            }
+        }
+
+        DB::commit();
+
+        // 7️⃣ Return success with ticket number in session (for alert / copy)
+        if ($package->type === 'lottery') {
+            return back()->with([
+                'success' => 'Package purchased successfully!',
+                'ticket_number' => $ticketNumber
+            ]);
+        } else {
+            return back()->with('success', 'Package purchased successfully!');
+        }
+
+    } catch (\Throwable $e) {
+        DB::rollBack();
+        return back()->with('error', 'Something went wrong: ' . $e->getMessage());
     }
+}
+
+
+
 
     /**
      * Direct referral commission

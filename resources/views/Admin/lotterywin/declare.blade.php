@@ -19,16 +19,29 @@
             <div id="manual-select">
                 <h4>Manual Selection</h4>
 
+                <!-- 🔎 Search box -->
+                <input type="text" id="searchBox" class="form-control mb-3" placeholder="Search user by name...">
+
                 @foreach(['first','second','third'] as $pos)
-                    <label>{{ ucfirst($pos) }} Winner:</label>
-                    <select name="{{ $pos }}_winner" class="form-control mb-2 user-select">
-                        <option value="">-- Select --</option>
-                        @foreach($buyers as $buyer)
-                            <option value="{{ $buyer->user->id }}">{{ $buyer->user->name }}</option>
-                        @endforeach
-                    </select>
-                    <input type="number" name="{{ $pos }}_prize" class="form-control mb-3 prize-input"
-                           placeholder="Enter {{ ucfirst($pos) }} Prize Amount" value="{{ $lottery->{$pos.'_prize'} ?? 0 }}">
+                    <div class="winner-section mb-3">
+                        <strong>{{ ucfirst($pos) }} Winner:</strong>
+                        <div class="user-list border rounded p-2" data-position="{{ $pos }}">
+                            @foreach($buyers as $buyer)
+                                <div class="user-item" data-name="{{ strtolower($buyer->user->name) }}">
+                                    <label class="d-block mb-1">
+                                        <input type="radio" name="{{ $pos }}_winner" value="{{ $buyer->user->id }}">
+                                        {{ $buyer->user->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                        <input type="number"
+                               name="{{ $pos }}_prize"
+                               class="form-control mt-2 prize-input"
+                               placeholder="Enter {{ ucfirst($pos) }} Prize Amount"
+                               value="{{ $lottery->{$pos.'_prize'} ?? 0 }}"
+                               style="display:none;">
+                    </div>
                 @endforeach
             </div>
 
@@ -38,8 +51,16 @@
 </div>
 
 <style>
-.prize-input { display: none; }
-.user-select { cursor: pointer; }
+.user-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+.user-item {
+    cursor: pointer;
+}
+.user-item:hover {
+    background: #f5f5f5;
+}
 </style>
 
 <script>
@@ -50,15 +71,22 @@ randomCheckbox.addEventListener('change', function() {
     manualSelect.style.display = this.checked ? 'none' : 'block';
 });
 
-// Show prize input when user name is clicked
-document.querySelectorAll('.user-select').forEach(select => {
-    select.addEventListener('change', function() {
-        const input = this.nextElementSibling;
-        if(this.value) {
-            input.style.display = 'block';
-        } else {
-            input.style.display = 'none';
+// Show prize input when a user is selected
+document.querySelectorAll('.user-list').forEach(list => {
+    list.addEventListener('change', function(e) {
+        if(e.target.type === 'radio') {
+            const prizeInput = this.closest('.winner-section').querySelector('.prize-input');
+            prizeInput.style.display = 'block';
         }
+    });
+});
+
+// 🔎 Search filter
+document.getElementById('searchBox').addEventListener('keyup', function() {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll('.user-item').forEach(item => {
+        const name = item.dataset.name;
+        item.style.display = name.includes(query) ? 'block' : 'none';
     });
 });
 </script>

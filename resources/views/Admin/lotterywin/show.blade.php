@@ -29,6 +29,7 @@
                 <th>Price per Ticket</th>
                 <th>Tickets Sold</th>
                 <th>Total Amount</th>
+                <th>Status</th>
                 <th>Declare</th>
             </tr>
         </thead>
@@ -37,17 +38,27 @@
                 <tr>
                     <td>{{ $lottery->name }}</td>
                     <td>{{ $lottery->win_type }}</td>
-                    <td>{{ number_format($lottery->price, 2) }}</td>
+                    <td>{{ round($lottery->price) }}$</td>
                     <td>{{ $lottery->user_package_buys_count }}</td>
-                    <td>{{ number_format($lottery->user_package_buys_sum_price ?? 0, 2) }}</td>
+                    <td>{{ round($lottery->user_package_buys_sum_price ) }}$</td>
                     <td>
-                        <a href="{{ route('admin.lottery.showDeclare', $lottery->id) }}" class="btn btn-sm btn-primary">
-                            Declare Winners
-                        </a>
+                        <span class="badge {{ $lottery->status == 'completed' ? 'bg-success' : 'bg-warning' }}">
+                            {{ ucfirst($lottery->status) }}
+                        </span>
+                    </td>
+                    <td>
+                        @if($lottery->status != 'completed')
+                            <a href="{{ route('admin.lottery.showDeclare', $lottery->id) }}"
+                               class="btn btn-sm btn-primary">
+                               Declare Winners
+                            </a>
+                        @else
+                            <span class="text-muted">Already Declared</span>
+                        @endif
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="6" class="text-center">No new lotteries found.</td></tr>
+                <tr><td colspan="7" class="text-center">No lotteries found.</td></tr>
             @endforelse
         </tbody>
     </table>

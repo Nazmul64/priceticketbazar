@@ -20,7 +20,7 @@ public function up(): void
         $table->decimal('first_prize')->nullable();
         $table->decimal('second_prize')->nullable();
         $table->decimal('third_prize')->nullable();
-        $table->enum('status', ['active', 'inactive'])->default('active');
+        $table->enum('status', ['active', 'inactive', 'completed'])->default('active');
         $table->date('draw_date')->nullable();
 
         // 🔥 Updated Win Type Options

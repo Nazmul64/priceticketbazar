@@ -25,7 +25,7 @@
                                 <label class="form-label" for="email">Email address</label>
                                 <input type="email" id="email" placeholder="Enter Your Email" class="form-control" name="email">
                                  @error('email')
-                                  <span class="error-message">{{ $message }}</span>
+                                  <span  class="text-danger">{{ $message }}</span>
                                  @enderror
                             </div>
 
@@ -34,7 +34,7 @@
                                 <label class="form-label" for="password">Your Password</label>
                                 <input type="password" id="password" placeholder="Enter Your password" name="password" value=""class="form-control">
                                  @error('password')
-                                    <span class="error-message">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                  @enderror
                             </div>
 

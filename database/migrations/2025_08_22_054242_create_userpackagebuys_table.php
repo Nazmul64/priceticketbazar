@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('package_id')->constrained('lotters')->cascadeOnDelete();
             $table->decimal('price');
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('ticket_number')->unique();
             $table->timestamp('purchased_at')->useCurrent();
             $table->timestamps();
             $table->softDeletes();
