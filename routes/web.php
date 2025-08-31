@@ -80,6 +80,10 @@ Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 
 
 // Declare winners
 Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
+// Route::get('/deposites/edit/admin/{id}', [DepositeContrller::class, 'depositesedits'])->name('deposites.edit');
+// Route::put('/deposites/update/{id}', [DepositeContrller::class, 'update'])->name('deposites.update');
+
+ Route::delete('/user/delete/{id}', [AdminController::class, 'userDelete'])->name('user.delete');
 
 });
 

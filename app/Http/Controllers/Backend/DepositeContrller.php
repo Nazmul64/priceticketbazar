@@ -69,4 +69,10 @@ class DepositeContrller extends Controller
         $deposit->delete();
         return back()->with('success','Deposit deleted successfully!');
     }
+
+
+public function depositesedit($id) {
+    $deposit = Deposite::findOrFail($id);
+    return view('Admin.userdeposite.userdepositeedit', compact('deposit'));
+}
 }

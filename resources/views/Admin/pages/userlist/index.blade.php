@@ -39,8 +39,8 @@
                                     </td>
 
                                     <td>
-                                        <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="" method="POST" style="display:inline-block;">
+
+                                        <form action="{{route('user.delete',$user->id)}}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>

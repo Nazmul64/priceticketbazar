@@ -10,6 +10,7 @@ use App\Models\Lotter;
 use App\Models\Partner;
 use App\Models\Privacypolicy;
 use App\Models\Slider;
+use App\Models\User_widthdraw;
 use App\Models\Whychooseinvestmentplan;
 use Illuminate\Http\Request;
 
@@ -21,11 +22,12 @@ class FrontendController extends Controller
         $lotterys=Lotter::all();
         $aboutus=About::all();
         $deposite =Deposite::where('status','approved')->get();
+        $widthraw =User_widthdraw::where('status','approved')->get();
         $slider=Slider::all();
         $counter=Counter::all();
         $partner=Partner::all();
         // $priavacypolicy =Privacypolicy::all();
-        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite','slider','counter','partner'));
+        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite','slider','counter','partner','widthraw'));
     }
     public function privacy()
     {

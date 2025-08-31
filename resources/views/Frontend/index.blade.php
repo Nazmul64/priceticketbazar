@@ -254,106 +254,41 @@
                   <thead class="tb-head">
                      <tr class="tb-row">
                         <th>Date</th>
-                        <th>Transaction no</th>
-                        <th>Method</th>
-                        <th>Account Name</th>
                         <th>Amount</th>
-                        <th>Fee</th>
                         <th>Status</th>
                      </tr>
                   </thead>
                   <tbody class="tb-body">
-                     <tr class="tb-row">
-                        <td data-label="Date">Jan 13, 2024</td>
-                        <td data-label="Transaction Number">NLEAI3CDJUD4</td>
-                        <td data-label="Method">Payoneer</td>
-                        <td data-label="Account Name">
-                           Mr. Mostafa
-                        </td>
-                        <td data-label="Amount">100$</td>
-                        <td data-label="Fee">3.5$</td>
-                        <td data-label="Status">
-                           <p class="text-danger">Rejected</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">Feb 23, 2023</td>
-                        <td data-label="Transaction Number">NHNVLVO6NNDN</td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">50$</td>
-                        <td data-label="Fee">3$</td>
-                        <td data-label="Status">
-                           <p class="text-danger">Rejected</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">Feb 23, 2023</td>
-                        <td data-label="Transaction Number">VA1XRXRPIPLM</td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">50$</td>
-                        <td data-label="Fee">3$</td>
-                        <td data-label="Status">
-                           <p class="text-danger">Rejected</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">Feb 23, 2023</td>
-                        <td data-label="Transaction Number">38QTE9IAQ21A</td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">50$</td>
-                        <td data-label="Fee">3$</td>
-                        <td data-label="Status">
-                           <p class="text-danger">Rejected</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">Feb 23, 2023</td>
-                        <td data-label="Transaction Number">LBZEQUYVCVIJ</td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">50$</td>
-                        <td data-label="Fee">3$</td>
-                        <td data-label="Status">
-                           <p class="text-danger">Rejected</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">Feb 23, 2023</td>
-                        <td data-label="Transaction Number">VKGG0TEXSAAK</td>
-                        <td data-label="Method">Stripe</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">50$</td>
-                        <td data-label="Fee">3$</td>
-                        <td data-label="Status">
-                           <p class="text-success">Completed</p>
-                        </td>
-                     </tr>
-                     <tr class="tb-row">
-                        <td data-label="Date">Feb 16, 2023</td>
-                        <td data-label="Transaction Number">MGVVYPBNOSZG</td>
-                        <td data-label="Method">Nagad</td>
-                        <td data-label="Account Name">
-                           Showrav mia
-                        </td>
-                        <td data-label="Amount">12.06$</td>
-                        <td data-label="Fee">0.2$</td>
-                        <td data-label="Status">
-                           <p class="text-danger">Rejected</p>
-                        </td>
-                     </tr>
+
+                      @foreach ($widthraw as $item)
+                            <tr class="tb-row">
+                                <!-- Date -->
+                                <td data-label="Date">
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
+                                </td>
+                                 @php
+                                     $user_name=\App\Models\User::where('id',$item->user_id)->first();
+                                 @endphp
+                                <!-- Account Name -->
+                                <td data-label="Account Name">
+                                    {{ $user_name->name ?? '' }}
+                                </td>
+
+                                <!-- Amount -->
+                                <td data-label="Amount">
+                                    {{ round($item->amount ?? '') }}$
+                                </td>
+
+                                <!-- Status -->
+                                <td data-label="Status">
+                                    @if($item->status == 'approved')
+                                        <p class="text-success">{{ ucfirst($item->status) }}</p>
+                                    @else
+                                        <p class="text-danger">{{ ucfirst($item->status) }}</p>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                   </tbody>
                </table>
             </div>

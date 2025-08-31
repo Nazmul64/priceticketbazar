@@ -157,5 +157,10 @@ public function login(Request $request)
 
     return redirect()->back()->with('success', 'User status updated successfully!');
 }
+public function  userDelete(Request $request,$id){
+   $user_delete=User::find($id);
+   $user_delete->delete();
+    return redirect()->back()->with('success', 'User Delete successfully!');
+}
 
 }
