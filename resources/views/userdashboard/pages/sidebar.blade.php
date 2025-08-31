@@ -76,7 +76,7 @@
             <a href="{{route('profile.index')}}"><i class="fa">✏️</i>Edit Profile</a>
           </li>
           <li>
-            <a href="#"><i class="fa">🔑</i>Change Password</a>
+            <a href="{{route('password.index')}}"><i class="fa">🔑</i>Change Password</a>
           </li>
          <li>
             <form action="{{ route('logout') }}" method="POST" style="display:inline;">

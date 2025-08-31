@@ -11,7 +11,8 @@
 
       <!-- Header right controls -->
       <div class="header-controls" role="group" aria-label="Header controls">
-         <a href="{{route('frontend')}}" class="text-balck"style="background:#F5CE0D;padding:14px;color:white;border-radius:50px;">Home</a>
+        <a href="{{ route('frontend') }}"class="text-black"style="background:#F5CE0D; padding:14px; color:white; border-radius:50px;"target="_blank">Home</a>
+
         <!-- Theme Customizer toggle -->
         <button
           id="themeCustomizerBtn"

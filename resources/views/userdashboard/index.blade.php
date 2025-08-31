@@ -61,6 +61,29 @@
             <div class="value">${{ round($mainBalance) }}</div>
         </div>
     </div>
+@php
+    use App\Models\Setting;
+
+    $telegram = Setting::first(); // get first setting record
+@endphp
+
+<div class="card" tabindex="0" style="display:flex; align-items:center; padding:16px; border-radius:12px; background:#f5f5f5; box-shadow:0 4px 6px rgba(0,0,0,0.1); width:250px; margin:10px;">
+    {{-- Telegram Icon (Font Awesome) --}}
+    <div class="icon" style="font-size:24px; margin-right:12px; color:#0088cc;">
+        <i class="fab fa-telegram-plane"></i>
+    </div>
+
+    <div>
+        <div class="label" style="font-weight:bold; color:#333;">Telegram</div>
+        <div class="value" style="color:#555;">
+            {{ $telegram->telegram ?? '' }}
+        </div>
+    </div>
+</div>
+
+
+
+
 </div>
 
 <section class="referral-section" aria-label="Referral URL">

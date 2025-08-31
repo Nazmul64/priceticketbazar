@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\LotterycreateController;
 use App\Http\Controllers\Backend\LotteryResultController;
 use App\Http\Controllers\Backend\PartnarController;
+use App\Http\Controllers\Backend\PaswordchangeController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
@@ -117,6 +118,9 @@ Route::middleware(['user'])->group(function () {
 
    Route::get('/profile', [UserprofileController::class, 'profile'])->name('profile.index');
    Route::put('/profile/{id}', [UserprofileController::class, 'updateProfile'])->name('profile.update');
+   Route::get('/password', [PaswordchangeController::class, 'password'])->name('password.index');
+   Route::post('/password/change', [PaswordchangeController::class, 'passwordchange'])->name('password.change');
+
 
 
 });
