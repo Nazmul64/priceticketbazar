@@ -47,75 +47,7 @@
         @endforeach
     </div>
 
-    <!-- Recent Transactions -->
-    <div class="row">
-        <div class="col-12">
-            <div class="transactions-section bg-dark p-3 rounded">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-white">Recent Withdrawals</h4>
-                    <select class="form-select form-select-sm w-auto">
-                        <option>All Status</option>
-                        <option>Completed</option>
-                        <option>Pending</option>
-                        <option>Rejected</option>
-                    </select>
-                </div>
 
-                <div class="table-responsive">
-                    <table class="table table-dark table-striped align-middle">
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Method</th>
-                                <th>Amount</th>
-                                <th>Fee</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- Example rows, replace with dynamic data --}}
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://i.pravatar.cc/40?img=1" class="rounded-circle me-2">
-                                        <div>
-                                            <div>Showrav Mia</div>
-                                            <small class="text-muted">showrav@example.com</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><i class="fab fa-stripe me-1"></i> Stripe</td>
-                                <td>$50.00</td>
-                                <td>$3.00</td>
-                                <td>Jan 15, 2024</td>
-                                <td><span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i> Rejected</span></td>
-                                <td><button class="btn btn-outline-light btn-sm"><i class="fas fa-eye me-1"></i> View</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://i.pravatar.cc/40?img=2" class="rounded-circle me-2">
-                                        <div>
-                                            <div>John Doe</div>
-                                            <small class="text-muted">john@example.com</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td><i class="fab fa-paypal me-1"></i> Payoneer</td>
-                                <td>$120.00</td>
-                                <td>$3.80</td>
-                                <td>Jan 14, 2024</td>
-                                <td><span class="badge bg-success"><i class="fas fa-check-circle me-1"></i> Completed</span></td>
-                                <td><button class="btn btn-outline-light btn-sm"><i class="fas fa-eye me-1"></i> View</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!-- Withdraw Modal -->

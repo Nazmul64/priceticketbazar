@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name','email','password','phone','address','role','username','referred_by','ref_id','refer_income','generation_income','status','role','ref_code',
+        'name','email','password','phone','address','role','username','referred_by','ref_id','refer_income','generation_income','status','role','ref_code','walate_address',
     ];
 
 
@@ -40,7 +40,10 @@ public function user()
 {
     return $this->belongsTo(User::class);
 }
-
+public function withdrawals()
+    {
+        return $this->hasMany(User_widthdraw::class);
+    }
 
 
     /**

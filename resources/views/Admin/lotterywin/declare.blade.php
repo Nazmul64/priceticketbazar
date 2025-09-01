@@ -50,44 +50,6 @@
     @endif
 </div>
 
-<style>
-.user-list {
-    max-height: 200px;
-    overflow-y: auto;
-}
-.user-item {
-    cursor: pointer;
-}
-.user-item:hover {
-    background: #f5f5f5;
-}
-</style>
 
-<script>
-const randomCheckbox = document.getElementById('randomCheckbox');
-const manualSelect = document.getElementById('manual-select');
 
-randomCheckbox.addEventListener('change', function() {
-    manualSelect.style.display = this.checked ? 'none' : 'block';
-});
-
-// Show prize input when a user is selected
-document.querySelectorAll('.user-list').forEach(list => {
-    list.addEventListener('change', function(e) {
-        if(e.target.type === 'radio') {
-            const prizeInput = this.closest('.winner-section').querySelector('.prize-input');
-            prizeInput.style.display = 'block';
-        }
-    });
-});
-
-// 🔎 Search filter
-document.getElementById('searchBox').addEventListener('keyup', function() {
-    const query = this.value.toLowerCase();
-    document.querySelectorAll('.user-item').forEach(item => {
-        const name = item.dataset.name;
-        item.style.display = name.includes(query) ? 'block' : 'none';
-    });
-});
-</script>
 @endsection

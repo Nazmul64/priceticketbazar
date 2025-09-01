@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Lotter;
 use App\Models\Waleta_setup;
-use Illuminate\Http\Request;
 use App\Models\CommissionSetting;
 use App\Models\Deposite;
 use App\Models\Profit;
 use App\Models\User;
 use App\Models\Userpackagebuy;
 use App\Models\WithdrawCommission;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +23,7 @@ class UserlottryController extends Controller
     {
         $walate = Waleta_setup::select('accountnumber', 'bankname')->get();
         $lotteries = Lotter::all();
-        return view("userdashboard.lottery.usersowlattery", compact("lotteries", 'walate'));
+        return view('userdashboard.lottery.usersowlattery', compact('lotteries', 'walate'));
     }
 
     /**
@@ -37,7 +36,7 @@ public function buyPackage(Request $request, $packageId)
 
     DB::beginTransaction();
     try {
-        // 1️⃣ Lock approved deposit to prevent race condition
+        // 1️⃣ Lock approved deposit row to prevent race condition
         $deposit = Deposite::where('user_id', $user->id)
             ->where('status', 'approved')
             ->lockForUpdate()
@@ -48,20 +47,19 @@ public function buyPackage(Request $request, $packageId)
             return back()->with('error', 'Insufficient balance in deposit to buy this package.');
         }
 
-        // 2️⃣ Decrement deposit
+        // 2️⃣ Decrement deposit balance
         $deposit->decrement('amount', $package->price);
 
-        // 3️⃣ Generate unique ticket number if lottery
+        // 3️⃣ Generate unique ticket number (only if lottery)
         $ticketNumber = null;
         if ($package->type === 'lottery') {
             do {
                 $candidate = 'L-' . now()->format('Ymd') . '-' . strtoupper(uniqid());
             } while (Userpackagebuy::where('ticket_number', $candidate)->exists());
-
             $ticketNumber = $candidate;
         }
 
-        // 4️⃣ Save user package purchase
+        // 4️⃣ Save user package purchase (UNLIMITED allowed)
         $userPackageBuy = Userpackagebuy::create([
             'user_id'       => $user->id,
             'package_id'    => $package->id,
@@ -70,7 +68,7 @@ public function buyPackage(Request $request, $packageId)
             'status'        => 'active',
         ]);
 
-        // 5️⃣ Log user expense
+        // 5️⃣ Log expense in Profit
         Profit::create([
             'user_id'      => $user->id,
             'from_user_id' => $user->id,
@@ -80,10 +78,13 @@ public function buyPackage(Request $request, $packageId)
             'note'         => 'User purchased package: ' . $package->id,
         ]);
 
-        // 6️⃣ Commissions
+        // 6️⃣ Referral + Generation Commissions
         $settings = CommissionSetting::first();
         if ($settings && $settings->status) {
+            // Referral commission distribute
             $this->distributeReferralCommission($user, $package, $settings, $deposit->id);
+
+            // Generation commission only for non-lottery packages
             if ($package->type !== 'lottery') {
                 $this->distributeGenerationCommission($user, $package, $settings, $deposit->id);
             }
@@ -91,23 +92,21 @@ public function buyPackage(Request $request, $packageId)
 
         DB::commit();
 
-        // 7️⃣ Return success with ticket number in session (for alert / copy)
+        // 7️⃣ Success response
         if ($package->type === 'lottery') {
             return back()->with([
-                'success' => 'Package purchased successfully!',
+                'success'       => 'Package purchased successfully!',
                 'ticket_number' => $ticketNumber
             ]);
-        } else {
-            return back()->with('success', 'Package purchased successfully!');
         }
+
+        return back()->with('success', 'Package purchased successfully!');
 
     } catch (\Throwable $e) {
         DB::rollBack();
         return back()->with('error', 'Something went wrong: ' . $e->getMessage());
     }
 }
-
-
 
 
     /**
@@ -119,21 +118,18 @@ public function buyPackage(Request $request, $packageId)
         if (!$ref) return;
 
         $bonus = 0.0;
-        if ($package->type === 'lottery' && $settings->lottery_percentages > 0) {
-            $bonus = round($package->price * ($settings->lottery_percentages / 100), 2);
-        } elseif ($settings->refer_commission > 0) {
+        if ($settings->refer_commission > 0) {
             $bonus = round($package->price * ($settings->refer_commission / 100), 2);
         }
 
         if ($bonus > 0) {
-            // Referrer balance + refer_income increment
             $ref->increment('balance', $bonus);
             $ref->increment('refer_income', $bonus);
 
             Profit::create([
                 'user_id'      => $ref->id,
                 'from_user_id' => $user->id,
-                'deposit_id'   => $depositId, // <-- link to buyer's deposit
+                'deposit_id'   => $depositId,
                 'amount'       => $bonus,
                 'level'        => 1,
                 'note'         => ($package->type === 'lottery')
@@ -171,7 +167,7 @@ public function buyPackage(Request $request, $packageId)
                 Profit::create([
                     'user_id'      => $ref->id,
                     'from_user_id' => $user->id,
-                    'deposit_id'   => $depositId, // <-- MUST NOT BE NULL
+                    'deposit_id'   => $depositId,
                     'amount'       => $bonus,
                     'level'        => $level,
                     'note'         => 'Generation commission (Level '.$level.')',
@@ -181,37 +177,47 @@ public function buyPackage(Request $request, $packageId)
             $current = $ref;
         }
     }
+
+    /**
+     * User lottery history
+     */
     public function userlotterhistory()
-    {
-       $user = Auth::user();
-
-    $purchases = Userpackagebuy::with(['package', 'results'])
-        ->where('user_id', $user->id)
-        ->orderBy('purchased_at', 'desc')
-        ->get();
-
-    return view('userdashboard.lotteryhistory.lotteryhistory', compact('purchases'));
-    }
-
-    public function indexconvert(){
-       return view('userdashboard.monyconvert.manyconvert');
-    }
-public function convert(Request $request)
     {
         $user = Auth::user();
 
-        // Validate input
+        $purchases = Userpackagebuy::with(['package', 'results'])
+            ->where('user_id', $user->id)
+            ->orderBy('purchased_at', 'desc')
+            ->get();
+
+        return view('userdashboard.lotteryhistory.lotteryhistory', compact('purchases'));
+    }
+
+    /**
+     * Money conversion view
+     */
+public function indexconvert()
+{
+    $user = Auth::user(); // logged in user
+    return view('userdashboard.monyconvert.manyconvert', compact('user'));
+}
+
+
+    /**
+     * Convert user balance to deposit with commission
+     */
+    public function convert(Request $request)
+    {
+        $user = Auth::user();
+
         $request->validate([
             'amount' => "required|numeric|min:1|max:{$user->balance}"
         ]);
 
-        // Get admin-set commission %
         $commissionSetting = WithdrawCommission::first();
         $percentage = $commissionSetting?->money_exchange_commission ?? 0;
 
         $amount = $request->amount;
-
-        // Commission calculation
         $commission = ($amount * $percentage) / 100;
         $finalAmount = $amount - $commission;
 
@@ -220,16 +226,13 @@ public function convert(Request $request)
         }
 
         DB::transaction(function () use ($user, $amount, $finalAmount) {
-            // Deduct full convert amount from user balance
-            $user->balance -= $amount;
-            $user->save();
+            $user->decrement('balance', $amount);
 
-            // Add final amount to deposits table
             Deposite::create([
-                'user_id' => $user->id,
-                'amount'  => $finalAmount,
-                'status'  => 'approved',
-                'payment_method' => 'conversion', // Required for DB
+                'user_id'       => $user->id,
+                'amount'        => $finalAmount,
+                'status'        => 'approved',
+                'payment_method'=> 'conversion',
             ]);
         });
 

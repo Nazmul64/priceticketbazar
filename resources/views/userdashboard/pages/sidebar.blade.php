@@ -6,10 +6,10 @@
 
       <!-- User Level Info -->
       <div class="level">
-        <div class="level-badge">
+        {{-- <div class="level-badge">
           <span class="level-number">Level 3</span>
           <span class="star" aria-hidden="true">★</span>
-        </div>
+        </div> --}}
         <small class="level-title">{{ auth()->user()->name }}</small>
       </div>
 
@@ -22,7 +22,7 @@
             <a href="{{route('user.dashboard')}}" class="active"><i class="fa">🏠</i>Dashboard</a>
           </li>
           <li>
-            <a href="{{route('user.chat')}}"><i class="fa">🔁</i>Live Chart</a>
+            <a href="{{route('user.chat')}}"><i class="fa">🔁</i>Live Chat</a>
           </li>
 
           <li class="menu-section"><strong>Lottery</strong></li>
@@ -56,7 +56,7 @@
             <a href="{{route('Withdraw.index')}}"><i class="fa">💸</i>Withdraw</a>
           </li>
           <li>
-            <a href="#"><i class="fa">📄</i>Withdraw History</a>
+            <a href="{{route('Withdraw.history')}}"><i class="fa">📄</i>Withdraw History</a>
           </li>
 
           <li class="menu-section"><strong>Referral</strong></li>

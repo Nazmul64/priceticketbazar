@@ -63,13 +63,4 @@
         </tbody>
     </table>
 </div>
-
-<script>
-document.getElementById('lotterySearch').addEventListener('keyup', function(){
-    let filter = this.value.toLowerCase();
-    document.querySelectorAll('#lotteryTable tbody tr').forEach(row => {
-        row.style.display = row.cells[0].textContent.toLowerCase().includes(filter) ? '' : 'none';
-    });
-});
-</script>
 @endsection

@@ -46,11 +46,15 @@ public function submit(Request $request)
 }
 
 // Show all withdrawals
-    public function Withdrawshow()
-    {
-        $withdrawals = User_widthdraw::with('user')->orderBy('created_at', 'desc')->get();
-        return view('Admin.widthraw.index', compact('withdrawals'));
-    }
+ public function Withdrawshow()
+{
+    // withdraw এর সাথে user relation নিয়ে আসবো
+    $withdrawals = User_widthdraw::with('user')->orderBy('created_at', 'desc')->get();
+    return view('Admin.widthraw.index', compact('withdrawals'));
+}
+
+
+
 
     // Approve withdrawal
     public function approve($id)
@@ -86,6 +90,11 @@ public function submit(Request $request)
         $withdraw->save();
 
         return back()->with('success', 'Withdrawal rejected successfully.');
+    }
+
+    public function Withdrawhistory(){
+        $user_widthraw_history=User_widthdraw::all();
+       return view('userdashboard.Withdraw.widthrawhistory',compact('user_widthraw_history'));
     }
 }
 

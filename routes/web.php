@@ -125,6 +125,7 @@ Route::middleware(['user'])->group(function () {
     Route::post('/income/convert', [UserlottryController::class, 'convert'])->name('income.convert');
     Route::get('/all/ticket', [AllTicketController::class, 'ticket'])->name('all.ticket');
     Route::get('/my/ticket', [AllTicketController::class, 'myticket'])->name('my.ticket');
+    Route::get('Withdrawhistory',   [WithdrawController::class, 'Withdrawhistory'])->name('Withdraw.history');
 
   // user profile update route and controller
 
