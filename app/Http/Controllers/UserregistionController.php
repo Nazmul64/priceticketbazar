@@ -130,7 +130,7 @@ class UserregistionController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('user.dashboard')->with('success', 'Registration successful!');
+        return redirect()->route('frontend')->with('success', 'Registration successful!');
     }
 
     /**
@@ -152,7 +152,7 @@ class UserregistionController extends Controller
                 ]);
             }
 
-            return redirect()->route('user.dashboard')->with('success', 'Login successful!');
+            return redirect()->route('frontend')->with('success', 'Login successful!');
         }
 
         return back()->withErrors([

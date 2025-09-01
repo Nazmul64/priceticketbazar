@@ -27,7 +27,7 @@ class Deposite extends Model
  public function user() {
     return $this->belongsTo(User::class, 'user_id');
 }
-public function method_type() { // যদি FK থাকে waleta_setups এ
+public function method_type() {
     return $this->belongsTo(Waleta_setup::class, 'payment_method');
 }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\Deposite;
 use App\Models\User;
+use App\Models\User_widthdraw;
+use App\Models\WithdrawCommission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,12 +14,51 @@ class AdminController extends Controller
 {
 public function dashboard()
 {
-    $total_deposites_investor = Deposite::count();
-    $total_deposites = Deposite::sum('amount');
-    $last_wekly =Deposite::sum('amount');
-    $total_user=User::count();
-    return view('Admin.index', compact('total_deposites','total_deposites_investor','total_user','last_wekly'));
+    // ✅ Total Deposits (approved only)
+    $total_deposites = Deposite::where('status', 'approved')->sum('amount');
+
+    // ✅ Total Deposit Investors (unique users who deposited)
+    $total_deposites_investor = Deposite::where('status', 'approved')->distinct('user_id')->count('user_id');
+
+    // ✅ Total Users
+    $total_user = User::count();
+
+    // ✅ Weekly Deposits (last 7 days)
+    $last_weekly = Deposite::where('status', 'approved')
+        ->where('created_at', '>=', now()->subWeek())
+        ->sum('amount');
+
+    // ✅ Total Withdrawals (approved only)
+    $total_withdrawals = User_widthdraw::where('status', 'approved')->sum('amount');
+
+    // ✅ Commission settings
+    $commission = WithdrawCommission::first();
+    $commission_percentage = $commission ? $commission->withdraw_commission : 0;
+
+    // ✅ Commission Profit (sum of charges)
+    $total_commission_profit = User_widthdraw::where('status', 'approved')->sum('charge');
+
+    // ✅ Net Deposit (Deposits - Withdrawals)
+    $net_deposit = $total_deposites - $total_withdrawals;
+
+    // ✅ Admin Net Profit (Net Deposit + Commission)
+    $net_profit = $net_deposit + $total_commission_profit;
+
+    return view('Admin.index', compact(
+        'total_deposites',
+        'total_deposites_investor',
+        'total_user',
+        'last_weekly',
+        'total_withdrawals',
+        'net_deposit',
+        'total_commission_profit',
+        'net_profit'
+    ));
 }
+
+
+
+
 
     public function showLoginForm()
     {
@@ -162,5 +203,8 @@ public function  userDelete(Request $request,$id){
    $user_delete->delete();
     return redirect()->back()->with('success', 'User Delete successfully!');
 }
+
+// widthraw history check for admin
+
 
 }

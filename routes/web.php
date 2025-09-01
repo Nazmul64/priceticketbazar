@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\TermsconditionController;
 use App\Http\Controllers\Backend\UserprofileController;
 use App\Http\Controllers\Backend\WaletaSetupController;
 use App\Http\Controllers\Backend\WhychooseinvestmentplanConroller;
+use App\Http\Controllers\Backend\WidthrawhistoryanddepositehistoryController;
 use App\Http\Controllers\Backend\WithdrawcommissonController;
 use App\Http\Controllers\Backend\WithdrawController;
 use App\Http\Controllers\ChatController;
@@ -73,18 +74,19 @@ Route::middleware(['admin'])->group(function () {
 
 
 // Show all undeclared lotteries
-Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])->name('admin.lottery.purchases');
+    Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])->name('admin.lottery.purchases');
 
-// Show form to declare winners
-Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'showDeclareForm'])->name('admin.lottery.showDeclare');
+    // Show form to declare winners
+    Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'showDeclareForm'])->name('admin.lottery.showDeclare');
 
-// Declare winners
-Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
-// Route::get('/deposites/edit/admin/{id}', [DepositeContrller::class, 'depositesedits'])->name('deposites.edit');
-// Route::put('/deposites/update/{id}', [DepositeContrller::class, 'update'])->name('deposites.update');
+    // Declare winners
+    Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
+    // Route::get('/deposites/edit/admin/{id}', [DepositeContrller::class, 'depositesedits'])->name('deposites.edit');
+    // Route::put('/deposites/update/{id}', [DepositeContrller::class, 'update'])->name('deposites.update');
 
- Route::delete('/user/delete/{id}', [AdminController::class, 'userDelete'])->name('user.delete');
-
+    Route::delete('/user/delete/{id}', [AdminController::class, 'userDelete'])->name('user.delete');
+    Route::get('/widthraw/history', [WidthrawhistoryanddepositehistoryController::class, 'widthrawhistory'])->name('widthraw.history');
+    Route::get('/deposite/history', [WidthrawhistoryanddepositehistoryController::class, 'depositehistory'])->name('deposite.history');
 });
 
 // End Admin login routesadmin_login_submit

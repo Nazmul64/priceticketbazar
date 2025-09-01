@@ -1,41 +1,33 @@
 @extends('Admin.master')
-
 @section('content')
 
-<!-- Dashboard Stats -->
 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 mb-4">
+
     <!-- Total Deposits -->
     <div class="col">
         <div class="card rounded-4">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-1">Total Deposits</p>
-                        <p class="mb-0 mt-2 font-13">
-                            <i class="bi bi-arrow-up"></i>
-                            <span>{{ round($total_deposites) }} $</span>
-                        </p>
-                    </div>
-                    <div class="ms-auto widget-icon bg-primary text-white">
-                        <i class="bi bi-wallet2"></i>
-                    </div>
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Total Deposits</p>
+                    <h5 class="mb-0">{{ round($total_deposites) }} $</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-primary text-white">
+                    <i class="bi bi-wallet2"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Investor Count -->
+    <!-- Total Deposit Investors -->
     <div class="col">
         <div class="card rounded-4">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-1">Total Deposit Investors</p>
-                        <h4 class="mb-0">{{ $total_deposites_investor }}</h4>
-                    </div>
-                    <div class="ms-auto widget-icon bg-success text-white">
-                        <i class="bi bi-people"></i>
-                    </div>
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Total Deposit Investors</p>
+                    <h5 class="mb-0">{{ $total_deposites_investor }}</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-success text-white">
+                    <i class="bi bi-people"></i>
                 </div>
             </div>
         </div>
@@ -44,15 +36,15 @@
     <!-- Total Users -->
     <div class="col">
         <div class="card rounded-4">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-1">Total Users</p>
-                        <h4 class="mb-0"><a href="{{route('admin.userlist')}}">{{ $total_user }}</a></h4>
-                    </div>
-                    <div class="ms-auto widget-icon bg-orange text-white">
-                        <i class="bi bi-people"></i>
-                    </div>
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Total Users</p>
+                    <h5 class="mb-0">
+                        <a href="{{ route('admin.userlist') }}">{{ $total_user }}</a>
+                    </h5>
+                </div>
+                <div class="ms-auto widget-icon bg-orange text-white">
+                    <i class="bi bi-people"></i>
                 </div>
             </div>
         </div>
@@ -61,15 +53,73 @@
     <!-- Weekly Deposits -->
     <div class="col">
         <div class="card rounded-4">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <p class="mb-1">Last Weekly Deposit</p>
-                        <h4 class="mb-0">{{ round($last_wekly) }} $</h4>
-                    </div>
-                    <div class="ms-auto widget-icon bg-info text-white">
-                        <i class="bi bi-calendar-week"></i>
-                    </div>
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Weekly Deposits</p>
+                    <h5 class="mb-0">{{ round($last_weekly) }} $</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-info text-white">
+                    <i class="bi bi-calendar-week"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Withdrawals -->
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Total Withdrawals</p>
+                    <h5 class="mb-0">{{ round($total_withdrawals) }} $</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-danger text-white">
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Net Deposit -->
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Net Deposit</p>
+                    <h5 class="mb-0">{{ round($net_deposit) }} $</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-warning text-white">
+                    <i class="bi bi-bank"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commission Profit -->
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Commission Profit</p>
+                    <h5 class="mb-0">{{ round($total_commission_profit) }} $</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-secondary text-white">
+                    <i class="bi bi-percent"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Net Profit -->
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body d-flex align-items-center">
+                <div>
+                    <p class="mb-1">Admin Net Profit</p>
+                    <h5 class="mb-0">{{ round($net_profit) }} $</h5>
+                </div>
+                <div class="ms-auto widget-icon bg-success text-white">
+                    <i class="bi bi-graph-up-arrow"></i>
                 </div>
             </div>
         </div>
