@@ -23,10 +23,7 @@ class Lotter extends Model
         'draw_date' => 'datetime',
     ];
 
-    public function buys()
-    {
-        return $this->hasMany(Userpackagebuy::class, 'package_id');
-    }
+
 
     protected $dates = ['draw_date'];
      public function userPackageBuys()
@@ -52,5 +49,14 @@ public function result()
 {
     return $this->hasOne(Lottery_result::class, 'user_package_buy_id');
 }
+public function buys()
+{
+    return $this->hasMany(Userpackagebuy::class, 'package_id');
+}
+public function results()
+{
+    return $this->hasMany(Lottery_result::class);
+}
+
 
 }

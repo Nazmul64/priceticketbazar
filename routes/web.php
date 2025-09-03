@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\AdminpasswordchangeController;
 use App\Http\Controllers\Backend\AllTicketController;
 use App\Http\Controllers\Backend\CommissionSettingController;
 use App\Http\Controllers\Backend\ContactController;
@@ -76,13 +77,15 @@ Route::middleware(['admin'])->group(function () {
 
 
 // Show all undeclared lotteries
-    Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])->name('admin.lottery.purchases');
+// Show all purchases
+Route::get('/admin/lottery/purchases', [LotteryResultController::class, 'purchasedTickets'])->name('admin.lottery.purchases');
 
-    // Show form to declare winners
-    Route::get('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'showDeclareForm'])->name('admin.lottery.showDeclare');
+// Show form to declare winners
+Route::get('/admin/lottery/{lotteryId}/declare', [LotteryResultController::class, 'showDeclareForm'])->name('admin.lottery.showDeclare');
 
-    // Declare winners
-    Route::post('/admin/lottery/{lottery}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
+// Declare winners
+Route::post('/admin/lottery/{lotteryId}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
+
     // Route::get('/deposites/edit/admin/{id}', [DepositeContrller::class, 'depositesedits'])->name('deposites.edit');
     // Route::put('/deposites/update/{id}', [DepositeContrller::class, 'update'])->name('deposites.update');
 
@@ -90,6 +93,10 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/widthraw/history', [WidthrawhistoryanddepositehistoryController::class, 'widthrawhistory'])->name('widthraw.history');
     Route::get('/deposite/history', [WidthrawhistoryanddepositehistoryController::class, 'depositehistory'])->name('deposite.history');
     Route::resource('supportlink',SupportControler::class);
+    Route::get('/admin/password/change', [AdminpasswordchangeController::class, 'adminpasswordchange'])->name('adminpassword.change');
+    Route::post('/admin/password/change/submit', [AdminpasswordchangeController::class, 'adminpasswordsubmit'])->name('adminpassword.submit');
+    Route::get('/admin/profile/change', [AdminpasswordchangeController::class, 'adminProfile'])->name('profile.change');
+    Route::put('/admin/profile/{id}', [AdminpasswordchangeController::class, 'adminProfileSubmit'])->name('admin.profile.update');
 });
 
 // End Admin login routesadmin_login_submit

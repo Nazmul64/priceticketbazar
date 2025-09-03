@@ -1,4 +1,11 @@
- <header class="top-header">
+   @php
+            use Illuminate\Support\Facades\Auth;
+            $user_photo = Auth::user();
+         @endphp
+
+
+
+<header class="top-header">
         <nav class="navbar navbar-expand gap-3 align-items-center">
           <div class="mobile-toggle-icon fs-3">
               <i class="bi bi-list"></i>
@@ -10,20 +17,24 @@
               <li class="nav-item dropdown dropdown-user-setting">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                   <div class="user-setting d-flex align-items-center">
-                    <img src="{{asset('backend')}}/assets/images/avatars/avatar-1.png" class="user-img" alt="">
+                    <img src="{{ $user_photo && $user_photo->image
+            ? asset('uploads/admin/' . $user_photo->image)
+            : asset('uploads/admin/default.png') }}" class="user-img" alt="">
                   </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li>
                      <a class="dropdown-item" href="#">
                        <div class="d-flex align-items-center">
-                          <img src="{{asset('backend')}}/assets/images/avatars/avatar-1.png" alt="" class="rounded-circle" width="54" height="54">
+                          <img src="{{ $user_photo && $user_photo->image
+            ? asset('uploads/admin/' . $user_photo->image)
+            : asset('uploads/admin/default.png') }}" alt="" class="rounded-circle" width="54" height="54">
                        </div>
                      </a>
                    </li>
                    <li><hr class="dropdown-divider"></li>
                    <li>
-                      <a class="dropdown-item" href="pages-user-profile.html">
+                      <a class="dropdown-item" href="{{route('profile.change')}}">
                          <div class="d-flex align-items-center">
                            <div class=""><i class="bi bi-person-fill"></i></div>
                            <div class="ms-3"><span>Profile</span></div>
@@ -31,10 +42,10 @@
                        </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{route('adminpassword.change')}}">
                          <div class="d-flex align-items-center">
                            <div class=""><i class="bi bi-gear-fill"></i></div>
-                           <div class="ms-3"><span>Setting</span></div>
+                           <div class="ms-3"><span>Password Changes</span></div>
                          </div>
                        </a>
                     </li>

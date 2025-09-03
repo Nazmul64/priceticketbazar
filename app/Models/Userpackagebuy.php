@@ -43,26 +43,17 @@ class Userpackagebuy extends Model
     /**
      * User who bought this package
      */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
 
     /**
      * Lottery package
      */
-    public function package()
-    {
-        return $this->belongsTo(Lotter::class, 'package_id');
-    }
+
 
     /**
      * Lottery results of this package buy
      */
-    public function results()
-    {
-        return $this->hasMany(Lottery_result::class, 'user_package_buy_id');
-    }
+
 
     /**
      * All package buys of the same package (optional helper)
@@ -71,4 +62,26 @@ class Userpackagebuy extends Model
     {
         return $this->hasMany(self::class, 'package_id');
     }
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+public function package()
+{
+    return $this->belongsTo(Lotter::class, 'package_id');
+}
+
+public function results()
+{
+    return $this->hasMany(Lottery_result::class, 'user_package_buy_id');
+}
+
+// Convenience method: Check if this buy has already won
+public function hasWon()
+{
+    return $this->results()->exists();
+}
+ // Relation: User who bought this package
+
 }
