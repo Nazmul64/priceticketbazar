@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name','email','password','phone','address','role','username','referred_by','ref_id','refer_income','generation_income','status','role','ref_code','walate_address',
+        'reset_token','reset_token_expires_at',
     ];
 
 

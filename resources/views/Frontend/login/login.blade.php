@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col d-flex justify-content-end login-forgot">
                                     <!-- Simple link -->
-                                    <a href="#">Forgot password?</a>
+                                    <a href="{{route('password.forget')}}">Forgot password?</a>
                                 </div>
                             </div>
 

@@ -32,17 +32,6 @@
           ⚙️
         </button>
 
-
-        <!-- User info -->
-        <div class="user-info" aria-label="User">
-          <img
-            src="https://avatars.githubusercontent.com/u/132064086?s=64&v=4"
-            alt="User avatar"
-          />
-         <span>{{ auth()->user()->name }}</span>
-        </div>
-      </div>
-
       <!-- Theme Customizer Panel -->
       <div class="theme-customizer" id="themeCustomizer">
         <h3>Theme Customizer</h3>

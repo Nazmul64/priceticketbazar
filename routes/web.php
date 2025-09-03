@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\PaswordchangeController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\SupportControler;
 use App\Http\Controllers\Backend\TermsconditionController;
 use App\Http\Controllers\Backend\UserprofileController;
 use App\Http\Controllers\Backend\WaletaSetupController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Backend\WithdrawController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\TotalreferreduseController;
+use App\Http\Controllers\Userauth\ForgotPasswordController;
 use App\Http\Controllers\UserlottryController;
 use App\Http\Controllers\UserregistionController;
 use Illuminate\Support\Facades\Route;
@@ -87,6 +89,7 @@ Route::middleware(['admin'])->group(function () {
     Route::delete('/user/delete/{id}', [AdminController::class, 'userDelete'])->name('user.delete');
     Route::get('/widthraw/history', [WidthrawhistoryanddepositehistoryController::class, 'widthrawhistory'])->name('widthraw.history');
     Route::get('/deposite/history', [WidthrawhistoryanddepositehistoryController::class, 'depositehistory'])->name('deposite.history');
+    Route::resource('supportlink',SupportControler::class);
 });
 
 // End Admin login routesadmin_login_submit
@@ -133,6 +136,15 @@ Route::middleware(['user'])->group(function () {
    Route::put('/profile/{id}', [UserprofileController::class, 'updateProfile'])->name('profile.update');
    Route::get('/password', [PaswordchangeController::class, 'password'])->name('password.index');
    Route::post('/password/change', [PaswordchangeController::class, 'passwordchange'])->name('password.change');
+
+
+  // user support for link
+  Route::get('supprts/link/show', [SupportControler::class, 'supprtslinkshow'])->name('supprtslinks.show');
+
+  Route::get('password/forget', [ForgotPasswordController::class, 'showForgetForm'])->name('password.forget');
+  Route::post('password/forget', [ForgotPasswordController::class, 'submitForgetForm'])->name('password.forget.post');
+  Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+  Route::post('password/reset', [ForgotPasswordController::class, 'submitResetForm'])->name('password.reset.post');
 
 
 

@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'ref_id' => null,
             'username' => null,
             'phone' => null,
+            'walate_address' => 'default_address',
         ]);
 
         // Create regular user
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'ref_id' => 1,
             'username' => 'nazmul',
             'phone' => '01706640864',
+            'walate_address' => 'default_address',
         ]);
 
         // Alternative: Use factory to create multiple test users

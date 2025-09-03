@@ -4,13 +4,27 @@
         ✖
       </button>
 
+
+
+      </div>
+        @php
+            use Illuminate\Support\Facades\Auth;
+            $user_photo = Auth::user();
+         @endphp
       <!-- User Level Info -->
       <div class="level">
-        {{-- <div class="level-badge">
-          <span class="level-number">Level 3</span>
-          <span class="star" aria-hidden="true">★</span>
-        </div> --}}
-        <small class="level-title">{{ auth()->user()->name }}</small>
+        <div class="level-badge">
+            <img
+        id="profilePreview"
+        src="{{ $user_photo && $user_photo->image
+            ? asset('uploads/profile/' . $user_photo->image)
+            : asset('uploads/profile/default.png') }}"
+        alt="Profile Picture"
+        class="profile-img mb-3 rounded-circle shadow"
+        style="width:80px; height:80px; object-fit: cover;"
+    >
+        </div>
+       <small class="level-title">{{ optional(auth()->user())->name ?? 'Guest' }}</small>
       </div>
 
 
@@ -69,7 +83,7 @@
 
           <li class="menu-section"><strong>Teligram Support</strong></li>
         <li>
-            <a href="#"><i class="fa">🎧</i>Support </a>
+            <a href="{{route('supprtslinks.show')}}"><i class="fa">🎧</i>Support </a>
         </li>
 
           <li>

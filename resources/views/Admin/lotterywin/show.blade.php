@@ -64,3 +64,49 @@
     </table>
 </div>
 @endsection
+<script>
+    // lottery resutel javascript
+const randomCheckbox = document.getElementById("randomCheckbox");
+const manualSelect = document.getElementById("manual-select");
+
+randomCheckbox.addEventListener("change", function () {
+    manualSelect.style.display = this.checked ? "none" : "block";
+});
+
+// Show prize input when a user is selected
+document.querySelectorAll(".user-list").forEach((list) => {
+    list.addEventListener("change", function (e) {
+        if (e.target.type === "radio") {
+            const prizeInput =
+                this.closest(".winner-section").querySelector(".prize-input");
+            prizeInput.style.display = "block";
+        }
+    });
+});
+
+// 🔎 Search filter
+document.getElementById("searchBox").addEventListener("keyup", function () {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll(".user-item").forEach((item) => {
+        const name = item.dataset.name;
+        item.style.display = name.includes(query) ? "block" : "none";
+    });
+});
+
+// end
+
+// lottery show javascript
+document.getElementById("lotterySearch").addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();
+    document.querySelectorAll("#lotteryTable tbody tr").forEach((row) => {
+        row.style.display = row.cells[0].textContent
+            .toLowerCase()
+            .includes(filter)
+            ? ""
+            : "none";
+    });
+});
+
+// end
+
+</script>
