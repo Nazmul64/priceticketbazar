@@ -81,7 +81,7 @@
                     <a href="{{ route('commissionsetting.index') }}"><i class="bi bi-circle"></i> Commission Settings</a>
                     <a href="{{ route('widthraw.history') }}"><i class="bi bi-circle"></i> Widthraw History</a>
                     <a href="{{ route('deposite.history') }}"><i class="bi bi-circle"></i>Deposite History</a>
-
+                    <a href="{{ route('notices.index') }}"><i class="bi bi-circle"></i>Notices</a>
                 </li>
             </ul>
         </li>

@@ -112,7 +112,7 @@
                             <a href="{{ route('user.dashboard') }}" class="template-btn-offer primary-outline-offer">Dashboard</a>
                         @else
                             <!-- If not logged in -->
-                            <a href="{{ route('user.login') }}" class="template-btn white-btn d-xl-block contact-btn">Login Now</a>
+                            <a href="{{ route('user.login') }}" class="template-btn white-btn d-xl-block contact-btn">Login </a>
                         @endauth
                     </div>
 

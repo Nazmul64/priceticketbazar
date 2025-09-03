@@ -19,6 +19,30 @@
     @endif
 @endforeach
 
+<div class="notice-section py-5">
+    <div class="container">
+        <div class="notice-marquee-wrapper overflow-hidden mb-4" style="
+            background: #240255;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 10px 0;">
+            <marquee behavior="scroll" direction="left" scrollamount="5">
+                @foreach ($notices as $item)
+                    <h2 class="notice-item text-white fw-bold me-5 notice-shadow"
+                        style="text-shadow: 2px 2px 5px rgba(0,0,0,0.5); margin:0;">
+                        {{ $item->notices_text ?? '' }}
+                    </h2>
+                @endforeach
+            </marquee>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 <!-- Hero Section End -->
 <!-- Counter Section Start -->

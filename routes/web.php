@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\DepositeContrller;
 use App\Http\Controllers\Backend\DepositeController;
 use App\Http\Controllers\Backend\LotterycreateController;
 use App\Http\Controllers\Backend\LotteryResultController;
+use App\Http\Controllers\Backend\NoticesController;
 use App\Http\Controllers\Backend\PartnarController;
 use App\Http\Controllers\Backend\PaswordchangeController;
 use App\Http\Controllers\Backend\PrivacypolicyController;
@@ -97,6 +98,7 @@ Route::post('/admin/lottery/{lotteryId}/declare', [LotteryResultController::clas
     Route::post('/admin/password/change/submit', [AdminpasswordchangeController::class, 'adminpasswordsubmit'])->name('adminpassword.submit');
     Route::get('/admin/profile/change', [AdminpasswordchangeController::class, 'adminProfile'])->name('profile.change');
     Route::put('/admin/profile/{id}', [AdminpasswordchangeController::class, 'adminProfileSubmit'])->name('admin.profile.update');
+    Route::resource('notices', NoticesController::class);
 });
 
 // End Admin login routesadmin_login_submit

@@ -7,6 +7,7 @@ use App\Models\About;
 use App\Models\Counter;
 use App\Models\Deposite;
 use App\Models\Lotter;
+use App\Models\Notice;
 use App\Models\Partner;
 use App\Models\Privacypolicy;
 use App\Models\Slider;
@@ -26,8 +27,9 @@ class FrontendController extends Controller
         $slider=Slider::all();
         $counter=Counter::all();
         $partner=Partner::all();
+        $notices=Notice::all();
         // $priavacypolicy =Privacypolicy::all();
-        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite','slider','counter','partner','widthraw'));
+        return view('Frontend.index',compact('lotterys','Whychooseinvestmentplan','aboutus','deposite','slider','counter','partner','widthraw','notices'));
     }
     public function privacy()
     {
