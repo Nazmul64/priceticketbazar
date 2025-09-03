@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\AdminBlanceController;
+use App\Http\Controllers\Backend\AdmindepositeEditController;
 use App\Http\Controllers\Backend\AdminpasswordchangeController;
 use App\Http\Controllers\Backend\AllTicketController;
 use App\Http\Controllers\Backend\CommissionSettingController;
@@ -87,8 +89,6 @@ Route::get('/admin/lottery/{lotteryId}/declare', [LotteryResultController::class
 // Declare winners
 Route::post('/admin/lottery/{lotteryId}/declare', [LotteryResultController::class, 'declareResult'])->name('admin.lottery.declare');
 
-    // Route::get('/deposites/edit/admin/{id}', [DepositeContrller::class, 'depositesedits'])->name('deposites.edit');
-    // Route::put('/deposites/update/{id}', [DepositeContrller::class, 'update'])->name('deposites.update');
 
     Route::delete('/user/delete/{id}', [AdminController::class, 'userDelete'])->name('user.delete');
     Route::get('/widthraw/history', [WidthrawhistoryanddepositehistoryController::class, 'widthrawhistory'])->name('widthraw.history');
@@ -99,6 +99,21 @@ Route::post('/admin/lottery/{lotteryId}/declare', [LotteryResultController::clas
     Route::get('/admin/profile/change', [AdminpasswordchangeController::class, 'adminProfile'])->name('profile.change');
     Route::put('/admin/profile/{id}', [AdminpasswordchangeController::class, 'adminProfileSubmit'])->name('admin.profile.update');
     Route::resource('notices', NoticesController::class);
+
+    // deposite admin edit
+      Route::get('/deposites/edit/admin/{id}', [AdmindepositeEditController::class, 'depositesedits'])->name('deposites.edit');
+      Route::put('/deposites/update/{id}', [AdmindepositeEditController::class, 'depositesupdate'])->name('deposites.update');
+     // deposite admin edit End
+
+     //  admin blance added
+      Route::get('/admin/user/balance', [AdminBlanceController::class, 'adminusercheck'])->name('admin.balance.index');
+      Route::get('/admin/user/{id}/balance', [AdminBlanceController::class, 'adminBalanceEdit'])->name('admin.balance.edit');
+      Route::put('/admin/user/{id}/balance', [AdminBlanceController::class, 'update'])->name('admin.balance.update');
+      Route::delete('/admin/user/{id}/delete', [AdminBlanceController::class, 'usrdelete'])->name('admin.usrdelete');
+     //  admin blance End
+
+
+
 });
 
 // End Admin login routesadmin_login_submit

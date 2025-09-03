@@ -73,12 +73,9 @@
 
                                 {{-- Action Buttons --}}
                                 <td>
-                                    <a href="#"
-                                       class="btn btn-sm btn-info" title="Wallet Setting">
-                                        <i class="bi bi-wallet2"></i>
-                                    </a>
 
-                                    <a href="#"
+
+                                    <a href="{{route('deposites.edit',$item->id)}}"
                                        class="btn btn-sm btn-primary" title="Edit Deposit">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>

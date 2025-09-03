@@ -82,6 +82,7 @@
                     <a href="{{ route('widthraw.history') }}"><i class="bi bi-circle"></i> Widthraw History</a>
                     <a href="{{ route('deposite.history') }}"><i class="bi bi-circle"></i>Deposite History</a>
                     <a href="{{ route('notices.index') }}"><i class="bi bi-circle"></i>Notices</a>
+                    <a href="{{ route('admin.balance.index') }}"><i class="bi bi-circle"></i> Admin Balance Add</a>
                 </li>
             </ul>
         </li>
