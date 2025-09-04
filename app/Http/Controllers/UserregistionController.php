@@ -163,12 +163,12 @@ class UserregistionController extends Controller
     /**
      * Logout user
      */
-    public function logout(Request $request)
+    public function userlogout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('user.login')->with('success', 'Successfully logged out!');
+        return redirect()->route('frontend')->with('success', 'Successfully logged out!');
     }
 }

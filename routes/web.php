@@ -125,7 +125,7 @@ Route::post('/admin/lottery/{lotteryId}/declare', [LotteryResultController::clas
 // Public routes
 Route::get('register', [UserregistionController::class, 'register'])->name('register');
 Route::get('user/login', [UserregistionController::class, 'userlogin'])->name('user.login');
-
+Route::post('logout', [UserregistionController::class, 'userlogout'])->name('logout');
 // POST routes for form submissions
 Route::post('register/submit', [UserregistionController::class, 'registersubmit'])->name('register.submit');
 Route::post('login/submit', [UserregistionController::class, 'loginSubmit'])->name('login.submit');
